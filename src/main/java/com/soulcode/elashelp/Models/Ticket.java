@@ -18,11 +18,9 @@ public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long id;
 
     private String prioridade;
-
-    private Setor setor;
 
     private Date data;
 
@@ -31,6 +29,9 @@ public class Ticket {
     private String titulo;
 
     private String descricao;
+
+    @Enumerated(EnumType.STRING)
+    private Setor setor;
 
     @ManyToOne
     private Usuario usuario;

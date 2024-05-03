@@ -1,5 +1,9 @@
 package com.soulcode.elashelp.Models;
 
 public enum Status {
-    ABERTO,AGUARDANDO,EMATENDIMENTO,ESCALDO,FINALIZADO
+    ABERTO,
+    AGUARDANDO,
+    EMATENDIMENTO,
+    ESCALADO,
+    FINALIZADO
 }

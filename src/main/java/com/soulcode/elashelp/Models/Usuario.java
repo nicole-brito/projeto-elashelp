@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,17 +14,20 @@ import lombok.NoArgsConstructor;
 @Table(name = "usuarios")
 @Entity
 public class Usuario {
-    @Id
 
+    @Id
     private String cpf;
 
+    @Column(nullable = false)
     private String nome;
 
+    @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private int telefone;
 
-    @OneToMany
-    private Ticket ticket;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    private List<Ticket> tickets;
 
 }
