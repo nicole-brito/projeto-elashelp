@@ -5,10 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name = "Tecnicos")
+@Table(name = "tecnicos")
 @Entity
 
 public class Tecnico {
@@ -22,8 +24,11 @@ public class Tecnico {
 
     private String email;
 
-    @OneToOne
+    @Enumerated(EnumType.STRING)
     private Setor setor;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tecnico")
+    private List<Ticket> tickets;
 
 
 
