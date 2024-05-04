@@ -26,6 +26,7 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
+
     public Usuario updateUsuario(Usuario usuario) {
         this.usuarioRepository.findById(usuario.getCpf());
         return usuarioRepository.save(usuario);
