@@ -31,16 +31,14 @@ public class TecnicoService {
         return tecnicoRepository.save(tecnico);
     }
 
-    public Tecnico buscarTecnicoId(Long id) {
-        return tecnicoRepository.getById(id);
+    public Tecnico findById(Long matricula) {
+        return tecnicoRepository.findById(matricula).orElse(null);
     }
 
-    public Tecnico deleteById(Long matricula) {
-        this.tecnicoRepository.findById(matricula);
-        Tecnico tecnico = new Tecnico();
-        tecnico.setMatricula(matricula);
-        Tecnico Tecnico;
-        return tecnico;
+    public String deleteById(Long matricula) {
+        tecnicoRepository.deleteById(matricula);
+        return "Técnico excluído com sucesso! Matrícula: " + matricula;
     }
+
 
 }
