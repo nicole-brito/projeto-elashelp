@@ -28,9 +28,14 @@ public class Usuario {
     private String senha;
 
     @Column
-    private int telefone;
+    private String telefone;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Ticket> tickets;
+
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private Login login;
+
+
 
 }

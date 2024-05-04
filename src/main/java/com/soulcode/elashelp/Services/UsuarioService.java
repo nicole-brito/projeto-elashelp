@@ -1,6 +1,8 @@
 package com.soulcode.elashelp.Services;
 
+import com.soulcode.elashelp.Models.Login;
 import com.soulcode.elashelp.Models.Usuario;
+import com.soulcode.elashelp.Repositories.LoginRepository;
 import com.soulcode.elashelp.Repositories.UsuarioRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class UsuarioService {
     @Autowired
     private final UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private final LoginRepository loginRepository;
+
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
     }
@@ -22,8 +27,21 @@ public class UsuarioService {
     public Usuario createUsuario(Usuario usuario) {
         if (usuarioRepository.existsById(usuario.getCpf())) {
             throw new RuntimeException("Já existe um usuário com esse CPF");
+
         }
-        return usuarioRepository.save(usuario);
+
+        //Salva usuario tanto no model usuario quanto no login
+        usuario = usuarioRepository.save(usuario);
+
+        Login login = new Login();
+        login.setEmail(usuario.getEmail());
+        login.setSenha(usuario.getSenha());
+        login.setUsuario(usuario);
+
+        login = loginRepository.save(login);
+        usuario.setLogin(login);
+
+        return usuario;
     }
 
 
