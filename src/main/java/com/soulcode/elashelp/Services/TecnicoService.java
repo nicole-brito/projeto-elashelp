@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-@AllArgsConstructor
 public class TecnicoService  {
+
     @Autowired
     private final TecnicoRepository tecnicoRepository;
 

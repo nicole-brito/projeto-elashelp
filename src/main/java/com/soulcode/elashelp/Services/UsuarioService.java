@@ -31,7 +31,7 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario deleteById (String cpf) {
+    public Usuario deleteById(String cpf) {
         this.usuarioRepository.findById(cpf);
         Usuario usuario = new Usuario();
         usuario.setCpf(cpf);
