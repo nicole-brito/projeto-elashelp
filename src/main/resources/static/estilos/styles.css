@@ -52,3 +52,29 @@ button {
 button:hover {
     background-color: #d3dbd9;
 }
+
+.barra {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+   align-items: center;
+}
+.botaologin  {
+top: 2px;
+right: 20px;
+    background-color:  #E5989B;
+    width: 8%;
+    padding: 5px;
+    border-radius: 10px;
+    align-items: center;
+    display: flex;
+
+
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha de Usuário ou Cliente</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .choice-block {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .choice-block:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+        }
+        .icon {
+            font-size: 60px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <!-- Bloco de escolha de Usuário -->
+        <div class="col-md-6 text-center">
+            <div class="choice-block bg-primary text-white">
+                <i class="icon fas fa-user"></i>
+            </div>
+            <p>Usuário</p>
+        </div>
+        <!-- Bloco de escolha de Cliente -->
+        <div class="col-md-6 text-center">
+            <div class="choice-block bg-secondary text-white">
+                <i class="icon fas fa-cogs"></i>
+            </div>
+            <p>Técnico</p>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>
