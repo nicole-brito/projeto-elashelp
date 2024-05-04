@@ -2,13 +2,11 @@ package com.soulcode.elashelp.Services;
 
 
 import com.soulcode.elashelp.Repositories.TecnicoRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
-@AllArgsConstructor
 public class TecnicoService  {
     @Autowired
     private final TecnicoRepository tecnicoRepository;
