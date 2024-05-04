@@ -12,11 +12,9 @@ import java.util.List;
 @Data
 @Table(name = "tecnicos")
 @Entity
-
 public class Tecnico {
     @Id
-
-    private String cpf;
+    private Long matricula;
 
     private boolean admin;
 
@@ -29,7 +27,5 @@ public class Tecnico {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tecnico")
     private List<Ticket> tickets;
-
-
 
 }
