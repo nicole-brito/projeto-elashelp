@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 public class Tecnico {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long matricula;
 
     private boolean admin;
@@ -27,5 +28,9 @@ public class Tecnico {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tecnico")
     private List<Ticket> tickets;
+
+    @OneToOne(mappedBy = "tecnico", cascade = CascadeType.ALL)
+    private Login login;
+
 
 }
