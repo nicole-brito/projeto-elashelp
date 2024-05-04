@@ -25,6 +25,9 @@ public class Usuario {
     private String email;
 
     @Column(nullable = false)
+    private String senha;
+
+    @Column
     private int telefone;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
