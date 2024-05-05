@@ -23,6 +23,12 @@ public class Tecnico {
 
     private String email;
 
+    private String senha;
+
+    private String cpf;
+
+    private String telefone;
+
     @Enumerated(EnumType.STRING)
     private Setor setor;
 

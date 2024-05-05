@@ -26,6 +26,7 @@ public class Login {
     private String senha;
 
     @OneToOne
+    @JoinColumn(name = "matricula", referencedColumnName = "matricula")
     private Tecnico tecnico;
 
     @OneToOne
