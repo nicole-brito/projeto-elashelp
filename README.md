@@ -72,7 +72,7 @@ cd [nome do diretório]
 ```
 ## Desenvolvedoras
 
-- [Ana Paula](https://www.linkedin.com/in/annapaula-marques/)
+- [Anna Paula](https://www.linkedin.com/in/annapaula-marques/)
 
 - [Angel Diniz](https://www.linkedin.com/in/angel-d-9764a1127/)
 
