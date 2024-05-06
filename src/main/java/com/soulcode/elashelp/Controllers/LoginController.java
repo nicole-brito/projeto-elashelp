@@ -25,17 +25,21 @@ public class LoginController {
     }
 
 @PostMapping("/entrar")
-    public String login(Model model,  String email, String senha){
+    public String processarLogin(Model model,  String email,  String senha) {
     model.addAttribute("email", email);
     model.addAttribute("senha", senha);
 
 
-    if (loginService.verificarLogin(email,senha)) {
+    if (loginService.verificarLogin(email, senha)) {
         return "entrar";
-    }
-    else{
+    } else {
         return "login";
     }
-
 }
+
+    @GetMapping("/escolhercadastro")
+    public String escolherCadastro(){
+        return "escolhercadastro";
+    }
+
 }
