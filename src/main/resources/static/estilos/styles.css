@@ -1,0 +1,154 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FCF7F6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: #fff;
+    padding: 60px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+button {
+    width: 108%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #E5989B;
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d3dbd9;
+}
+
+.barra {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+   align-items: center;
+}
+.botaologin  {
+top: 2px;
+right: 20px;
+    background-color:  #E5989B;
+    width: 8%;
+    padding: 5px;
+    border-radius: 10px;
+    align-items: center;
+    display: flex;
+
+
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card {
+    display: inline-block;
+    width: calc(40% - 10px);
+    margin-right: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    vertical-align: top;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card:last-child {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+
+.card-img-top {
+    width: 60%;
+    height: 300px;
+    object-fit: cover;
+}
+
+
+.card-body {
+    padding: 10px;
+
+
+
+}
+
+.card-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 16px;
+}
+
+
+.card-group {
+    text-align: center;
+}
+
+
+.card-space {
+    display: inline-block;
+    width: 20px;
+    vertical-align: top;
+}
+
+
+.botaocad {
+    width: 50%;
+    padding: 0px;
+    font-size: 16px;
+    background-color: #E5989B;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+h2{
+color:#E5989B;
+}

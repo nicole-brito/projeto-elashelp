@@ -5,16 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name = "Tecnicos")
+@Table(name = "tecnicos")
 @Entity
-
 public class Tecnico {
     @Id
-
-    private String cpf;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long matricula;
 
     private boolean admin;
 
@@ -22,9 +23,20 @@ public class Tecnico {
 
     private String email;
 
-    @OneToOne
+    private String senha;
+
+    private String cpf;
+
+    private String telefone;
+
+    @Enumerated(EnumType.STRING)
     private Setor setor;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tecnico")
+    private List<Ticket> tickets;
+
+    @OneToOne(mappedBy = "tecnico", cascade = CascadeType.ALL)
+    private Login login;
 
 
 }
