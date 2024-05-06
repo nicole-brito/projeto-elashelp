@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Usuário</title>
+    <title>Cadastro de Técnico</title>
     <link rel="stylesheet" href="/estilos/styles.css">
 </head>
 <body>
 <div class="login-container">
-    <h2>Criar Conta Usuário</h2>
-    <form th:action="@{/cadastro}" th:object="${usuario}" method="post">
+    <h2>Criar Conta Técnico</h2>
+    <form th:action="@{/cadastrotecnico}" th:object="${tecnico}" method="post">
         <div class="input-group">
             <label for="cpf">CPF:</label>
             <input type="text" th:field="*{cpf}" id="cpf" required>

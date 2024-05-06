@@ -25,16 +25,16 @@ public class UsuarioController {
     }
 
     //Method add user
-    @PostMapping("cadastro")
+    @PostMapping("/cadastro")
     public String createUsuario(@ModelAttribute Usuario usuario, Model model) {
         try {
             Usuario createUsuario = usuarioService.createUsuario(usuario);
             model.addAttribute("usuario", createUsuario);
-            return "login.html";
+            return "redirect:/login";
         } catch (RuntimeException e) {
             log.error("Erro ao criar novo usuário", e);
             model.addAttribute("error", e.getMessage());
-            return "cadastro-usuario.html";
+            return "cadastro-usuario";
         }
     }
 
