@@ -50,4 +50,42 @@ public class TecnicoController {
             return "cadastro-tecnico.html";
         }
     }
+    //Method get
+    @GetMapping("/{matricula}")
+    public ResponseEntity<?> getTecnicoById(@PathVariable Long matricula) {
+        try {
+            Tecnico tecnico = tecnicoService.findById(matricula);
+            if (tecnico != null) {
+                return ResponseEntity.ok(tecnico);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (RuntimeException e) {
+            log.error("Erro ao buscar técnico por ID", e);
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    //Method delete
+    @DeleteMapping("/{matricula}")
+    public ResponseEntity<?> deleteById(@PathVariable Long matricula) {
+        try {
+             String deleteById = tecnicoService.deleteById(matricula);
+            return new ResponseEntity<>(deleteById, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            log.error("Erro ao deletar técnico");
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/{matricula}")
+    public ResponseEntity<?> updateMatricula(@RequestBody Tecnico tecnico) {
+        try {
+            Tecnico updateTecnico = tecnicoService.updateTecnico(tecnico);
+            return new ResponseEntity<>(updateTecnico, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            log.error("Erro ao editar técnico", e);
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
