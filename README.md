@@ -1,5 +1,10 @@
 # Sistema de Gestão de Chamados - KittyHelp
 
+<div align="center">
+    <img src="src/main/resources/static/imagens/icone_fundo-bege.png" alt="Imagem da Tela Inicial" width="10%">
+</div>
+
+
 ## Descrição
 
 Este projeto é um sistema de gestão de chamados desenvolvido para o Bootcamp da SoulCode Academy & PagBank, concebido para facilitar a administração e o atendimento de chamados dentro de uma organização. Ele permite que usuários registrem chamados e que técnicos os atendam de forma eficiente. Este README fornece uma visão geral das funcionalidades do sistema, bem como instruções básicas para sua utilização e desenvolvimento.
@@ -49,15 +54,15 @@ Este projeto é um sistema de gestão de chamados desenvolvido para o Bootcamp d
 ## Especificações Técnicas
 
 - **Linguagem de Programação**: Java com Spring Boot.
-- **Arquitetura**: Programação Orientada a Objetos.
-- **Front-end**: Templates de telas.
+- **Arquitetura**: MVC & Programação Orientada a Objetos.
+- **Front-end**: HTML, CSS, ThymeLeaf e Bulma.
 - **Banco de Dados**: MySQL.
 - **Controle de Versão**: GitHub.
 - **API**: RESTful.
 
 ## Configuração e Instalação
 
-Instruções detalhadas sobre como configurar e executar o sistema localmente. Incluir informações sobre como configurar o ambiente de desenvolvimento, como instalar dependências e como executar o aplicativo.
+Instruções detalhadas sobre como configurar e executar o sistema localmente.
 
 ```bash
 # Clonar o repositório
