@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link href="styles.css" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>KittyHelp</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="logo-container">
+            <img src="/imagens/logo.png" alt="Logo" style="height: 40px;">
+            <span class="logo-text">KittyHelp</span>
+        </div>
+        <div class="navbar-nav mx-auto">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">Serviços</a>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Mais
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Subitem 1</a>
+                    <a class="dropdown-item" href="#">Subitem 2</a>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-text">
+            <span class="user-greeting">Olá, <span th:text="${#strings.toUpperCase(user.initials)}" class="user-initials"></span>!</span>
+        </div>
+    </div>
+</nav>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
