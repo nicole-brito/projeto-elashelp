@@ -69,12 +69,13 @@ Instruções detalhadas sobre como configurar e executar o sistema localmente.
 git clone [URL do repositório]
 cd [nome do diretório]
 
-# Instalar dependências
-./gradlew build
+# Instale as dependências
+$ mvn install
 
-# Executar o aplicativo
-./gradlew bootRun
+# Execute a aplicação
+$ mvn spring-boot:run
 
+# O servidor inciará na porta:8080 - acesse http://localhost:8080
 ```
 ## Desenvolvedoras
 
@@ -84,7 +85,7 @@ cd [nome do diretório]
 
 - [Bianca Leal](https://www.linkedin.com/in/bianca-leall/)
 
-- [Nicole brito](https://www.linkedin.com/in/nicolebrito/)
+- [Nicole Brito](https://www.linkedin.com/in/nicolebrito/)
 
 - [Rayla Fernanda](https://www.linkedin.com/in/rayla-fernanda-405153215/)
 
