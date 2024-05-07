@@ -1,10 +1,11 @@
-# Sistema de Gestão de Chamados - KittyDesk
+# Sistema de Gestão de Chamados - KittyHelp
 
 ## Descrição
 
 Este projeto é um sistema de gestão de chamados desenvolvido para o Bootcamp da SoulCode Academy & PagBank, concebido para facilitar a administração e o atendimento de chamados dentro de uma organização. Ele permite que usuários registrem chamados e que técnicos os atendam de forma eficiente. Este README fornece uma visão geral das funcionalidades do sistema, bem como instruções básicas para sua utilização e desenvolvimento.
 
-![Imagem da Tela Inicial]()
+![Imagem da Tela Inicial](src/main/resources/static/imagens/home.png)
+
 
 ## Telas
 
