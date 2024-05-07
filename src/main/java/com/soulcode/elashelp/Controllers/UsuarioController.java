@@ -1,5 +1,6 @@
 package com.soulcode.elashelp.Controllers;
 
+import com.soulcode.elashelp.Models.Setor;
 import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Services.UsuarioService;
 import lombok.RequiredArgsConstructor;
