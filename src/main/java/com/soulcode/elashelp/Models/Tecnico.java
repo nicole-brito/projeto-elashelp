@@ -10,11 +10,11 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name = "tecnicos")
 @Entity
+@Table(name = "tecnicos")
 public class Tecnico {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long matricula;
 
     private boolean admin;
@@ -37,6 +37,4 @@ public class Tecnico {
 
     @OneToOne(mappedBy = "tecnico", cascade = CascadeType.ALL)
     private Login login;
-
-
 }
