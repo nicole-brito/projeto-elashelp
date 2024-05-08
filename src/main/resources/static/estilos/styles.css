@@ -406,3 +406,24 @@ footer a:hover {
     border-radius: 100px;
     cursor: pointer;
 }
+
+/* Estilização do dashboard */
+.dashboard-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+canvas {
+    padding: 24px 24px;
+    margin: 24px 24px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+canvas
