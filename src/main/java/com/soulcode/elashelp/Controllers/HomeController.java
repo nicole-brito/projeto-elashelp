@@ -15,4 +15,11 @@ public class HomeController {
     public String sobre() {
         return "sobre";
     }
+
+    @GetMapping("/dash")
+    public String dash() {
+        return "dashboard/dashboard-usuario";
+    }
+
+
 }

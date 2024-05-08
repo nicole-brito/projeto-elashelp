@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard do Usuário</title>
+    <link rel="stylesheet" href="/estilos/styles.css">
+    <script src="https://kit.fontawesome.com/ab398cb506.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+
+</head>
+<body>
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<script>
+    fetch('/ticket/open-by-sector')
+        .then(response => response.json())
+        .then(data => {
+            var xValues = Object.keys(data); // Nomes dos setores
+            var yValues = Object.values(data); // Quantidade de tickets abertos
+
+            var barColors = [
+                "#d55a7c",
+                "#00aba9",
+                "#2b5797",
+                "#e8c3b9",
+                "#1e7145"
+            ];
+
+            new Chart("myChart", {
+                type: "doughnut",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "Open Tickets by Sector"
+                    }
+                }
+            });
+        });
+</script>
+
+</body>

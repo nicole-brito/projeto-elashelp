@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/ticket")
@@ -54,5 +55,11 @@ public class TicketController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    //Requisição pra filtrar os tickets por setor
+    @GetMapping("open-by-sector")
+    public Map<String, Long> getOpenTicketsBySector() {
+        return ticketService.getOpenTicketsBySector();
     }
 }

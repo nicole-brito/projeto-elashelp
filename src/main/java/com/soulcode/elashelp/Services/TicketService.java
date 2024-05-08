@@ -1,14 +1,20 @@
 package com.soulcode.elashelp.Services;
 
+import com.soulcode.elashelp.Models.Status;
 import com.soulcode.elashelp.Models.Ticket;
 import com.soulcode.elashelp.Repositories.TicketRepository;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class TicketService {
 
     @Autowired
@@ -42,5 +48,17 @@ public class TicketService {
 
     public void deleteTicket(Integer id) {
         ticketRepository.deleteById(id);
+    }
+
+    public Map<String, Long > getOpenTicketsBySector() {
+        List<Ticket> tickets = ticketRepository.findAll();
+
+        Map<String, Long> openTicketsBySector = tickets.stream()
+                .filter(ticket -> Status.ABERTO.equals(ticket.getStatus()))
+                .collect(Collectors.groupingBy(ticket -> ticket.getSetor().toString(), Collectors.counting()));
+
+        log.info("Open tickets by sector: {}", openTicketsBySector);
+
+        return openTicketsBySector;
     }
 }
