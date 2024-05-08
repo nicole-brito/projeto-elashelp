@@ -1,38 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
-* {
-    font-family: 'Quicksand', sans-serif;
-}
-
-/* Navbar */
-.navbar {
-    padding: 10px 15px;
-}
-
-.user-greeting {
-    background-color: #6f42c1;
-    color: white;
-    border-radius: 50%;
-    padding: 5px 10px;
-}
-
-.logo-container {
-    display: flex;
-    align-items: center; /* Centraliza verticalmente o texto com a logo */
-}
-
-.logo-container .logo-text {
-    color: #E5989B;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 150%; /* 33px */
-    margin-left: 10px; /* Ajuste conforme necessário para espaço entre logo e texto */
-}
-
-/*  fim do Navbar */
-
 body {
     font-family: Arial, sans-serif;
     background-color: #FCF7F6;

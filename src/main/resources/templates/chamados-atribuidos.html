@@ -3,8 +3,8 @@
 <head>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <link href="/estilos/styles.css" rel="stylesheet">
+    <link href="/static/estilos/navbar.css" rel="stylesheet">
+    <link href="/static/estilos/styles.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>KittyHelp</title>
 </head>
@@ -12,7 +12,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <div class="logo-container">
-            <img src="/imagens/logo.png" alt="Logo" style="height: 40px;">
+            <img src="/static/imagens/logo.png" alt="Logo" style="height: 40px;">
             <span class="logo-text">KittyHelp</span>
         </div>
         <div class="navbar-nav mx-auto">
@@ -28,8 +28,9 @@
                 </div>
             </div>
         </div>
-        <div class="navbar-text">
-            <span class="user-greeting">Olá, <span th:text="${#strings.toUpperCase(user.initials)}" class="user-initials"></span>!</span>
+        <div class="greeting-section">
+            <span>Olá, <span th:text="${user.name}">Bianca Leal</span>!</span>
+            <span class="user-initials-circle" th:text="${#strings.toUpperCase(user.initials)}">BL</span>
         </div>
     </div>
 </nav>
@@ -39,4 +40,3 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
