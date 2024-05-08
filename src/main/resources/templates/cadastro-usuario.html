@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Usuário</title>
-    <link rel="stylesheet" href="/estilos/styles.css"> <!-- Vincula o arquivo CSS -->
+    <link rel="stylesheet" href="/estilos/styles.css">
 </head>
 <body>
 <div class="cadastro-container">
@@ -43,21 +43,10 @@
                     <input placeholder="Telefone" type="number" th:field="*{telefone}" id="telefone">
                 </div>
                 <br>
-                <br>
-                <div class="direita-group">
-
-                    <select th:field="*{setor}" id="setor" required>
-                        <option value="">Selecione um Setor</option>
-                        <<option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"
-                                 th:value="${s}"
-                                 th:text="${s}">
-                    </option>
-                    </select>
-                </div>
             </div>
         </div>
         <br>
-<center>
+<div style="text-align: center;">
         <div class="botao2-group">
             <button type="submit">Criar conta</button>
         </div>
@@ -66,7 +55,7 @@
                 <button type="button">Já tenho uma conta</button>
             </a>
         </div>
-</center>
+</div>
     </form>
 </div>
 </body>
