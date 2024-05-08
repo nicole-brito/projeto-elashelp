@@ -1,0 +1,98 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 10px 15px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    color: #E5989B;
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.navbar-text {
+    display: flex;
+    align-items: center;
+}
+
+.greeting-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-initials-circle {
+    background-color: #6f42c1;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-fullname {
+    margin-left: 10px;
+}
+
+.navbar-nav {
+    list-style: none;
+    display: flex;
+}
+
+.navbar-nav li {
+    padding: 0 15px;
+    position: relative;
+}
+
+.navbar-nav a {
+    text-decoration: none;
+    color: #333;
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    list-style: none;
+    padding: 5px;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.user-greeting {
+    background-color: #6f42c1;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+}
+
+.user-initials {
+    margin-right: 5px;
+}
