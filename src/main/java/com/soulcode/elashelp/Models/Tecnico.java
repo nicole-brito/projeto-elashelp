@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 public class Tecnico {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long matricula;
 
     private boolean admin;
@@ -22,10 +23,20 @@ public class Tecnico {
 
     private String email;
 
+    private String senha;
+
+    private String cpf;
+
+    private String telefone;
+
     @Enumerated(EnumType.STRING)
     private Setor setor;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tecnico")
     private List<Ticket> tickets;
+
+    @OneToOne(mappedBy = "tecnico", cascade = CascadeType.ALL)
+    private Login login;
+
 
 }

@@ -1,8 +1,19 @@
 package com.soulcode.elashelp.Models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.List;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Entity
+@Table(name = "login")
 public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,30 +25,14 @@ public class Login {
     @Column(nullable = false, length = 100)
     private String senha;
 
-    public Login() {
-    }
+    @OneToOne
+    @JoinColumn(name = "matricula", referencedColumnName = "matricula")
+    private Tecnico tecnico;
 
-    public long getIdLogin() {
-        return idLogin;
-    }
+    @OneToOne
+    @JoinColumn(name = "cpf", referencedColumnName = "cpf")
+    private Usuario usuario;
 
-    public void setIdLogin(long idLogin) {
-        this.idLogin = idLogin;
-    }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
 }

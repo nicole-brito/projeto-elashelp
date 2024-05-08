@@ -7,16 +7,25 @@
     <link rel="stylesheet" href="estilos/styles.css">
 </head>
 <body>
+<div class="barra">
+    <div>
+    <a href="/escolhercadastro">
+    <button type="button" class="botaologin" >Criar Conta</button>
+    </a>
+    </div>
+</div>
+
 <div class="login-container">
+
     <h2>Entrar</h2>
-    <form action="@{/entrar}" method="post">
+    <form action="/entrar" method="post">
         <div class="input-group">
             <label for="email">E-mail:</label>
-            <input type="email" th:field="*{email}" id="email" name="email" required>
+            <input type="email"  id="email" name="email" required>
         </div>
         <div class="input-group">
             <label for="senha">Senha:</label>
-            <input type="password" th:field="*{senha}" id="senha" name="senha" required>
+            <input type="password" id="senha" name="senha" required>
         </div>
         <button type="submit">Entrar na Conta</button>
     </form>
