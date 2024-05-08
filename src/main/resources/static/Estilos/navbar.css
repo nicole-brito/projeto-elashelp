@@ -96,3 +96,25 @@ body {
 .user-initials {
     margin-right: 5px;
 }
+
+/* Estilo Botão Criar Conta e Entrar */
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-primary {
+    background-color: #E5989B;
+    border-color: #E5989B;
+    color: white;
+    border-radius: 5px;
+}
+
+.btn-outline-secondary {
+    color: black;
+    border-color: #ccc;
+    background-color: white;
+    border-radius: 5px;
+}
+
