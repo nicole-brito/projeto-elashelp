@@ -37,9 +37,9 @@ body {
     font-family: Arial, sans-serif;
     background-color: #FCF7F6;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     margin: 0;
 }
 
@@ -79,7 +79,7 @@ body {
 }
 
 button {
-    width: 108%;
+    /*width: 108%;*/
     padding: 10px;
     font-size: 16px;
     background-color: #E5989B;
@@ -285,4 +285,124 @@ h2 {
     font-size: 24px;
     margin-bottom: 20px;
     font-weight: bold;
+}
+
+/*Início Página Sobre Nós */
+
+.card-dev-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-card .is-title {
+    color: #353030;
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    display: inline-flex;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-card h2 {
+    align-items: center;
+    justify-content: center;
+}
+
+.container-card .button-sobre {
+    display: inline-flex;
+    height: 2.5rem;
+    padding: 0.75rem 1.5rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+    flex-shrink: 0;
+}
+
+.container-card .card-dev {
+    display: flex;
+    flex-direction: row;
+    gap: 1.25rem;
+    padding: 1.25rem 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-card img {
+    margin: 24px;
+}
+
+/*Início Footer */
+footer {
+    width: 100%;
+    padding: 3%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-around;
+}
+
+footer .links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px;
+}
+
+footer a {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: 500;
+}
+
+footer a:hover {
+    background-color: #E5989B;
+    color: white;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    padding: 20px;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    align-items: center;
+
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #f8f9fa;
+    padding: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #E5989B;
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
 }
