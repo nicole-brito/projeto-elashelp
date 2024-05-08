@@ -1,10 +1,16 @@
-# Sistema de Gestão de Chamados - KittyDesk
+# Sistema de Gestão de Chamados - KittyHelp
+
+<div align="center">
+    <img src="src/main/resources/static/imagens/icone_fundo-bege.png" alt="Imagem da Tela Inicial" width="10%">
+</div>
+
 
 ## Descrição
 
 Este projeto é um sistema de gestão de chamados desenvolvido para o Bootcamp da SoulCode Academy & PagBank, concebido para facilitar a administração e o atendimento de chamados dentro de uma organização. Ele permite que usuários registrem chamados e que técnicos os atendam de forma eficiente. Este README fornece uma visão geral das funcionalidades do sistema, bem como instruções básicas para sua utilização e desenvolvimento.
 
-![Imagem da Tela Inicial]()
+![Imagem da Tela Inicial](src/main/resources/static/imagens/home.png)
+
 
 ## Telas
 
@@ -48,27 +54,28 @@ Este projeto é um sistema de gestão de chamados desenvolvido para o Bootcamp d
 ## Especificações Técnicas
 
 - **Linguagem de Programação**: Java com Spring Boot.
-- **Arquitetura**: Programação Orientada a Objetos.
-- **Front-end**: Templates de telas.
+- **Arquitetura**: MVC & Programação Orientada a Objetos.
+- **Front-end**: HTML, CSS, ThymeLeaf e Bulma.
 - **Banco de Dados**: MySQL.
 - **Controle de Versão**: GitHub.
 - **API**: RESTful.
 
 ## Configuração e Instalação
 
-Instruções detalhadas sobre como configurar e executar o sistema localmente. Incluir informações sobre como configurar o ambiente de desenvolvimento, como instalar dependências e como executar o aplicativo.
+Instruções detalhadas sobre como configurar e executar o sistema localmente.
 
 ```bash
 # Clonar o repositório
 git clone [URL do repositório]
 cd [nome do diretório]
 
-# Instalar dependências
-./gradlew build
+# Instale as dependências
+$ mvn install
 
-# Executar o aplicativo
-./gradlew bootRun
+# Execute a aplicação
+$ mvn spring-boot:run
 
+# O servidor inciará na porta:8080 - acesse http://localhost:8080
 ```
 ## Desenvolvedoras
 
@@ -78,7 +85,7 @@ cd [nome do diretório]
 
 - [Bianca Leal](https://www.linkedin.com/in/bianca-leall/)
 
-- [Nicole brito](https://www.linkedin.com/in/nicolebrito/)
+- [Nicole Brito](https://www.linkedin.com/in/nicolebrito/)
 
 - [Rayla Fernanda](https://www.linkedin.com/in/rayla-fernanda-405153215/)
 

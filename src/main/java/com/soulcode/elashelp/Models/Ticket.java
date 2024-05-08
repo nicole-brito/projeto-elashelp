@@ -1,6 +1,5 @@
 package com.soulcode.elashelp.Models;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,14 +10,13 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table( name = "ticket")
 @Entity
-
+@Table(name = "ticket")
 public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     private String prioridade;
 
@@ -37,7 +35,6 @@ public class Ticket {
     private Usuario usuario;
 
     @ManyToOne
+    @JoinColumn(name = "tecnico_matricula", referencedColumnName = "matricula", nullable = true) // a coluna pode ser nula
     private Tecnico tecnico;
-
-
 }

@@ -7,30 +7,64 @@
     <link rel="stylesheet" href="/estilos/styles.css">
 </head>
 <body>
-<div class="login-container">
+<div class="cadastro-container">
     <h2>Criar Conta Técnico</h2>
     <form th:action="@{/cadastrotecnico}" th:object="${tecnico}" method="post">
-        <div class="input-group">
-            <label for="cpf">CPF:</label>
-            <input type="text" th:field="*{cpf}" id="cpf" required>
+        <div class="form-row">
+            <div class="form-col">
+                <div class="esquerda-group">
+            <input  placeholder="CPF" type="number" th:field="*{cpf}" id="cpf" required>
         </div>
-        <div class="input-group">
-            <label for="nome">Nome:</label>
-            <input type="text" th:field="*{nome}" id="nome" required>
+                <br>
+                <br>
+                <div class="esquerda-group">
+            <input  placeholder="Nome" type="text" th:field="*{nome}" id="nome" required>
         </div>
-        <div class="input-group">
-            <label for="nome">Senha:</label>
-            <input type="password" th:field="*{senha}" id="senha" required>
+                <br>
+                <br>
+                <div class="esquerda-group">
+
+            <input  placeholder="Senha" type="password" th:field="*{senha}" id="senha" required>
         </div>
-        <div class="input-group">
-            <label for="email">Email:</label>
-            <input type="email" th:field="*{email}" id="email" required>
+            </div>
+            <br>
+            <br>
+            <div class="form-col">
+                <div class="direita-group">
+
+            <input  placeholder="Email" type="email" th:field="*{email}" id="email" required>
         </div>
-        <div class="input-group">
-            <label for="telefone">Telefone:</label>
-            <input type="number" th:field="*{telefone}" id="telefone">
+                <br>
+                <br>
+                <div class="direita-group">
+
+            <input  placeholder="Telefone" type="number" th:field="*{telefone}" id="telefone">
         </div>
-        <button type="submit">Cadastrar</button>
+                <br>
+                <br>
+                <div class="direita-group">
+
+                    <select th:field="*{setor}" id="setor" required>
+                        <option value="">Selecione um Setor</option>
+                        <<option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"
+                                 th:value="${s}"
+                                 th:text="${s}">
+                    </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <br>
+<center>
+        <div class="botao2-group">
+        <button type="submit">Criar conta</button>
+        </div>
+        <div class="botao-group">
+            <a href="/login">
+            <button type="button">Já tenho uma conta</button>
+            </a>
+        </div>
+</center>
     </form>
 </div>
 </body>

@@ -1,3 +1,35 @@
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    padding: 10px 15px;
+}
+
+.user-greeting {
+    background-color: #6f42c1;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente o texto com a logo */
+}
+
+.logo-container .logo-text {
+    color: #E5989B;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 33px */
+    margin-left: 10px; /* Ajuste conforme necessário para espaço entre logo e texto */
+}
+/*  fim do Navbar */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #FCF7F6;
@@ -14,6 +46,10 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 300px;
+}
+.select-large {
+    width: 300px;
+
 }
 
 .login-container h2 {
@@ -151,4 +187,95 @@ a {
 
 h2{
 color:#E5989B;
+}
+.cadastro-container {
+    max-width: 900px;
+    margin: 90px auto;
+    padding: 20px 200px;
+    border-radius: 10px;
+    background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.cadastro-container h2{
+ margin-left: -90px;
+}
+
+
+.esquerda-group input,
+.esquerda-group select {
+    width: 180%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+    margin-left: -90px;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+
+
+.direita-group input,
+ .direita-group select{
+    width: 160%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+    margin-left: 100px;
+    margin-right: 10px;
+    box-sizing: border-box;
+}
+
+
+
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+       padding-right: 80px;
+}
+
+
+.form-col {
+    flex: 1;
+    padding-right: 10px;
+}
+
+
+.botao-group {
+    text-align: center;
+       padding: 8px -100px;;
+}
+
+
+.botao-group button {
+    padding: 10px 16px;
+    background-color:white;
+    color: #E5989B;
+    border: 2px solid #E5989B;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.botao-group button:hover {
+    background-color: #d3dbd9;;
+}
+
+.direita-group selection{
+ text-color: gray;
+}
+}
+.botao2-group button {
+    padding: 8px 16px;
+    background-color: #E5989B;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.botao-group,
+.botao2-group {
+    display: inline-block;
+    margin-right: 20px;
 }
