@@ -31,7 +31,8 @@ public class UsuarioController {
         try {
             Usuario createUsuario = usuarioService.createUsuario(usuario);
             model.addAttribute("usuario", createUsuario);
-            return "redirect:/login";
+            model.addAttribute("success", "Cadastro realizado com sucesso!");
+            return "cadastro-usuario";
         } catch (RuntimeException e) {
             log.error("Erro ao criar novo usuário", e);
             model.addAttribute("error", e.getMessage());

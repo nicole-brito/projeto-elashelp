@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
 * {
     font-family: 'Quicksand', sans-serif;
 }
@@ -28,6 +30,7 @@
     line-height: 150%; /* 33px */
     margin-left: 10px; /* Ajuste conforme necessário para espaço entre logo e texto */
 }
+
 /*  fim do Navbar */
 
 body {
@@ -47,6 +50,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     width: 300px;
 }
+
 .select-large {
     width: 300px;
 
@@ -90,18 +94,19 @@ button:hover {
 }
 
 .barra {
-  background-color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50px;
-   align-items: center;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    align-items: center;
 }
-.botaologin  {
-top: 2px;
-right: 20px;
-    background-color:  #E5989B;
+
+.botaologin {
+    top: 2px;
+    right: 20px;
+    background-color: #E5989B;
     width: 8%;
     padding: 5px;
     border-radius: 10px;
@@ -110,6 +115,7 @@ right: 20px;
 
 
 }
+
 a {
     text-decoration: none;
     color: inherit;
@@ -120,7 +126,7 @@ a {
     width: calc(40% - 10px);
     margin-right: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     vertical-align: top;
     background-color: #ffffff;
@@ -147,9 +153,6 @@ a {
 
 .card-body {
     padding: 10px;
-
-
-
 }
 
 .card-title {
@@ -185,21 +188,19 @@ a {
     cursor: pointer;
 }
 
-h2{
-color:#E5989B;
+h2 {
+    color: #E5989B;
 }
+
 .cadastro-container {
     max-width: 900px;
     margin: 90px auto;
     padding: 20px 200px;
     border-radius: 10px;
     background-color: white;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
-.cadastro-container h2{
- margin-left: -90px;
-}
-
 
 .esquerda-group input,
 .esquerda-group select {
@@ -214,7 +215,7 @@ color:#E5989B;
 
 
 .direita-group input,
- .direita-group select{
+.direita-group select {
     width: 160%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -225,12 +226,10 @@ color:#E5989B;
 }
 
 
-
-
 .form-row {
     display: flex;
     flex-wrap: wrap;
-       padding-right: 80px;
+    padding-right: 80px;
 }
 
 
@@ -242,13 +241,13 @@ color:#E5989B;
 
 .botao-group {
     text-align: center;
-       padding: 8px -100px;;
+    padding: 8px -100px;;
 }
 
 
 .botao-group button {
     padding: 10px 16px;
-    background-color:white;
+    background-color: white;
     color: #E5989B;
     border: 2px solid #E5989B;
     border-radius: 20px;
@@ -261,10 +260,10 @@ color:#E5989B;
     background-color: #d3dbd9;;
 }
 
-.direita-group selection{
- text-color: gray;
+.direita-group selection {
+    text-color: gray;
 }
-}
+
 .botao2-group button {
     padding: 8px 16px;
     background-color: #E5989B;
@@ -274,8 +273,16 @@ color:#E5989B;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+
 .botao-group,
 .botao2-group {
     display: inline-block;
     margin-right: 20px;
+}
+
+.is-title {
+    color: #E5989B;
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
 }

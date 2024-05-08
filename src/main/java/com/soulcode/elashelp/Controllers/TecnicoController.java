@@ -43,11 +43,12 @@ public class TecnicoController {
         try {
             Tecnico createTecnico= tecnicoService.createTecnico(tecnico);
             model.addAttribute("tecnico", createTecnico);
-            return "redirect:/login";
+            model.addAttribute("success", "Cadastro realizado com sucesso!");
+            return "cadastro-tecnico";
         } catch (RuntimeException e) {
             log.error("Erro ao criar novo tecnico", e);
             model.addAttribute("error", e.getMessage());
-            return "cadastro-tecnico.html";
+            return "cadastro-tecnico";
         }
     }
     //Method get

@@ -30,9 +30,6 @@ public class Usuario {
     @Column
     private String telefone;
 
-    @Enumerated(EnumType.STRING)
-    private Setor setor;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Ticket> tickets;
 
