@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-//@RequestMapping("/usuario")
+@RequestMapping("/usuario")
 @RequiredArgsConstructor
 @Slf4j
 public class UsuarioController {
