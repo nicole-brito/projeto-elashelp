@@ -57,9 +57,24 @@ public class TicketController {
         }
     }
 
-    //Requisição pra filtrar os tickets por setor
+    //Requisição para os gráficos
     @GetMapping("open-by-sector")
     public Map<String, Long> getOpenTicketsBySector() {
         return ticketService.getOpenTicketsBySector();
+    }
+
+    @GetMapping("/total-by-sector")
+    public Map<String, Long> getTotalTicketsBySector() {
+        return ticketService.getTotalTicketsBySector();
+    }
+
+    @GetMapping("/finished-by-sector")
+    public Map<String, Long> getFinishedTicketsBySector() {
+        return ticketService.getFinishedTicketsBySector();
+    }
+
+    @GetMapping("/by-status")
+    public Map<String, Long> getTicketsByStatus() {
+        return ticketService.getTicketsByStatus();
     }
 }

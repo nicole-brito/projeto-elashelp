@@ -8,9 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,6 +52,8 @@ public class TicketService {
         ticketRepository.deleteById(id);
     }
 
+
+//    Requisições para os gráficos
     public Map<String, Long > getOpenTicketsBySector() {
         List<Ticket> tickets = ticketRepository.findAll();
 
@@ -61,4 +65,28 @@ public class TicketService {
 
         return openTicketsBySector;
     }
+
+    public Map<String, Long> getTotalTicketsBySector() {
+        List<Ticket> tickets = ticketRepository.findAll();
+
+        return tickets.stream()
+                .collect(Collectors.groupingBy(ticket -> ticket.getSetor().toString(), Collectors.counting()));
+    }
+
+    public Map<String, Long> getFinishedTicketsBySector() {
+        List<Ticket> tickets = ticketRepository.findAll();
+
+        return tickets.stream()
+                .filter(ticket -> Status.FINALIZADO.equals(ticket.getStatus()))
+                .collect(Collectors.groupingBy(ticket -> ticket.getSetor().toString(), Collectors.counting()));
+    }
+
+    public Map<String, Long> getTicketsByStatus() {
+        List<Ticket> tickets = ticketRepository.findAll();
+
+        return tickets.stream()
+                .collect(Collectors.groupingBy(ticket -> ticket.getStatus().toString(), Collectors.counting()));
+    }
+
+
 }
