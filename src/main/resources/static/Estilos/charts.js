@@ -1,4 +1,3 @@
-
 <!--    Mostra o total de tickets e também os que foram finalizados -->
 fetch('/ticket/total-by-sector')
     .then(response => response.json())
@@ -15,13 +14,13 @@ fetch('/ticket/total-by-sector')
                     data: {
                         labels: xValues,
                         datasets: [{
-                            label: 'Total Tickets',
+                            label: 'Total de Chamados',
                             data: totalValues,
                             backgroundColor: 'rgba(0, 123, 255, 0.5)',
                             borderColor: 'rgba(0, 123, 255, 1)',
                             borderWidth: 1
                         }, {
-                            label: 'Finished Tickets',
+                            label: 'Chamados Finalizados',
                             data: finishedValues,
                             type: 'line',
                             fill: false,
