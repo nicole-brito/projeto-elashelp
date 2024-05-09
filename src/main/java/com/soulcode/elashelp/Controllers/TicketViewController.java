@@ -17,7 +17,7 @@ public class TicketViewController {
     @Autowired
     private TicketService ticketService;
 
-    @GetMapping
+    @GetMapping("/todos")
     public String showTicketsPage(Model model) {
         List<Ticket> tickets = ticketService.findAllTickets();
         model.addAttribute("tickets", tickets);

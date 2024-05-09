@@ -56,4 +56,9 @@ public class UsuarioService {
         usuario.setCpf(cpf);
         return usuario;
     }
+
+//    //Método que pega o usuário atual (usado na view do navbar)
+//    public Usuario getCurrentUser() {
+//        return (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    }
 }
