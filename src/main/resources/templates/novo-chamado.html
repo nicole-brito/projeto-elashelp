@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     <title>KittyHelp</title>
 </head>
-<body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <div class="logo-container">
@@ -28,15 +27,38 @@
                 </div>
             </div>
         </div>
-        <div class="greeting-section">
-            <span>Olá, <span th:text="${user.name}">Bianca Leal</span>!</span>
-            <span class="user-initials-circle" th:text="${#strings.toUpperCase(user.initials)}">BL</span>
+        <div class="auth-buttons">
+            <button type="button" class="btn btn-primary">Criar conta</button>
+            <button type="button" class="btn btn-outline-secondary">Entrar</button>
         </div>
     </div>
 </nav>
+<body>
+<div class="container mt-5">
+    <h2>Novo Chamado</h2>
+    <form th:action="@{/view/tickets/new}" th:object="${ticket}" method="post">
+        <div class="form-group">
+            <label for="titulo">Título</label>
+            <input type="text" class="form-control" id="titulo" th:field="*{titulo}" required>
+        </div>
+        <div class="form-group">
+            <label for="descricao">Descrição</label>
+            <textarea class="form-control" id="descricao" th:field="*{descricao}" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="setor">Setor</label>
+            <select class="form-control" id="setor" th:field="*{setor}" required>
+                <option value="ADMINISTRATIVO">Administrativo</option>
+                <option value="HELPDESK">Helpdesk</option>
+                <option value="SUPORTE">Suporte</option>
+                <option value="FINANCEIRO">Financeiro</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Criar Chamado</button>
+    </form>
+</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

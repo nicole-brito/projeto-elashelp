@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/estilos/navbar.css" rel="stylesheet">
+    <link href="/static/estilos/styles.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>KittyHelp</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="logo-container">
+            <img src="/static/imagens/logo.png" alt="Logo" style="height: 40px;">
+            <span class="logo-text">KittyHelp</span>
+        </div>
+        <div class="navbar-nav mx-auto">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">Serviços</a>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Mais
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Subitem 1</a>
+                    <a class="dropdown-item" href="#">Subitem 2</a>
+                </div>
+            </div>
+        </div>
+        <div class="greeting-section">
+            <span>Olá, <span th:text="${user.name}">Bianca Leal</span>!</span>
+            <span class="user-initials-circle" th:text="${#strings.toUpperCase(user.initials)}">BL</span>
+        </div>
+    </div>
+</nav>
+<div class="container mt-5">
+    <h2 class="mb-4">Chamados Disponíveis</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Título</th>
+            <th>Status</th>
+            <th>Prioridade</th>
+            <th>Setor</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.id}"></td>
+            <td th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></td>
+            <td th:text="${ticket.titulo}"></td>
+            <td th:text="${ticket.status}"></td>
+            <td th:text="${ticket.prioridade}"></td>
+            <td th:text="${ticket.setor}"></td>
+            <td>
+                <a th:href="@{/ticket/{id}(id=${ticket.id})}" class="btn btn-primary btn-sm">Saiba Mais</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="@{/view/tickets/new}" class="btn btn-success">+ Novo Chamado</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            tickets: []
+        },
+        created() {
+            this.fetchTickets();
+        },
+        methods: {
+            fetchTickets() {
+                fetch('/ticket')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.tickets = data;
+                    })
+                    .catch(err => console.error('Failed to fetch tickets:', err));
+            }
+        }
+    });
+</script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
