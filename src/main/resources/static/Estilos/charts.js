@@ -1,8 +1,8 @@
 <!--    Mostra o total de tickets e também os que foram finalizados -->
-fetch('/ticket/total-by-sector')
+fetch('api/ticket/total-by-sector')
     .then(response => response.json())
     .then(totalData => {
-        fetch('/ticket/finished-by-sector')
+        fetch('api/ticket/finished-by-sector')
             .then(response => response.json())
             .then(finishedData => {
                 var xValues = Object.keys(totalData); // Nomes dos setores
@@ -50,7 +50,7 @@ fetch('/ticket/total-by-sector')
     });
 
 <!--    Mostra os tickets abertos ordenados por setor-->
-fetch('/ticket/open-by-sector')
+fetch('api/ticket/open-by-sector')
     .then(response => response.json())
     .then(data => {
         var xValues = Object.keys(data); // Nomes dos setores
@@ -83,7 +83,7 @@ fetch('/ticket/open-by-sector')
     });
 
 // Mostra os tickets por status
-fetch('/ticket/by-status')
+fetch('api/ticket/by-status')
     .then(response => response.json())
     .then(data => {
         var labels = Object.keys(data); // Status

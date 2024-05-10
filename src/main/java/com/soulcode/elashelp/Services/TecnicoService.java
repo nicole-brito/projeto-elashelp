@@ -52,7 +52,7 @@ public class TecnicoService {
     public String deleteById(Long matricula) {
         tecnicoRepository.deleteById(matricula);
         return "Técnico excluído com sucesso! Matrícula: " + matricula;
-    }
+    }git pu
 
 
 }

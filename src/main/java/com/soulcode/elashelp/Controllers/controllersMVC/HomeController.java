@@ -1,4 +1,4 @@
-package com.soulcode.elashelp.Controllers;
+package com.soulcode.elashelp.Controllers.controllersMVC;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,7 @@ public class HomeController {
 
     @GetMapping("/dash")
     public String dash() {
-        return "dashboard/dashboard-usuario";
+        return "admin/dashboard-usuario";
     }
 
 

@@ -1,4 +1,4 @@
-package com.soulcode.elashelp.Controllers;
+package com.soulcode.elashelp.Controllers.controllersMVC;
 
 import com.soulcode.elashelp.Models.Ticket;
 import com.soulcode.elashelp.Services.TicketService;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/view/tickets")
+@RequestMapping("/tickets")
 public class TicketViewController {
 
     @Autowired
@@ -21,12 +21,12 @@ public class TicketViewController {
     public String showTicketsPage(Model model) {
         List<Ticket> tickets = ticketService.findAllTickets();
         model.addAttribute("tickets", tickets);
-        return "tickets";  // Verifique se o arquivo tickets.html existe em src/main/resources/templates
+        return "tickets";
     }
 
     @GetMapping("/new")
     public String showNewTicketForm(Model model) {
         model.addAttribute("ticket", new Ticket());
-        return "novo-chamado";  // Verifique se o arquivo novo-chamado.html existe em src/main/resources/templates
+        return "novo-chamado";
     }
 }
