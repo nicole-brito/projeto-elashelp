@@ -14,10 +14,12 @@ import java.util.List;
 
 @Service
 public class TecnicoService {
+
     @Autowired
     private TecnicoRepository tecnicoRepository;
+
     @Autowired
-    private  LoginRepository loginRepository;
+    private LoginRepository loginRepository;
 
     public List<Tecnico> findAll() {
         return tecnicoRepository.findAll();
@@ -27,7 +29,7 @@ public class TecnicoService {
 //        if (tecnicoRepository.existsById(tecnico.getMatricula())) {
 //            throw new RuntimeException("Já existe um Técnico com esse cadastro");
 //        }
-       tecnico = tecnicoRepository.save(tecnico);
+        tecnico = tecnicoRepository.save(tecnico);
 
         Login login = new Login();
         login.setEmail(tecnico.getEmail());
@@ -53,6 +55,4 @@ public class TecnicoService {
         tecnicoRepository.deleteById(matricula);
         return "Técnico excluído com sucesso! Matrícula: " + matricula;
     }
-
-
 }
