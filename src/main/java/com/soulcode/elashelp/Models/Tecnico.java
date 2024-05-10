@@ -21,11 +21,11 @@ public class Tecnico {
 
     private String nome;
 
+    private String sobrenome;
+
     private String email;
 
     private String senha;
-
-    private String cpf;
 
     private String telefone;
 
