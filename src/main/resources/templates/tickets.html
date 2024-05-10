@@ -1,3 +1,5 @@
+<!-- /tickets/todos -->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
 <head>
@@ -27,15 +29,15 @@
                 </div>
             </div>
         </div>
-<!--        <div class="greeting-section">-->
-<!--            <span>Olá, <span th:text="${usuario.name}"></span>!</span>-->
-<!--            <span class="user-initials-circle" th:text="${#strings.toUpperCase(usuario.initials)}"></span>-->
-<!--        </div>-->
+        <div class="greeting-section">
+<!--            <span>Olá, <span th:text="${usuario.nome}" + th:text="${usuario.sobrenome}" ></>!</span>-->
+<!--            <span class="user-initials-circle" th:text="${#strings.toUpperCase(usuario.)}"></span>-->
+        </div>
     </div>
 </nav>
 <div class="container mt-5">
     <h2 class="mb-4">Chamados Disponíveis</h2>
-    <a href="@{/view/tickets/new}" class="btn btn-success">+ Novo Chamado</a>
+    <a href="/tickets/new" class="btn btn-success">+ Novo Chamado</a>
     <br><br>
 
     <table class="table">

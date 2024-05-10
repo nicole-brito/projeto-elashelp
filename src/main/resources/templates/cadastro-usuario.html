@@ -1,3 +1,5 @@
+<!-- /usuario/cadastro -->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
 <head>
@@ -9,7 +11,7 @@
 <body>
 <div class="cadastro-container">
     <h2>Criar Conta Usuário</h2>
-    <form th:action="@{/cadastro}" th:object="${usuario}" method="post">
+    <form th:action="@{/usuario/cadastro}" th:object="${usuario}" method="post">
         <div class="form-row">
             <div class="form-col">
                 <div class="esquerda-group">
@@ -40,22 +42,27 @@
                 <br>
                 <div class="direita-group">
 
+                    <input placeholder="Sobrenome" type="text" th:field="*{sobrenome}" id="sobrenome">
+                </div>
+                <br>
+                <div class="direita-group">
+
                     <input placeholder="Telefone" type="number" th:field="*{telefone}" id="telefone">
                 </div>
                 <br>
             </div>
         </div>
         <br>
-<div style="text-align: center;">
-        <div class="botao2-group">
-            <button type="submit">Criar conta</button>
+        <div style="text-align: center;">
+            <div class="botao2-group">
+                <button type="submit">Criar conta</button>
+            </div>
+            <div class="botao-group">
+                <a href="/login">
+                    <button type="button">Já tenho uma conta</button>
+                </a>
+            </div>
         </div>
-        <div class="botao-group">
-            <a href="/login">
-                <button type="button">Já tenho uma conta</button>
-            </a>
-        </div>
-</div>
     </form>
 </div>
 </body>
