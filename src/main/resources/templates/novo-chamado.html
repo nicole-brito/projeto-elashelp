@@ -38,7 +38,7 @@
 <body>
 <div class="container mt-5">
     <h2>Novo Chamado</h2>
-    <form th:action="@{/view/tickets/new}" th:object="${ticket}" method="post">
+    <form th:action="@{/tickets/new}" th:object="${ticket}" method="post">
         <div class="form-group">
             <label for="titulo">Título</label>
             <input type="text" class="form-control" id="titulo" th:field="*{titulo}" required>
