@@ -1,23 +1,35 @@
-<!-- /escolhercadastro -->
-
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="/estilos/navbar.css" rel="stylesheet">
+    <link href="/estilos/styles.css" rel="stylesheet">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tipo de Cadastro</title>
-    <link rel="stylesheet" href="/estilos/styles.css">
+    <title>KittyHelp</title>
 </head>
-<body>
-<div class="barra">
-    <div>
-        <a href="/login">
-            <button type="button" class="botaologin">Entrar</button>
-        </a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="logo-container">
+            <img src="/imagens/logo.png" alt="Logo" style="height: 40px;">
+            <span class="logo-text">KittyHelp</span>
+        </div>
+        <div class="navbar-nav mx-auto">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">Serviços</a>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Mais
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Subitem 1</a>
+                    <a class="dropdown-item" href="#">Subitem 2</a>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-
-
+</nav>
+<body>
 <div class="container">
     <br>
     <br>
@@ -25,23 +37,20 @@
     <br>
 
     <div style="text-align: center;">
-
         <!-- Card de Usuário -->
         <div class="card-group">
             <div class="card">
-                <img class="card-img-top" src="/static/imagens/usuario.png" alt="Imagem de capa do card">
+                <img class="card-img-top" src="/imagens/usuario.png" alt="Imagem de capa do card">
                 <div class="card-body">
                     <h3 class="card-title">USUÁRIO</h3>
                     <p class="card-text">Registre-se como usuário agora para obter suporte técnico rápido e eficiente!
                         Ao se cadastrar, você terá acesso aos nossos serviços de assistência técnica e poderá abrir
                         chamados para resolver problemas de TI de forma ágil.</p>
                     <br>
-                    <br>
                     <center>
                         <div class="botaocad"><a href="/usuario/cadastro">
                             <button>Cadastrar como Usuário</button>
                         </a>
-
                         </div>
                     </center>
                 </div>
@@ -49,30 +58,23 @@
             </div>
             <!-- Card de Técnico -->
             <div class="card">
-                <img class="card-img-top" src="/static/imagens/tecnico.png" alt="Imagem de capa do card">
+                <img class="card-img-top" src="/imagens/tecnico.png" alt="Imagem de capa do card">
                 <div class="card-body">
                     <h3 class="card-title">TÉCNICO</h3>
                     <p class="card-text">Seja parte da nossa equipe de suporte técnico! Ao criar uma conta de técnico,
                         você terá acesso às ferramentas necessárias para resolver chamados de TI de forma eficiente e
                         ajudar nossos usuários.</p>
-
                     <br>
                     <br>
-                    <div style="text-align: center;">
-                        <div class="botaocad">
-                            <a href="/tecnico/cadastro">
-                                <button>Cadastrar como Técnico</button>
-                            </a>
+                    <center>
+                        <div class="botaocad"><a href="/tecnico/cadastro">
+                            <button>Cadastrar como Técnico</button>
+                        </a>
                         </div>
-                    </div>
-                    <br>
-
+                    </center>
                 </div>
-            </div>
-        </div>
-
-
+            </div> <!-- Adicionado o fechamento da div card -->
+        </div> <!-- Adicionado o fechamento da div card-group -->
     </div>
-</div>
 </body>
 </html>
