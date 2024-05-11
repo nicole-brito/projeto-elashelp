@@ -4,6 +4,7 @@ package com.soulcode.elashelp.Controllers;
 import com.soulcode.elashelp.Models.Tecnico;
 import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Services.TecnicoService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,4 +59,6 @@ public class TecnicoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+
 }

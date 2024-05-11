@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -61,4 +62,9 @@ public class UsuarioService {
 //    public Usuario getCurrentUser() {
 //        return (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //    }
-}
+
+    public String getNomeESobrenomePorCpf(String cpf) {
+        Optional<Usuario> usuario = usuarioRepository.findByCpf(cpf);
+            return usuario.get().getNome() + " " + usuario.get().getSobrenome();
+        }
+    }
