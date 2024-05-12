@@ -1,16 +1,52 @@
-<!-- /usuario/cadastro -->
-
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="/static/estilos/navbar.css" rel="stylesheet">
+    <link href="/static/estilos/styles.css" rel="stylesheet">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Usuário</title>
+
     <link rel="stylesheet" href="/estilos/styles.css">
+    <title>KittyHelp</title>
+
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="logo-container">
+            <img src="/imagens/logo.png" alt="Logo" style="height: 40px;">
+            <span class="logo-text">KittyHelp</span>
+        </div>
+        <div class="navbar-nav mx-auto">
+            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#">Serviços</a>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Mais
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Subitem 1</a>
+                    <a class="dropdown-item" href="#">Subitem 2</a>
+                </div>
+            </div>
+        </div>
+        <div class="auth-buttons">
+            <a href="/escolhercadastro">
+                <button type="button" class="btn btn-primary">Criar conta</button>
+            </a>
+            <a href="/login">
+
+                <button type="button" class="btn btn-outline-secondary">Entrar</button>
+            </a>
+
+        </div>
+    </div>
+</nav>
+
+
 <div class="cadastro-container">
-    <h2>Criar Conta Usuário</h2>
+    <h2 class="is-title">Criar Conta Usuário</h2>
     <form th:action="@{/usuario/cadastro}" th:object="${usuario}" method="post">
         <div class="form-row">
             <div class="form-col">
@@ -44,9 +80,10 @@
 
                     <input placeholder="Sobrenome" type="text" th:field="*{sobrenome}" id="sobrenome">
                 </div>
-                <br>
-                <div class="direita-group">
 
+                <div class="direita-group">
+                    <br>
+                    <br>
                     <input placeholder="Telefone" type="number" th:field="*{telefone}" id="telefone">
                 </div>
                 <br>
@@ -64,6 +101,14 @@
             </div>
         </div>
     </form>
+</div>
+<div th:if="${success}" class="notification is-success is-light" role="alert">
+    <button class="delete"></button>
+    <p th:text="${success}"></p>
+</div>
+<div th:if="${error}" class="notification is-danger is-light" role="alert">
+    <button class="delete"></button>
+    <p th:text="${error}"></p>
 </div>
 </body>
 </html>

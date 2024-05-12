@@ -1,4 +1,4 @@
-package com.soulcode.elashelp.Controllers;
+package com.soulcode.elashelp.Controllers.controllersREST;
 
 
 import com.soulcode.elashelp.Models.Tecnico;
@@ -15,13 +15,35 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/api/tecnicos")
+
 @RequiredArgsConstructor
 @Slf4j
 public class TecnicoController {
 
     @Autowired
     private TecnicoService tecnicoService;
+
+
+//    @GetMapping("cadastrotecnico")
+//    public String cadastroTecnico(@ModelAttribute("tecnico") final Tecnico tecnico) {
+//        return "cadastro-tecnico.html";
+//    }
+//
+//    @PostMapping("/cadastrotecnico")
+//    public String createTecnico(@ModelAttribute Tecnico tecnico, Model model) {
+//        try {
+//            Tecnico createTecnico = tecnicoService.createTecnico(tecnico);
+//            model.addAttribute("tecnico", createTecnico);
+//            model.addAttribute("success", "Cadastro realizado com sucesso!");
+//            return "redirect:/login";
+//        } catch (RuntimeException e) {
+//            log.error("Erro ao criar novo tecnico", e);
+//            model.addAttribute("error", e.getMessage());
+//            return "cadastro-tecnico";
+//        }
+//    }
+
+    //Method get
 
     @GetMapping("/{matricula}")
     public ResponseEntity<?> getTecnicoById(@PathVariable Long matricula) {

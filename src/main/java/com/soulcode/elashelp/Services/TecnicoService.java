@@ -26,8 +26,11 @@ public class TecnicoService {
     }
 
     public Tecnico createTecnico(Tecnico tecnico) {
-//        if (tecnicoRepository.existsById(tecnico.getMatricula())) {
-//            throw new RuntimeException("Já existe um Técnico com esse cadastro");
+        if (tecnicoRepository.existsByEmail(tecnico.getEmail())) {
+            throw new RuntimeException("Já existe um usuário com este email");
+        }
+//        }if(tecnicoRepository.existsByMatricula(tecnico.getMatricula())){
+//            throw new RuntimeException("Já existe um usuário com esta matricula");
 //        }
         tecnico = tecnicoRepository.save(tecnico);
 
@@ -38,10 +41,19 @@ public class TecnicoService {
 
         login = loginRepository.save(login);
         tecnico.setLogin(login);
-
+        enviarEmailDeBoasVindas(login.getEmail());
         return tecnico;
     }
-
+    private void enviarEmailDeBoasVindas(String email) {
+        try {
+            // Chama o método sendEmail do EmailService
+            EmailService.sendEmail(email);
+            System.out.println("E-mail de boas-vindas enviado para: " + email);
+        } catch (Exception ex) {
+            // Trata qualquer exceção de envio de e-mail
+            System.err.println("Erro ao enviar e-mail de boas-vindas: " + ex.getMessage());
+        }
+    }
     public Tecnico updateTecnico(Tecnico tecnico) {
         this.tecnicoRepository.findById(tecnico.getMatricula());
         return tecnicoRepository.save(tecnico);
