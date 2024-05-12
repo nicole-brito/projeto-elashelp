@@ -1,4 +1,4 @@
-<!-- /tickets/todos -->
+<!-- /tecnicos/todos -->
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
@@ -7,7 +7,7 @@
     <link href="/estilos/navbar.css" rel="stylesheet">
     <link href="/estilos/styles.css" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>KittyHelp</title>
+    <title>Lista de Técnicos</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -30,31 +30,37 @@
             </div>
         </div>
         <div class="greeting-section">
-<!--            <span>Olá, <span th:text="${usuario.nome}" + th:text="${usuario.sobrenome}" ></>!</span>-->
-<!--            <span class="user-initials-circle" th:text="${#strings.toUpperCase(usuario.)}"></span>-->
+<!--            <span>Olá, <span th:text="${tecnico.nome + ' ' + tecnico.sobrenome}" ></span>!</span>-->
+            <!--            <span class="user-initials-circle" th:text="${#strings.toUpperCase(usuario.)}"></span>-->
         </div>
     </div>
 </nav>
+
 <div class="container mt-5">
-    <h2 class="mb-4">Chamados Disponíveis</h2>
-    <a href="/tickets/new" class="btn btn-success">+ Novo Chamado</a>
-    <br><br>
+    <h2 class="mb-4">Técnicos</h2>
+    <br>
+
     <table class="table">
         <thead>
         <tr>
-            <th>Data</th>
-            <th>Título</th>
+            <th>Matrícula</th>
+            <th>Nome</th>
             <th>Setor</th>
-            <th>Ações</th>
+            <th>Administrador</th>
+            <th>Email</th>
+            <th>Telefone</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="ticket : ${tickets}">
-            <td th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></td>
-            <td th:text="${ticket.titulo}"></td>
-            <td th:text="${ticket.setor}"></td>
+        <tr th:each="tecnico : ${tecnicos}">
+            <td th:text="${tecnico.matricula}"></td>
+            <td th:text="${tecnico.nome + ' ' + tecnico.sobrenome}"></td>
+            <td th:text="${tecnico.setor}"></td>
+            <td th:text="${tecnico.admin ? 'Sim' : 'Não'}"></td>
+            <td th:text="${tecnico.email}"></td>
+            <td th:text="${tecnico.telefone}"></td>
             <td>
-                <a th:href="@{/tickets/{id}(id=${ticket.id})}" class="btn btn-primary btn-sm">Saiba Mais</a>
+                <a th:href="@{/editar-tecnico.html}" class="btn btn-primary btn-sm">Editar perfil</a>
             </td>
         </tr>
         </tbody>

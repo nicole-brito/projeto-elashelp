@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/ticket")
+@RequestMapping("/api/ticket")
 public class TicketController {
 
     @Autowired
@@ -33,7 +33,6 @@ public class TicketController {
 
     @PostMapping
     public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket) {
-        // Definindo valores padrão ou nulos para campos não especificados
         if (ticket.getData() == null) ticket.setData(new Date());
         if (ticket.getSetor() == null) ticket.setSetor(Setor.ADMINISTRATIVO);
 

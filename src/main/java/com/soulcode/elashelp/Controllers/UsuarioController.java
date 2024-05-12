@@ -2,9 +2,11 @@ package com.soulcode.elashelp.Controllers;
 
 import com.soulcode.elashelp.Models.Setor;
 import com.soulcode.elashelp.Models.Usuario;
+import com.soulcode.elashelp.Repositories.UsuarioRepository;
 import com.soulcode.elashelp.Services.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
+    private final UsuarioRepository usuarioRepository;
 
     @GetMapping("cadastro")
     public String cadastro(@ModelAttribute("usuario") final Usuario usuario) {

@@ -1,10 +1,12 @@
+<!-- /login -->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela de Login</title>
-    <link rel="stylesheet" href="/static/estilos/styles.css">
+    <link rel="stylesheet" href="/estilos/styles.css">
 </head>
 <body>
 <div class="barra">
@@ -18,17 +20,72 @@
 <div class="login-container">
 
     <h2>Entrar</h2>
-    <form action="/entrar" method="post">
-        <div class="input-group">
-            <label for="email">E-mail:</label>
-            <input type="email"  id="email" name="email" required>
+<!--    <form action="/entrar" method="post">-->
+<!--        <div class="input-group">-->
+<!--            <label for="email">E-mail:</label>-->
+<!--            <input type="email"  id="email" name="email" required>-->
+<!--        </div>-->
+<!--        <div class="input-group">-->
+<!--            <label for="senha">Senha:</label>-->
+<!--            <input type="password" id="senha" name="senha" required>-->
+<!--        </div>-->
+<!--        <button type="submit">Entrar na Conta</button>-->
+<!--    </form>-->
+
+    <form th:action="@{/usuario/cadastro}" th:object="${usuario}" method="post">
+        <div class="form-row">
+            <div class="form-col">
+                <div class="esquerda-group">
+
+                    <input placeholder="CPF" type="number" th:field="*{cpf}" id="cpf" required>
+                </div>
+                <br>
+                <br>
+                <div class="esquerda-group">
+
+                    <input placeholder="Nome" type="text" th:field="*{nome}" id="nome" required>
+                </div>
+                <br>
+                <br>
+                <div class="esquerda-group">
+
+                    <input placeholder="Senha" type="password" th:field="*{senha}" id="senha" required>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="form-col">
+                <div class="direita-group">
+
+                    <input placeholder="Email" type="email" th:field="*{email}" id="email" required>
+                </div>
+                <br>
+                <br>
+                <div class="direita-group">
+
+                    <input placeholder="Sobrenome" type="text" th:field="*{sobrenome}" id="sobrenome">
+                </div>
+                <br>
+                <div class="direita-group">
+
+                    <input placeholder="Telefone" type="number" th:field="*{telefone}" id="telefone">
+                </div>
+                <br>
+            </div>
         </div>
-        <div class="input-group">
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
+        <br>
+        <div style="text-align: center;">
+            <div class="botao2-group">
+                <button type="submit">Criar conta</button>
+            </div>
+            <div class="botao-group">
+                <a href="/login">
+                    <button type="button">Já tenho uma conta</button>
+                </a>
+            </div>
         </div>
-        <button type="submit">Entrar na Conta</button>
     </form>
+
 </div>
 </body>
 </html>

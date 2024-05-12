@@ -3,21 +3,23 @@ package com.soulcode.elashelp.Services;
 
 import com.soulcode.elashelp.Models.Login;
 import com.soulcode.elashelp.Models.Tecnico;
-import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.LoginRepository;
 import com.soulcode.elashelp.Repositories.TecnicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 public class TecnicoService {
+
     @Autowired
     private TecnicoRepository tecnicoRepository;
+
     @Autowired
-    private  LoginRepository loginRepository;
+    private LoginRepository loginRepository;
 
     public List<Tecnico> findAll() {
         return tecnicoRepository.findAll();
@@ -27,7 +29,7 @@ public class TecnicoService {
 //        if (tecnicoRepository.existsById(tecnico.getMatricula())) {
 //            throw new RuntimeException("Já existe um Técnico com esse cadastro");
 //        }
-       tecnico = tecnicoRepository.save(tecnico);
+        tecnico = tecnicoRepository.save(tecnico);
 
         Login login = new Login();
         login.setEmail(tecnico.getEmail());
