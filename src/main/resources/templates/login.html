@@ -5,10 +5,7 @@
 <head>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="/static/estilos/navbar.css" rel="stylesheet">
-    <link href="/static/estilos/styles.css" rel="stylesheet">
     <meta charset="UTF-8">
-
     <link rel="stylesheet" href="/estilos/styles.css">
     <title>KittyHelp</title>
 
@@ -21,15 +18,15 @@
             <span class="logo-text">KittyHelp</span>
         </div>
         <div class="navbar-nav mx-auto">
-            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link active" href="/">Home</a>
             <a class="nav-link" href="#">Serviços</a>
             <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                     Mais
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Subitem 1</a>
-                    <a class="dropdown-item" href="#">Subitem 2</a>
+                    <a href="/sobre">Desenvolvedoras</a>
+                    <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
                 </div>
             </div>
         </div>
@@ -63,13 +60,7 @@
     </form>
 
         <br>
-
       <center>  <a href="/esqueceuasenha">Esqueceu a senha?</a></center>
-
-
-
-
-
 </div>
 <div th:if="${error}" class="notification is-danger is-light" role="alert">
     <button class="delete"></button>
