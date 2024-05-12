@@ -291,6 +291,12 @@ h2 {
     margin: 24px;
 }
 
+/* Estilos da logo */
+.logo {
+    margin-bottom: 20px;
+}
+
+
 /* Estilos do footer */
 footer {
     width: 100%;
@@ -321,7 +327,6 @@ footer a:hover {
     background-color: #E5989B;
     color: white;
 }
-/* Fim do footer */
 
 /* Estilos da barra de navegação */
 .navbar {
@@ -376,7 +381,6 @@ footer a:hover {
     cursor: pointer;
 }
 
-/* Fim dos estilos barra de navegacao*/
 
 /* Estilo Botão Criar Conta e Entrar */
 .auth-buttons {
@@ -398,7 +402,6 @@ footer a:hover {
     background-color: white;
     border-radius: 5px;
 }
-/* Fim estilo Botão Criar Conta e Entrar */
 
 /* Dashboard */
 .dashboard-container canvas {
@@ -410,4 +413,10 @@ footer a:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
-/* Fim Dashboard */
+
+/* Estilos página "Sobre" */
+
+
+
+
+
