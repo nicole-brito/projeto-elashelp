@@ -20,6 +20,7 @@ Este projeto é um sistema de gestão de chamados desenvolvido para o Bootcamp d
 - **Funcionalidades**:
     - Breve descrição do sistema.
     - Links para login e registro de novos usuários e técnicos.
+    
 
 ### Tela de Login
 
@@ -28,6 +29,7 @@ Este projeto é um sistema de gestão de chamados desenvolvido para o Bootcamp d
     - Formulário de login.
     - Opção para novos usuários e técnicos se cadastrarem.
     - Verificação de credenciais através de MySQL.
+    - Opção para redefinição de senha, utilizando o email cadastrado para recuperação.
 
 ### Tela do Usuário
 
