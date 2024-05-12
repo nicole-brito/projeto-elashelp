@@ -1,8 +1,9 @@
-package com.soulcode.elashelp.Controllers;
+package com.soulcode.elashelp.Controllers.controllersMVC;
 
-import com.soulcode.elashelp.Models.Setor;
 import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.UsuarioRepository;
+import com.soulcode.elashelp.Services.EmailService;
+import com.soulcode.elashelp.Services.LoginService;
 import com.soulcode.elashelp.Services.UsuarioService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,10 +19,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/usuario")
 @RequiredArgsConstructor
 @Slf4j
-public class UsuarioController {
+public class UsuarioViewController {
 
+    @Autowired
     private final UsuarioService usuarioService;
+
+
+    @Autowired
     private final UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private EmailService emailservice;
+
+    @Autowired
+    private LoginService loginservice;
+
 
     @GetMapping("cadastro")
     public String cadastro(@ModelAttribute("usuario") final Usuario usuario) {
@@ -35,7 +47,7 @@ public class UsuarioController {
             Usuario createUsuario = usuarioService.createUsuario(usuario);
             model.addAttribute("usuario", createUsuario);
             model.addAttribute("success", "Cadastro realizado com sucesso!");
-            return "cadastro-usuario";
+            return "redirect:/login";
         } catch (RuntimeException e) {
             log.error("Erro ao criar novo usuário", e);
             model.addAttribute("error", e.getMessage());
@@ -45,9 +57,9 @@ public class UsuarioController {
 
     //Method delete
     @DeleteMapping("/{cpf}")
-    public ResponseEntity<?> deleteById(@PathVariable String cpf) {
+    public ResponseEntity<?> deleteById(@PathVariable Long idUsuario) {
         try {
-            Usuario deleteById = usuarioService.deleteById(cpf);
+            Usuario deleteById = usuarioService.deleteById(idUsuario);
             return new ResponseEntity<>(deleteById, HttpStatus.OK);
         } catch (RuntimeException e) {
             log.error("Erro ao deletar usuário");

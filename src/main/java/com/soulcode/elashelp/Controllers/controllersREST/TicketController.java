@@ -1,8 +1,10 @@
-package com.soulcode.elashelp.Controllers;
+package com.soulcode.elashelp.Controllers.controllersREST;
 
 import com.soulcode.elashelp.Models.Setor;
 import com.soulcode.elashelp.Models.Ticket;
+import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Services.TicketService;
+import com.soulcode.elashelp.Services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,9 @@ public class TicketController {
 
     @Autowired
     private TicketService ticketService;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @GetMapping
     public List<Ticket> getAllTickets() {
@@ -39,6 +44,8 @@ public class TicketController {
         Ticket newTicket = ticketService.saveTicket(ticket);
         return new ResponseEntity<>(newTicket, HttpStatus.CREATED);
     }
+
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Ticket> updateTicket(@PathVariable Integer id, @RequestBody Ticket ticketDetails) {

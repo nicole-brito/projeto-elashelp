@@ -8,6 +8,7 @@ public class ElasHelpApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ElasHelpApplication.class, args);
+
 	}
 
 }

@@ -25,12 +25,15 @@ public class Login {
     @Column(nullable = false, length = 100)
     private String senha;
 
+    @Column(name = "reset_token")
+    private String resetToken;
+
     @OneToOne
     @JoinColumn(name = "matricula", referencedColumnName = "matricula")
     private Tecnico tecnico;
 
-    @OneToOne
-    @JoinColumn(name = "cpf", referencedColumnName = "cpf")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn( name = "idUsuario", referencedColumnName = "idUsuario")
     private Usuario usuario;
 
 
