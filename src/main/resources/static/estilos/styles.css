@@ -300,14 +300,15 @@ h2,h3 {
 /* Estilos do footer */
 footer {
     width: 100%;
-    padding: 3%;
+    margin-top: 80px;
+    padding: 0%;
     background-color: #ffffff;
     display: flex;
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 footer .links {
@@ -416,7 +417,121 @@ footer a:hover {
 
 /* Estilos página "Index" */
 
+.group {
+    margin-top: -130px;
+}
+.image-kittyhelp{
+padding-left: 250px;
 
+}
+.img-patinha {
+    width: 173px;
+    height: 138px;
+    padding-bottom: 80px;
+}
+.sua-solucao-em-service-desk {
+    margin: 0px;
+    width: 472px;
+    color: #000;
+    font-family: Quicksand;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.digite-miau {
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+}
+.texticulo-service-desk {
+    width: 472px;
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+}
+.texto-logo-kittyhelp {
+       padding-left: 150px;
+       color: #353030;
+       font-size: 102.08px;
+       font-style: normal;
+       font-weight: 600;
+       line-height: normal;
+}
+.sobre-kittyhelp {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.sobre-kittyhelp-texto {
+    width: 660px;
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%
+}
+
+.titulo-informativo {
+    width: 432px;
+    color: #000;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.texto-informativo {
+    width: 526px;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+
+}
+.titulo-mini {
+    width: 196px;
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+}
+.frame {
+    padding-top: 78px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.frame4 {
+    padding-top: 170px;
+}
+
+.frame5 {
+    display: flex;
+    width: 1210px;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 160px 134px;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+.img-retangulo {
+    width: auto;
+    color: #000;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    border-radius: 22px;
+}
 
 
 
