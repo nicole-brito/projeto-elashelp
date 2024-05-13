@@ -1,6 +1,7 @@
 package com.soulcode.elashelp.Services;
 
 import com.soulcode.elashelp.Models.Login;
+import com.soulcode.elashelp.Models.Role;
 import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.LoginRepository;
 import com.soulcode.elashelp.Repositories.UsuarioRepository;
@@ -8,6 +9,7 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,6 +55,10 @@ public class UsuarioService {
         login.setEmail(usuario.getEmail());
         login.setSenha(usuario.getSenha());
         login.setUsuario(usuario);
+        login.setRole(Role.USUARIO);
+
+        String encryptedPassword = new BCryptPasswordEncoder().encode(login.getPassword());
+        login.setSenha(encryptedPassword);
 
         login = loginRepository.save(login);
         usuario.setLogin(login);

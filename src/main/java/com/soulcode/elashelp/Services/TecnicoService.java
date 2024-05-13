@@ -2,10 +2,13 @@ package com.soulcode.elashelp.Services;
 
 
 import com.soulcode.elashelp.Models.Login;
+import com.soulcode.elashelp.Models.Role;
 import com.soulcode.elashelp.Models.Tecnico;
+import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.LoginRepository;
 import com.soulcode.elashelp.Repositories.TecnicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,7 +33,7 @@ public class TecnicoService {
             throw new RuntimeException("Já existe um usuário com este email");
         }
 //        }if(tecnicoRepository.existsByMatricula(tecnico.getMatricula())){
-//            throw new RuntimeException("Já existe um usuário com esta matricula");
+//            throw new RuntimeException("Já existe um usuário com este id");
 //        }
         tecnico = tecnicoRepository.save(tecnico);
 
@@ -39,9 +42,16 @@ public class TecnicoService {
         login.setSenha(tecnico.getSenha());
         login.setTecnico(tecnico);
 
+        //TODO por hora fixo administrador ate receber isso do front
+        login.setRole(Role.TECNICO);
+
+        String encryptedPassword = new BCryptPasswordEncoder().encode(login.getPassword());
+        login.setSenha(encryptedPassword);
+
+
         login = loginRepository.save(login);
         tecnico.setLogin(login);
-        enviarEmailDeBoasVindas(login.getEmail());
+//        enviarEmailDeBoasVindas(login.getEmail());
         return tecnico;
     }
     private void enviarEmailDeBoasVindas(String email) {
@@ -55,18 +65,16 @@ public class TecnicoService {
         }
     }
     public Tecnico updateTecnico(Tecnico tecnico) {
-        this.tecnicoRepository.findById(tecnico.getMatricula());
+        this.tecnicoRepository.findById(tecnico.getIdTecnico());
         return tecnicoRepository.save(tecnico);
     }
 
-    public Tecnico findById(Long matricula) {
-        return tecnicoRepository.findById(matricula).orElse(null);
+    public Tecnico findById(Long idTecnico) {
+        return tecnicoRepository.findById(idTecnico).orElse(null);
     }
 
-    public String deleteById(Long matricula) {
-        tecnicoRepository.deleteById(matricula);
-        return "Técnico excluído com sucesso! Matrícula: " + matricula;
+    public String deleteById(Long idTecnico) {
+        tecnicoRepository.deleteById(idTecnico);
+        return "Técnico excluído com sucesso! Id Técnico: " + idTecnico;
     }
-
-
 }

@@ -15,7 +15,9 @@ import java.util.List;
 public class Tecnico {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long matricula;
+    private long idTecnico;
+
+    private String matricula;
 
     private boolean admin;
 

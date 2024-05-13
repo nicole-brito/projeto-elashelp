@@ -62,38 +62,38 @@ public class RedefinirSenhaService {
     }
 
     //envio de email para redefinir senha
-    private  Message prepararNotificacao(Session session, String minhaContaDeEmail, String email) {
+    private Message prepararNotificacao(Session session, String minhaContaDeEmail, String email) {
 
-        Login user = loginRepository.findByEmail(email);
-        if (user != null) {
-            String token = UUID.randomUUID().toString();
-            user.setResetToken(token);
-            loginRepository.save(user);
+//        Login user = loginRepository.findByEmail(email);
+//        if (user != null) {
+//            String token = UUID.randomUUID().toString();
+//            user.setResetToken(token);
+//            loginRepository.save(user);
+//
+//            try {
+//                Message message = new MimeMessage(session);
+//                message.setFrom(new InternetAddress(minhaContaDeEmail));
+//                message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+//                message.setSubject("KittyHelp - redefinição de senha");
+//                message.setText("Para redefinir sua senha, acesse o link: http://www.localhost:8080/redefinirsenha e digite o token no campo solicitante: " + token);
+//
+//                return message;
+//            } catch (Exception ex) {
+//
+//                Logger.getLogger(EmailService.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            return null;
+//        }
 
-            try {
-                Message message = new MimeMessage(session);
-                message.setFrom(new InternetAddress(minhaContaDeEmail));
-                message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
-                message.setSubject("KittyHelp - redefinição de senha");
-                message.setText("Para redefinir sua senha, acesse o link: http://www.localhost:8080/redefinirsenha e digite o token no campo solicitante: " + token);
-
-                return message;
-            } catch (Exception ex) {
-
-                Logger.getLogger(EmailService.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            return null;
-        }
-
-return null;
+        return null;
     }
 
-//metodo pra verificar token e atualizar senha no banco
+    //metodo pra verificar token e atualizar senha no banco
     public boolean redefinicaoSenha(String token, String senha) {
         Login user = loginRepository.findByResetToken(token);
 
 
-        if (user != null && token.equals(user.getResetToken()) ) {
+        if (user != null && token.equals(user.getResetToken())) {
             user.setSenha(senha);//atualiza senha na tabela de login
             user.setResetToken(null); // Limpar o token após a senha ser atualizada
             loginRepository.save(user);
