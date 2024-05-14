@@ -73,8 +73,7 @@ public class TecnicoService {
         return tecnicoRepository.findById(idTecnico).orElse(null);
     }
 
-    public String deleteById(Long idTecnico) {
+    public void deleteById(Long idTecnico) {
         tecnicoRepository.deleteById(idTecnico);
-        return "Técnico excluído com sucesso! Id Técnico: " + idTecnico;
     }
 }

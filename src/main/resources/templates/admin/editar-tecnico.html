@@ -1,1 +1,79 @@
 <!-- /tecnico/editar/{matricula} -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/estilos/styles.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Editar Técnico</title>
+</head>
+
+<body>
+<!-- Código do navbar aqui -->
+
+
+<div class="card">
+
+    <div class="card-body">
+
+        <h1>Editar Técnico</h1>
+
+        <div th:if="${tecnico != null}">
+            <form th:action="@{/tecnico/editar/{id}(id=${tecnico.idTecnico})}" th:object="${tecnico}" method="post">
+                <input type="hidden" th:field="*{idTecnico}">
+
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" class="form-control" th:value="${tecnico.nome}">
+                </div>
+
+                <div class="form-group">
+                    <label for="sobrenome">Sobrenome:</label>
+                    <input type="text" id="sobrenome" name="sobrenome" class="form-control" th:value="${tecnico.sobrenome}">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" id="telefone" name="telefone" class="form-control" th:value="${tecnico.telefone}">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" th:value="${tecnico.email}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="matricula">Matricula:</label>
+                    <input type="text" id="matricula" name="matricula" class="form-control" th:value="${tecnico.matricula}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="setor">Setor</label>
+                    <select class="form-control" id="setor" th:field="*{setor}" required>
+                        <option value="ADMINISTRATIVO">Administrativo</option>
+                        <option value="HELPDESK">Helpdesk</option>
+                        <option value="SUPORTE">Suporte</option>
+                        <option value="FINANCEIRO">Financeiro</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="padding: 24px">
+                    <input type="checkbox" id="admin" name="admin" class="form-check-input"  th:checked="${tecnico.admin}">
+                    <label for="admin">Permissões de Administrador</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+
+        <div th:if="${tecnico == null}">
+            <p>Desculpe, não conseguimos encontrar o técnico solicitado.</p>
+        </div>
+
+        <br>
+        <a href="/tecnico/todos">Voltar para a lista de técnicos</a>
+    </div>
+</div>
+</body>
+</html>

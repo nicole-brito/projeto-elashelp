@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/tecnico")
@@ -49,24 +50,37 @@ public class TecnicoViewController {
         return "admin/tecnicos";
     }
 
-    // @PreAuthorize("admin(true)")
+    @DeleteMapping("/excluir/{id}")
+    public String deleteTecnico(@PathVariable("id") Long id) {
+        tecnicoService.deleteById(id);
+        return "redirect:/tecnico/todos";
+    }
+
+    // Método GET para exibir o formulário de edição
+    @GetMapping("/editar/{id}")
+    public String showEditForm(@PathVariable("id") Long id, Model model) {
+        Optional<Tecnico> tecnico = Optional.ofNullable(tecnicoService.findById(id));
+        if (tecnico.isPresent()) {
+            model.addAttribute("tecnico", tecnico.get());
+            return "admin/editar-tecnico";
+        } else {
+            model.addAttribute("error", "Técnico não encontrado.");
+            return "redirect:/tecnico/todos";
+        }
+    }
+
+    // Método POST para processar o formulário de edição
     @PostMapping("/editar/{id}")
-    public String deleteTecnico(@PathVariable Long idTecnico, RedirectAttributes redirectAttributes) {
+    public String processEditForm(@ModelAttribute("tecnico") Tecnico tecnico, RedirectAttributes redirectAttributes) {
         try {
-            tecnicoService.deleteById(idTecnico);
-            redirectAttributes.addFlashAttribute("sucess", "Técnico deletado com sucesso!");
+            tecnicoService.updateTecnico(tecnico);
+            redirectAttributes.addFlashAttribute("success", "Técnico atualizado com sucesso!");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Erro ao deletar técnico.");
+            redirectAttributes.addFlashAttribute("error", "Erro ao atualizar técnico.");
         }
         return "redirect:/tecnico/todos";
     }
 
 
-    // @PreAuthorize("admin(true)")
-    @GetMapping("/editar/{id}")
-    public String editarTecnico(@PathVariable Long id, Model model) {
-        Tecnico tecnico = tecnicoService.findById(id);
-        model.addAttribute("tecnico", tecnico);
-        return "admin/editar-tecnico";
-    }
+
 }

@@ -19,7 +19,8 @@
             <a class="nav-link active" href="/">Home</a>
             <a class="nav-link" href="#">Serviços</a>
             <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-expanded="false">
                     Mais
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -29,41 +30,44 @@
             </div>
         </div>
         <div class="greeting-section">
-<!--            <span>Olá, <span th:text="${tecnico.nome + ' ' + tecnico.sobrenome}" ></span>!</span>-->
+            <!--            <span>Olá, <span th:text="${tecnico.nome + ' ' + tecnico.sobrenome}" ></span>!</span>-->
             <!--            <span class="user-initials-circle" th:text="${#strings.toUpperCase(usuario.)}"></span>-->
         </div>
     </div>
 </nav>
 
-<div class="container mt-5">
-    <h2 class="mb-4">Técnicos</h2>
-    <br>
+<div class=" card-tecnico">
+    <div class="card-body">
+        <h2 class="mb-4">Técnicos</h2>
+        <br>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Matrícula</th>
-            <th>Nome</th>
-            <th>Setor</th>
-            <th>Administrador</th>
-            <th>Email</th>
-            <th>Telefone</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="tecnico : ${tecnicos}">
-            <td th:text="${tecnico.matricula}"></td>
-            <td th:text="${tecnico.nome + ' ' + tecnico.sobrenome}"></td>
-            <td th:text="${tecnico.setor}"></td>
-            <td th:text="${tecnico.admin ? 'Sim' : 'Não'}"></td>
-            <td th:text="${tecnico.email}"></td>
-            <td th:text="${tecnico.telefone}"></td>
-            <td>
-                <a th:href="@{/editar-tecnico.html}" class="btn btn-primary btn-sm">Editar perfil</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Matrícula</th>
+                <th>Nome</th>
+                <th>Setor</th>
+                <th>Administrador</th>
+                <th>Email</th>
+                <th>Telefone</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tecnico : ${tecnicos}">
+                <td th:text="${tecnico.matricula}"></td>
+                <td th:text="${tecnico.nome + ' ' + tecnico.sobrenome}"></td>
+                <td th:text="${tecnico.setor}"></td>
+                <td th:text="${tecnico.admin ? 'Sim' : 'Não'}"></td>
+                <td th:text="${tecnico.email}"></td>
+                <td th:text="${tecnico.telefone}"></td>
+                <td>
+                    <a th:href="@{/tecnico/editar/{id}(id=${tecnico.idTecnico})}" class="btn btn-primary btn-sm">Editar
+                        perfil</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -88,7 +92,6 @@
         }
     });
 </script>
-
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
