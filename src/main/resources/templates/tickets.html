@@ -30,14 +30,16 @@
             </div>
         </div>
         <div class="greeting-section">
-<!--            <span>Olá, <span th:text="${usuario.nome}" + th:text="${usuario.sobrenome}" ></>!</span>-->
-<!--            <span class="user-initials-circle" th:text="${#strings.toUpperCase(usuario.)}"></span>-->
+    <span th:each="usuario : ${usuarios}">
+        Olá, <span th:text="${usuario.nome} + ' ' + ${usuario.sobrenome}"></span>
+    </span>
         </div>
     </div>
 </nav>
 <div class="container mt-5">
+
     <h2 class="mb-4">Chamados Disponíveis</h2>
-    <a href="/tickets/new" class="btn btn-success">+ Novo Chamado</a>
+    <a th:href="@{/tickets/new/{idUsuario}(idUsuario=${idUsuario})}" class="btn btn-success">+ Novo Chamado</a>
     <br><br>
     <table class="table">
         <thead>
@@ -45,7 +47,7 @@
             <th>Data</th>
             <th>Título</th>
             <th>Setor</th>
-            <th>Ações</th>
+           <th>Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -54,7 +56,9 @@
             <td th:text="${ticket.titulo}"></td>
             <td th:text="${ticket.setor}"></td>
             <td>
-                <a th:href="@{/tickets/{id}(id=${ticket.id})}" class="btn btn-primary btn-sm">Saiba Mais</a>
+                <a th:href="@{/tickets/{id}(id=${ticket.id})}" class="btn btn-secondary">Detalhar</a>
+
+                <a th:href="@{/tickets/excluir/{id}(id=${ticket.id}, idUsuario=${idUsuario})}" class="btn btn-danger">Excluir</a>
             </td>
         </tr>
         </tbody>

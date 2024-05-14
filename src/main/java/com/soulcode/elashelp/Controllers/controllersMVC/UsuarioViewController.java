@@ -56,7 +56,7 @@ public class UsuarioViewController {
     }
 
     //Method delete
-    @DeleteMapping("/{cpf}")
+    @DeleteMapping("/{idUsuario}")
     public ResponseEntity<?> deleteById(@PathVariable Long idUsuario) {
         try {
             Usuario deleteById = usuarioService.deleteById(idUsuario);
@@ -67,7 +67,7 @@ public class UsuarioViewController {
         }
     }
 
-    @PutMapping("/{cpf}")
+    @PutMapping("/{idUsuario}")
     public ResponseEntity<?> updateUsuario(@RequestBody Usuario usuario) {
         try {
             Usuario updateUsuario = usuarioService.updateUsuario(usuario);

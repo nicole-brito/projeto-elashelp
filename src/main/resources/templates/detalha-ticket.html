@@ -54,6 +54,8 @@
     <p>Desculpe, não conseguimos encontrar o ticket solicitado.</p>
 </div>
 
-<a href="/tickets/todos">Voltar para a lista de tickets</a>
+<a th:href="@{/tickets/todos/{idUsuario}(idUsuario=${idUsuario})}">Voltar para a lista de tickets</a>
+
+
 </body>
 </html>

@@ -62,7 +62,7 @@ public class LoginController {
 //        } else if (autenticado && role.equals("TECNICO")){
 //            return "view de tecnico";
 //        } else {
-//            return "view de usuario";
+//            return "/tickets/todos/{idUsuario}";
 //        }
 
 

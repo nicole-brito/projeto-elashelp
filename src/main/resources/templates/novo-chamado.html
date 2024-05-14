@@ -37,8 +37,10 @@
 <body>
 <div class="container mt-5">
     <h2>Novo Chamado</h2>
-    <form th:action="@{/tickets/new}" th:object="${ticket}" method="post">
+    <form th:href="@{/tickets/new/{idUsuario}(idUsuario=${idUsuario})}" th:object="${ticket}" method="post">
+
         <div class="form-group">
+            <input type="hidden" name="idUsuario" th:value="${idUsuario}" />
             <label for="titulo">Título</label>
             <input type="text" class="form-control" id="titulo" th:field="*{titulo}" required>
         </div>
@@ -55,7 +57,12 @@
                 <option value="FINANCEIRO">Financeiro</option>
             </select>
         </div>
+
+
         <button type="submit" class="btn btn-primary">Criar Chamado</button>
+       <a th:href="@{/tickets/todos/{idUsuario}(idUsuario=${idUsuario})}">
+        <button class="btn btn-secondary" type="button">Voltar</button>
+       </a>
     </form>
 </div>
 

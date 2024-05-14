@@ -33,6 +33,7 @@ public class Ticket {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+
     @ManyToOne
     @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
     private Usuario usuario;

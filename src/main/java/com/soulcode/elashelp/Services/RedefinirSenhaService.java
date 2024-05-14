@@ -8,6 +8,7 @@ import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Properties;
@@ -64,26 +65,26 @@ public class RedefinirSenhaService {
     //envio de email para redefinir senha
     private Message prepararNotificacao(Session session, String minhaContaDeEmail, String email) {
 
-//        Login user = loginRepository.findByEmail(email);
-//        if (user != null) {
-//            String token = UUID.randomUUID().toString();
-//            user.setResetToken(token);
-//            loginRepository.save(user);
-//
-//            try {
-//                Message message = new MimeMessage(session);
-//                message.setFrom(new InternetAddress(minhaContaDeEmail));
-//                message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
-//                message.setSubject("KittyHelp - redefinição de senha");
-//                message.setText("Para redefinir sua senha, acesse o link: http://www.localhost:8080/redefinirsenha e digite o token no campo solicitante: " + token);
-//
-//                return message;
-//            } catch (Exception ex) {
-//
-//                Logger.getLogger(EmailService.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            return null;
-//        }
+        Login user = loginRepository.findLoginByEmail(email);
+        if (user != null) {
+            String token = UUID.randomUUID().toString();
+            user.setResetToken(token);
+            loginRepository.save(user);
+
+            try {
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress(minhaContaDeEmail));
+                message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+                message.setSubject("KittyHelp - redefinição de senha");
+                message.setText("Para redefinir sua senha, acesse o link: http://www.localhost:8080/redefinirsenha e digite o token no campo solicitante: " + token);
+
+                return message;
+            } catch (Exception ex) {
+
+                Logger.getLogger(EmailService.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return null;
+        }
 
         return null;
     }
@@ -95,6 +96,9 @@ public class RedefinirSenhaService {
 
         if (user != null && token.equals(user.getResetToken())) {
             user.setSenha(senha);//atualiza senha na tabela de login
+            String encryptedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
+            user.setSenha(encryptedPassword); //criptografia da senha
+
             user.setResetToken(null); // Limpar o token após a senha ser atualizada
             loginRepository.save(user);
             return true;

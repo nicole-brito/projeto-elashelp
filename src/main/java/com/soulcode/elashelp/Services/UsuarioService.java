@@ -77,6 +77,12 @@ public class UsuarioService {
         }
     }
 
+    public Optional<Usuario> findUsuarioById(Long idUsuario) {
+        return usuarioRepository.findById(idUsuario);
+    }
+
+
+
 
     public Usuario updateUsuario(Usuario usuario) {
         this.usuarioRepository.findById(usuario.getIdUsuario());

@@ -51,7 +51,7 @@ public class TecnicoService {
 
         login = loginRepository.save(login);
         tecnico.setLogin(login);
-//        enviarEmailDeBoasVindas(login.getEmail());
+        enviarEmailDeBoasVindas(login.getEmail());
         return tecnico;
     }
     private void enviarEmailDeBoasVindas(String email) {

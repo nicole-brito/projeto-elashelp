@@ -17,6 +17,6 @@ public interface LoginRepository extends JpaRepository<Login, Long> {
     Login findByTecnico(Tecnico id);
 
     Login findByResetToken(String resetToken);
-//    Login findByEmail1(String email);
+    Login findLoginByEmail(String email);
     UserDetails findByEmail(String email);
 }

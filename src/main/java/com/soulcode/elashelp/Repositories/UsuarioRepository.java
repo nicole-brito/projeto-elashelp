@@ -11,4 +11,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     Boolean existsByCpf(String cpf);
 
+
+
 }
