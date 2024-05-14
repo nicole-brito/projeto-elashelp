@@ -1,4 +1,4 @@
-package com.soulcode.elashelp.Controllers;
+package com.soulcode.elashelp.Controllers.controllersREST;
 
 
 import com.soulcode.elashelp.Models.Tecnico;
@@ -64,8 +64,8 @@ public class TecnicoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id) {
         try {
-            String deleteById = tecnicoService.deleteById(id);
-            return new ResponseEntity<>(deleteById, HttpStatus.OK);
+            tecnicoService.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (RuntimeException e) {
             log.error("Erro ao deletar técnico");
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -85,7 +85,6 @@ public class TecnicoController {
 
     @PostMapping()
     public Tecnico createTecnico(@RequestBody Tecnico tecnico) {
-        Tecnico createTecnico = tecnicoService.createTecnico(tecnico);
-        return createTecnico;
+        return tecnicoService.createTecnico(tecnico);
     }
 }

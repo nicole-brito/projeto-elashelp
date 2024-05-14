@@ -45,7 +45,7 @@ public class TicketViewController {
         // Busca o usuário pelo ID
         Optional<Usuario> optionalUsuario = usuarioService.findUsuarioById(idUsuario);
 
-        if (optionalUsuario != null) {
+        if (optionalUsuario.isPresent()) {
             // Se o usuário for encontrado, busca os tickets associados a esse usuário
             List<Ticket> userTickets = ticketService.findTicketsByUsuario(usuario);
 
