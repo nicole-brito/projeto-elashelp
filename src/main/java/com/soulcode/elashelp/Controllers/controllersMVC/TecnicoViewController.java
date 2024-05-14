@@ -50,10 +50,10 @@ public class TecnicoViewController {
     }
 
     // @PreAuthorize("admin(true)")
-    @PostMapping("/editar/{matricula}")
-    public String deleteTecnico(@PathVariable Long matricula, RedirectAttributes redirectAttributes) {
+    @PostMapping("/editar/{id}")
+    public String deleteTecnico(@PathVariable Long idTecnico, RedirectAttributes redirectAttributes) {
         try {
-            tecnicoService.deleteById(matricula);
+            tecnicoService.deleteById(idTecnico);
             redirectAttributes.addFlashAttribute("sucess", "Técnico deletado com sucesso!");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Erro ao deletar técnico.");
@@ -63,9 +63,9 @@ public class TecnicoViewController {
 
 
     // @PreAuthorize("admin(true)")
-    @GetMapping("/editar/{matricula}")
-    public String editarTecnico(@PathVariable Long matricula, Model model) {
-        Tecnico tecnico = tecnicoService.findById(matricula);
+    @GetMapping("/editar/{id}")
+    public String editarTecnico(@PathVariable Long id, Model model) {
+        Tecnico tecnico = tecnicoService.findById(id);
         model.addAttribute("tecnico", tecnico);
         return "admin/editar-tecnico";
     }

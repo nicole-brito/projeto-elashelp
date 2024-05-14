@@ -1,4 +1,4 @@
-package com.soulcode.elashelp.Controllers.controllersREST;
+package com.soulcode.elashelp.Controllers;
 
 
 import com.soulcode.elashelp.Models.Tecnico;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/api/tecnicos")
 public class TecnicoController {
 
     @Autowired
@@ -60,10 +61,10 @@ public class TecnicoController {
         }
     }
 
-    @DeleteMapping("/{matricula}")
-    public ResponseEntity<?> deleteById(@PathVariable Long matricula) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
         try {
-            String deleteById = tecnicoService.deleteById(matricula);
+            String deleteById = tecnicoService.deleteById(id);
             return new ResponseEntity<>(deleteById, HttpStatus.OK);
         } catch (RuntimeException e) {
             log.error("Erro ao deletar técnico");
@@ -71,8 +72,8 @@ public class TecnicoController {
         }
     }
 
-    @PutMapping("/{matricula}")
-    public ResponseEntity<?> updateMatricula(@RequestBody Tecnico tecnico) {
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateid(@RequestBody Tecnico tecnico) {
         try {
             Tecnico updateTecnico = tecnicoService.updateTecnico(tecnico);
             return new ResponseEntity<>(updateTecnico, HttpStatus.OK);
@@ -82,5 +83,9 @@ public class TecnicoController {
         }
     }
 
-
+    @PostMapping()
+    public Tecnico createTecnico(@RequestBody Tecnico tecnico) {
+        Tecnico createTecnico = tecnicoService.createTecnico(tecnico);
+        return createTecnico;
+    }
 }
