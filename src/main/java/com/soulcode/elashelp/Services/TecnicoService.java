@@ -7,6 +7,7 @@ import com.soulcode.elashelp.Models.Tecnico;
 import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.LoginRepository;
 import com.soulcode.elashelp.Repositories.TecnicoRepository;
+import jakarta.persistence.NonUniqueResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -76,4 +77,15 @@ public class TecnicoService {
     public void deleteById(Long idTecnico) {
         tecnicoRepository.deleteById(idTecnico);
     }
+
+    public Optional<Tecnico> findByEmail(String email) {
+        Optional<Tecnico> tecnicos = tecnicoRepository.findByEmail(email);
+        if (tecnicos.isEmpty()) {
+            return Optional.empty();
+        } else if (tecnicos.stream().count() > 1) {
+            throw new NonUniqueResultException("More than one User found with email: " + email);
+        } else {
+            return Optional.of(tecnicos.get());
+        }    }
+
 }

@@ -9,7 +9,6 @@ public interface TecnicoRepository extends JpaRepository<Tecnico, Long> {
 
     Boolean existsByEmail(String email);
 
-//    Boolean existsByMatricula(String matricula);
-
+    Optional<Tecnico> findByEmail(String email);
 
 }

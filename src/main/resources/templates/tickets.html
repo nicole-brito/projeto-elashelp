@@ -1,4 +1,4 @@
-<!-- /tickets/todos -->
+<!-- /tickets/todos/{idUsuario} -->
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
@@ -30,9 +30,11 @@
             </div>
         </div>
         <div class="greeting-section">
-    <span th:each="usuario : ${usuarios}">
-        Olá, <span th:text="${usuario.nome} + ' ' + ${usuario.sobrenome}"></span>
-    </span>
+            <span th:text="${nome}"> </span>
+<!--    <span th:each="usuario : ${usuarios}">-->
+<!--        Olá, <span th:text="${usuario.nome} + ' ' + ${usuario.sobrenome}"></span>-->
+<!--    </span>-->
+            <span>Olá, <span th:text="${nome}"></span>!</span>
         </div>
     </div>
 </nav>
