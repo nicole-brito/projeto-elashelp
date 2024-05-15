@@ -33,9 +33,7 @@ public class TecnicoService {
         if (tecnicoRepository.existsByEmail(tecnico.getEmail())) {
             throw new RuntimeException("Já existe um usuário com este email");
         }
-//        }if(tecnicoRepository.existsByMatricula(tecnico.getMatricula())){
-//            throw new RuntimeException("Já existe um usuário com este id");
-//        }
+
         tecnico = tecnicoRepository.save(tecnico);
 
         Login login = new Login();
@@ -78,6 +76,7 @@ public class TecnicoService {
         tecnicoRepository.deleteById(idTecnico);
     }
 
+
     public Optional<Tecnico> findByEmail(String email) {
         Optional<Tecnico> tecnicos = tecnicoRepository.findByEmail(email);
         if (tecnicos.isEmpty()) {
@@ -87,5 +86,10 @@ public class TecnicoService {
         } else {
             return Optional.of(tecnicos.get());
         }    }
+
+
+//    public Tecnico findTecnicoByEmail(String email) {
+//        return tecnicoRepository.findByEmail(email);
+//    }
 
 }

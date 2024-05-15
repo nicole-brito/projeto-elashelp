@@ -71,11 +71,7 @@ public class TicketService {
     public void deleteTicket(Integer id) {
         ticketRepository.deleteById(id);
     }
-    public void deleteTickets(Integer id,Ticket ticket, Usuario usuario) {
-        ticketRepository.findByUsuario(usuario);
-        ticket.setUsuario(usuario);
-        ticketRepository.deleteById(id);
-    }
+
 
 
 //    Requisições para os gráficos

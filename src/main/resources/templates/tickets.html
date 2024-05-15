@@ -29,6 +29,11 @@
                 </div>
             </div>
         </div>
+        <div>
+            <a href="/login">
+            <button type="button" class="btn btn-primary">Sair</button>
+        </a>
+        </div>
         <div class="greeting-section">
             <span th:text="${nome}"> </span>
 <!--    <span th:each="usuario : ${usuarios}">-->
@@ -39,7 +44,7 @@
     </div>
 </nav>
 <div class="container mt-5">
-
+    <div class="card-body">
     <h2 class="mb-4">Chamados Disponíveis</h2>
     <a th:href="@{/tickets/new/{idUsuario}(idUsuario=${idUsuario})}" class="btn btn-success">+ Novo Chamado</a>
     <br><br>

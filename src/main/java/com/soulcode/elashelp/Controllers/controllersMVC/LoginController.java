@@ -7,19 +7,24 @@ import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.LoginRepository;
 import com.soulcode.elashelp.Services.LoginService;
 import com.soulcode.elashelp.Services.RedefinirSenhaService;
+
 import jakarta.servlet.http.HttpSession;
+
+import com.soulcode.elashelp.Services.TecnicoService;
+import com.soulcode.elashelp.Services.UsuarioService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class LoginController {
@@ -28,6 +33,8 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
     @Autowired
+    private UsuarioService usuarioService;
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
@@ -35,6 +42,8 @@ public class LoginController {
 
     @Autowired
     private RedefinirSenhaService redefinirSenhaService;
+    @Autowired
+    private TecnicoService tecnicoService;
 
     @GetMapping("/login")
     public String login() {
@@ -61,6 +70,7 @@ public class LoginController {
 
 
 
+
 //TODO redirecionar corretamente de acordo com a role
 
 //        if(autenticado && role.equals("ADMINISTRADOR")){
@@ -75,10 +85,24 @@ public class LoginController {
         if (autenticado) {
             session.setAttribute("email", email);
             return "index";
+
+////////TODO redirecionar corretamente de acordo com a role
+//////
+//////        if(autenticado && role.equals("ADMINISTRADOR")){
+//////            return "view de administrador";
+//////        } else if (autenticado && role.equals("TECNICO")){
+//////            return "view de tecnico";
+//////        } else {
+//////            return "/tickets/todos/{idUsuario}";
+//////        }
+//
+//
+
+
         } else {
-            model.addAttribute("error", "Email ou senha inválidos!");
+        model.addAttribute("error", "Email ou senha inválidos!");
             return "login";
-        }
+                    }
     }
 
     @GetMapping("/escolhercadastro")
