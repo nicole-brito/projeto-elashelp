@@ -8,6 +8,34 @@
     <title>KittyHelp</title>
 </head>
 <body>
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--    <div class="container-fluid">-->
+<!--        <div class="logo-container">-->
+<!--            <img src="/imagens/logo.png" alt="Logo" style="height: 40px;">-->
+<!--            <span class="logo-text">KittyHelp</span>-->
+<!--        </div>-->
+<!--        <div class="navbar-nav mx-auto">-->
+<!--            <a class="nav-link active" href="/">Home</a>-->
+<!--            <a class="nav-link" href="#">Serviços</a>-->
+<!--            <div class="nav-item dropdown">-->
+<!--                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">-->
+<!--                    Mais-->
+<!--                </a>-->
+<!--                <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--                    <a href="/sobre">Desenvolvedoras</a>-->
+<!--                    <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--&lt;!&ndash;        <div class="greeting-section">&ndash;&gt;-->
+<!--&lt;!&ndash;            <span>Olá, <span th:text="${nome}"></span>!</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            <span class="user-initials-circle" th:text="${#strings.toUpperCase(user.initials)}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li class="sidebar-menu-item saudacao"> Bem-vinda(o) <label th:text="${nome}"></label></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+
+<!--    </div>-->
+<!--</nav>-->
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <div class="logo-container">
@@ -18,7 +46,8 @@
             <a class="nav-link active" href="/">Home</a>
             <a class="nav-link" href="#">Serviços</a>
             <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-expanded="false">
                     Mais
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -27,17 +56,16 @@
                 </div>
             </div>
         </div>
-<!--        <div class="greeting-section">-->
-<!--            <span>Olá, <span th:text="${nome}"></span>!</span>-->
-<!--            <span class="user-initials-circle" th:text="${#strings.toUpperCase(user.initials)}"></span>-->
-<!--            <li class="sidebar-menu-item saudacao"> Bem-vinda(o) <label th:text="${nome}"></label></li>-->
-<!--        </div>-->
-
+        <div class="greeting-section" style="display: flex; align-items: center">
+            <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
+            <span class="user-initials-circle"
+                  th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
+        </div>
     </div>
 </nav>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
 </body>
 </html>
