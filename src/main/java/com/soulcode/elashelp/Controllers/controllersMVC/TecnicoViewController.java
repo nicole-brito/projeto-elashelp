@@ -82,7 +82,7 @@ public class TecnicoViewController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Erro ao atualizar técnico.");
         }
-        return "redirect:/tecnico/todos";
+        return "redirect:/home";
     }
 
 

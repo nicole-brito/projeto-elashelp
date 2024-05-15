@@ -29,15 +29,14 @@
 <!--                    <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>-->
 <!--                </div>-->
 <!--            </div>-->
-            <a th:href="@{/tickets/new/{idUsuario}(idUsuario=${idUsuario})}" class="btn btn-success">+ Chamado</a>
+            <div class="greeting-section" style="display: flex; align-items: center">
+                <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
+                <span class="user-initials-circle"
+                      th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
+            </div>
 
-            <a style="margin-left: 8px" th:href="@{/logout}" class="btn btn-outline-danger">Sair</a>
         </div>
-        <div class="greeting-section" style="display: flex; align-items: center">
-            <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
-            <span class="user-initials-circle"
-            th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
-        </div>
+        <a style="margin-left: 8px" th:href="@{/logout}" class="btn btn-outline-danger">Sair</a>
     </div>
 </nav>
 

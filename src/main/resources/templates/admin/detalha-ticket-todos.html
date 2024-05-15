@@ -18,10 +18,13 @@
             <span class="logo-text">KittyHelp</span>
         </div>
         <div class="navbar-nav mx-auto">
-            <a class="nav-link active" href="/">Home</a>
-            <a class="nav-link" href="#">Serviços</a>
+            <a class="nav-link active" href="/home">Home</a>
+            <a class="nav-link" href="/home#estatisticas">Estatísticas</a>
+            <a class="nav-link" href="/home#tecnicos">Técnicos</a>
+            <a class="nav-link" href="/home#tickets">Chamados</a>
             <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-expanded="false">
                     Mais
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -30,14 +33,18 @@
                 </div>
             </div>
         </div>
-        <div class="greeting-section">
-<!--            <span>Olá, <span th:text="${tecnico?.nome != null ? tecnico.nome + ' ' + ticket.tecnico.sobrenome : 'Visitante'}" ></span>!</span>-->
-            <!--                        <span class="user-initials-circle" th:text="${#strings.toUpperCase(tecnico.nome)}"></span>-->
+        <div class="greeting-section" style="display: flex; align-items: center">
+            <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
+            <span class="user-initials-circle"
+                  th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
         </div>
     </div>
 </nav>
 
-<h1>Detalhes do Ticket</h1>
+
+<div class="card" style="margin: 5% 0">
+    <div class="card-body">
+<h2>Detalhes do Ticket</h2>
 
 <!--<form th:action="@{/tickets/editar/{id}(id=${ticket.id})}" th:object="${ticket}" method="post">-->
 
@@ -46,27 +53,27 @@
     <p><strong>Descrição:</strong> <span th:text="${ticket.descricao}"></span></p>
 
     </p>
-    <p><strong>Prioridade:</strong>
-        <select th:field="*{ticket.prioridade}" id="prioridade" required>
-            <option value="">Selecione a Prioridade</option>
-            <
-            <option th:each="s : ${T(com.soulcode.elashelp.Models.Prioridade).values()}"
-                    th:value="${s}"
-                    th:text="${s}">
-            </option>
-        </select>    </p>
-    <p><strong>Setor:</strong>
-        <select th:field="*{ticket.setor}" id="setor" required>
-            <option value="">Selecione um Setor</option>
-            <
-            <option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"
-                    th:value="${s}"
-                    th:text="${s}">
-            </option>
-        </select>    </p>
+
     <p><strong>Data:</strong> <span th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></span></p>
     <p><strong>Usuário:</strong> <span th:text="${ticket.usuario?.nome != null ? ticket.usuario.nome + ' ' + ticket.usuario.sobrenome : 'Sem usuário'}"></span></p>
-
+        <p><strong>Prioridade:</strong>
+            <select th:field="*{ticket.prioridade}" id="prioridade" required>
+                <option value="">Selecione a Prioridade</option>
+                <
+                <option th:each="s : ${T(com.soulcode.elashelp.Models.Prioridade).values()}"
+                        th:value="${s}"
+                        th:text="${s}">
+                </option>
+            </select>    </p>
+        <p><strong>Setor:</strong>
+            <select th:field="*{ticket.setor}" id="setor" required>
+                <option value="">Selecione um Setor</option>
+                <
+                <option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"
+                        th:value="${s}"
+                        th:text="${s}">
+                </option>
+            </select>    </p>
     <p><strong>Técnico Resposável:</strong>
         <label>
             <select th:field="*{ticket.tecnico}">
@@ -79,14 +86,32 @@
         </label>
     </p>
     <button type="submit">Salvar</button>
-    <a th:href="@{/admin/home}">Voltar para a lista de tickets</a>
+    <a th:href="@{/home}">Voltar para a lista de tickets</a>
 </form>
 
     <div th:if="${ticket == null}">
     <p>Desculpe, não conseguimos encontrar o ticket solicitado.</p>
 </div>
+</div>
+</div>
 
-<!--</div>-->
-
+<footer>
+    <img src="/imagens/logo-preto.png" alt="Logo KittyHelp">
+    <div class="links">
+        <p><strong>SOBRE A KITTYHELP</strong></p>
+        <a href="/">Como funciona</a><br>
+        <a href="/">Soluções</a><br>
+        <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
+    </div>
+    <div class="links">
+        <p><strong>SOBRE NÓS</strong></p>
+        <a href="/sobre">As Desenvolvedoras</a><br>
+        <a href="https://soulcode.com">A SoulCode</a>
+    </div>
+    <a href="/admin/home" class="client-area-link">
+        Página Inicial
+        <i class="fa-solid fa-arrow-right-long"></i>
+    </a>
+</footer>
 </body>
 </html>

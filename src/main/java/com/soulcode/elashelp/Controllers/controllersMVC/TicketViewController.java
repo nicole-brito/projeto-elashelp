@@ -187,7 +187,7 @@ public class TicketViewController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Erro ao atualizar técnico.");
         }
-        return "redirect:/tickets/editar/" + id;
+        return "redirect:/home" ;
     }
 
 }
