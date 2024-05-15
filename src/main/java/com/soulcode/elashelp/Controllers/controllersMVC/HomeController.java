@@ -16,9 +16,9 @@ public class HomeController {
         return "sobre";
     }
 
-    @GetMapping("/dash")
+    @GetMapping("/admin/home")
     public String dash() {
-        return "admin/dashboard-usuario";
+        return "admin/dashboard";
     }
 
 
