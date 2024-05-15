@@ -107,6 +107,18 @@ public class TicketViewController {
         }
     }
 
+    //mostrar o chamado detalhado para o usuario
+    @GetMapping("usuario/{id}")
+    public String showTicketDetailsToUser(@PathVariable Integer id, Model model) {
+        Optional<Ticket> optionalTicket = ticketService.findTicketById(id);
+        if (optionalTicket.isPresent()) {
+            model.addAttribute("ticket", optionalTicket.get());
+            return "usuario/detalha-ticket";
+        } else {
+            return "error";
+        }
+    }
+
 //    @GetMapping("admin/{id}")
 //    public String showTicketDetailsToAdmin(@PathVariable Integer id, Model model) {
 //        Optional<Ticket> optionalTicket = ticketService.findTicketById(id);

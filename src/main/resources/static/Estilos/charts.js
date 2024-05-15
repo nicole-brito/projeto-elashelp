@@ -114,3 +114,42 @@ fetch('api/ticket/by-status')
             }
         });
     });
+
+fetch('api/ticket/by-priority')
+    .then(response => response.json())
+    .then(data => {
+        var xValues = Object.keys(data); // Prioridades
+        var yValues = Object.values(data); // Quantidade de tickets
+
+        var barColors = [
+            "#d55a7c",
+            "#00aba9",
+            "#2b5797",
+            "#e8c3b9",
+            "#1e7145"
+        ];
+
+        new Chart("ticketsByPriority", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Tickets por Prioridade"
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    });
