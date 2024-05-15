@@ -22,7 +22,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 @EnableWebSecurity
 public class SecurityConfig {
 
-     //    permite algumas coisa e bloqueia tudo
+//         permite algumas coisa e bloqueia tudo
 //    @Bean
 //    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 //        return httpSecurity

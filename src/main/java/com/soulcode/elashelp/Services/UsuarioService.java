@@ -2,6 +2,7 @@ package com.soulcode.elashelp.Services;
 
 import com.soulcode.elashelp.Models.Login;
 import com.soulcode.elashelp.Models.Role;
+import com.soulcode.elashelp.Models.Tecnico;
 import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.LoginRepository;
 import com.soulcode.elashelp.Repositories.UsuarioRepository;
@@ -21,10 +22,10 @@ import java.util.Optional;
 public class UsuarioService {
 
     @Autowired
-    private  UsuarioRepository usuarioRepository;
+    private UsuarioRepository usuarioRepository;
 
     @Autowired
-    private  LoginRepository loginRepository;
+    private LoginRepository loginRepository;
 
     @Autowired
     private EmailService emailservice;
@@ -38,13 +39,11 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-
-
-
     public Usuario createUsuario(Usuario usuario) {
         if (usuarioRepository.existsByEmail(usuario.getEmail())) {
             throw new RuntimeException("Já existe um usuário com este email");
-        }if(usuarioRepository.existsByCpf(usuario.getCpf())){
+        }
+        if (usuarioRepository.existsByCpf(usuario.getCpf())) {
             throw new RuntimeException("Já existe um usuário com este cpf");
         }
 
@@ -81,9 +80,6 @@ public class UsuarioService {
         return usuarioRepository.findById(idUsuario);
     }
 
-
-
-
     public Usuario updateUsuario(Usuario usuario) {
         this.usuarioRepository.findById(usuario.getIdUsuario());
         return usuarioRepository.save(usuario);
@@ -96,17 +92,24 @@ public class UsuarioService {
         return usuario;
     }
 
-
-//    //Método que pega o usuário atual (usado na view do navbar)
-//    public Usuario getCurrentUser() {
-//        return (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//    }
-
     public String getNomeESobrenomePorCpf(Long idUsuario) {
         Optional<Usuario> usuario = usuarioRepository.findById(idUsuario);
-            return usuario.get().getNome() + " " + usuario.get().getSobrenome();
-        }
+        return usuario.get().getNome() + " " + usuario.get().getSobrenome();
     }
+
+    public Usuario findByEmail(String email) {
+        return usuarioRepository.findByEmail(email).orElse(null);
+    }
+
+    public Optional<Usuario> getUsuarioByEmail(String email) {
+        Login login = (Login) loginRepository.findByEmail(email);
+        if (login != null) {
+            return usuarioRepository.findByEmail(login.getEmail());
+        }
+        return null;
+    }
+}
+
 
 
 

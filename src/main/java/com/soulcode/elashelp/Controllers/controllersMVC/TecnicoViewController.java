@@ -1,6 +1,7 @@
 package com.soulcode.elashelp.Controllers.controllersMVC;
 
 import com.soulcode.elashelp.Models.Tecnico;
+import com.soulcode.elashelp.Services.LoginService;
 import com.soulcode.elashelp.Services.TecnicoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 public class TecnicoViewController {
+
+    @Autowired
+    private LoginService loginService;
 
     @Autowired
     private TecnicoService tecnicoService;
@@ -50,11 +54,11 @@ public class TecnicoViewController {
         return "admin/tecnicos";
     }
 
-    @DeleteMapping("/excluir/{id}")
-    public String deleteTecnico(@PathVariable("id") Long id) {
-        tecnicoService.deleteById(id);
-        return "redirect:/tecnico/todos";
-    }
+//    @DeleteMapping("/excluir/{id}")
+//    public String deleteTecnico(@PathVariable("id") Long id) {
+//        tecnicoService.deleteById(id);
+//        return "redirect:/tecnico/todos";
+//    }
 
     // Método GET para exibir o formulário de edição
     @GetMapping("/editar/{id}")

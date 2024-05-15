@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LoginRepository extends JpaRepository<Login, Long> {
-//TODO o metodo findByEmail esta sendo utilizado pelo spruingSecurity pois o userNamedoLogin é o email
+//TODO o metodo findByEmail esta sendo utilizado pelo springSecurity pois o userNamedoLogin é o email
 //    precisamos rever uma outra maneira de buscar os dados para envio de email utilizado no fingByEmail
 //    Login findByEmail(String email);
 

@@ -2,10 +2,14 @@ package com.soulcode.elashelp.Controllers.controllersMVC;
 
 
 import com.soulcode.elashelp.Models.Login;
+import com.soulcode.elashelp.Models.Tecnico;
+import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.LoginRepository;
 import com.soulcode.elashelp.Services.LoginService;
 import com.soulcode.elashelp.Services.RedefinirSenhaService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,7 +42,7 @@ public class LoginController {
     }
 
     @PostMapping("/entrar")
-    public String processarLogin(Model model, String email, String senha) {
+    public String processarLogin(Model model, String email, String senha, HttpSession session) {
         model.addAttribute("email", email);
         model.addAttribute("senha", senha);
 
@@ -55,6 +59,8 @@ public class LoginController {
         var autenticado = authentication.isAuthenticated();
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+
+
 //TODO redirecionar corretamente de acordo com a role
 
 //        if(autenticado && role.equals("ADMINISTRADOR")){
@@ -67,13 +73,13 @@ public class LoginController {
 
 
         if (autenticado) {
+            session.setAttribute("email", email);
             return "index";
         } else {
             model.addAttribute("error", "Email ou senha inválidos!");
             return "login";
         }
     }
-
 
     @GetMapping("/escolhercadastro")
     public String escolherCadastro() {
