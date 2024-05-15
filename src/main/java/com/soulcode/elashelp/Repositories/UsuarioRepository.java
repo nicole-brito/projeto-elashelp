@@ -13,5 +13,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Boolean existsByCpf(String cpf);
 
 
+
     Optional<Usuario> findByEmail(String email);
+
+//    Usuario findByEmail(String email);
+
 }

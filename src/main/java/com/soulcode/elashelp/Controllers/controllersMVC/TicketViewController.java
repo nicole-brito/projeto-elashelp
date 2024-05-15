@@ -1,6 +1,7 @@
 package com.soulcode.elashelp.Controllers.controllersMVC;
 
-import com.soulcode.elashelp.Models.Tecnico;
+import com.soulcode.elashelp.Models.Prioridade;
+import com.soulcode.elashelp.Models.Status;
 import com.soulcode.elashelp.Models.Ticket;
 import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.TicketRepository;
@@ -8,15 +9,16 @@ import com.soulcode.elashelp.Repositories.UsuarioRepository;
 import com.soulcode.elashelp.Services.TicketService;
 import com.soulcode.elashelp.Services.UsuarioService;
 import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.net.http.HttpHeaders;
-import java.net.http.HttpRequest;
+import javax.xml.crypto.Data;
+import java.time.LocalDate;
+
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -43,7 +45,8 @@ public class TicketViewController {
     @GetMapping("/todos/{idUsuario}")
     public String showTicketsByUsuario(@PathVariable Long idUsuario, Usuario usuario, Model model) {
         // Busca o usuário pelo ID
-        Optional<Usuario> optionalUsuario = usuarioService.findUsuarioById(idUsuario);
+
+            Optional<Usuario> optionalUsuario = usuarioService.findUsuarioById(idUsuario);
 
         if (optionalUsuario.isPresent()) {
             // Se o usuário for encontrado, busca os tickets associados a esse usuário
@@ -51,15 +54,14 @@ public class TicketViewController {
 
             // Adiciona os tickets ao modelo para serem exibidos na página
             model.addAttribute("tickets", userTickets);
-            model.addAttribute("usuario", usuario);
+            model.addAttribute("idUsuario", idUsuario);
 
 
-            return "usuario/tickets";
+            return "tickets";
         } else {
             return "redirect:/error"; // Redireciona para uma página de erro
         }
     }
-
 
     //o get abre a tela de novo chamado, com os parametros filtrados
     @GetMapping("/new/{idUsuario}")
@@ -97,13 +99,14 @@ public class TicketViewController {
 
     //mostrar o chamado detalhado
     @GetMapping("/{id}")
-    public String showTicketDetails(@PathVariable Integer id, Model model) {
+    public String showTicketDetails(@PathVariable Integer id,Ticket ticket, Model model) {
         Optional<Ticket> optionalTicket = ticketService.findTicketById(id);
         if (optionalTicket.isPresent()) {
             model.addAttribute("ticket", optionalTicket.get());
+            model.addAttribute("idUsuario", ticket.getUsuario());
             return "detalha-ticket";
         } else {
-            return "error";
+            return "erro";
         }
     }
 
@@ -129,7 +132,7 @@ public class TicketViewController {
 //            return "error";
 //        }
 //    }
-
+  
     //excluir um ticket
     @GetMapping("/excluir/{id}")
     public String excluirTicket(@PathVariable Integer id, @RequestParam Long idUsuario) {
@@ -143,31 +146,37 @@ public class TicketViewController {
         return "redirect:/tickets/todos/" + idUsuario;
     }
 
-    //excluir um ticket
-    @DeleteMapping("/excluir/{id}")
-    public String excluirTicket(@PathVariable Integer id) {
-        // Verifica se o ticket com o ID especificado existe
+    //visao do tecnico
+
+    @GetMapping("/todos-tecnico")
+    public String visao(Model model){
+        List<Ticket> tickets = ticketService.findAllTickets();
+        model.addAttribute("tickets", tickets);
+        return "tickets-tecnico";
+    }
+//buscar por id do tecnico, nao funciona ainda
+    @PostMapping("/todos-tecnico/{id}")
+    public String updateTicket(@PathVariable Integer id,Model model,@RequestParam Prioridade prioridade, @RequestParam Status status) {
         Optional<Ticket> optionalTicket = ticketService.findTicketById(id);
         if (optionalTicket.isPresent()) {
-            // Se o ticket existir, exclua-o
-            ticketService.deleteTicket(id);
+            Ticket ticket = optionalTicket.get();
+            ticket.setPrioridade(prioridade);
+            ticket.setStatus(status);
+            ticketService.saveTicket(ticket); // Método para salvar as alterações no ticket
         }
-        // Redireciona de volta para a página de listagem de tickets
-        return "redirect:/admin/home";
+        return "redirect:/tickets/todos-tecnico"; // Redireciona de volta para a lista de tickets
     }
-
-    @GetMapping("/editar/{id}")
-    public String showEditForm(@PathVariable("id") Integer id, Model model) {
-        Optional<Ticket> ticket = ticketService.findTicketById(id);
-        if (ticket.isPresent()) {
-            model.addAttribute("ticket", ticket.get());
-            return "admin/detalha-ticket-todos";
+//alterar o ticket que lhe foi atribuido, nao funciona ainda
+    @GetMapping("/tecnico-alterarticket/{id}")
+    public String updateTicketDetails(@PathVariable Integer id,Ticket ticket, Model model) {
+        Optional<Ticket> optionalTicket = ticketService.findTicketById(id);
+        if (optionalTicket.isPresent()) {
+            model.addAttribute("ticket", optionalTicket.get());
+            return "solucionar-ticket";
         } else {
-            model.addAttribute("error", "ticket não encontrado.");
-            return "redirect:ticket/todos";
+            return "erro";
         }
     }
-
 //    @GetMapping("/editar/{id}")
 //    public String showEditForm(@PathVariable("id") Integer id, Model model) {
 //        Ticket ticket = ticketService.getTicketById(id);

@@ -37,10 +37,12 @@
         </div>
     </div>
 </nav>
-
-<h1>Detalhes do Ticket</h1>
+<br>
+<div class="login-container">
+<h2>Detalhes do Ticket</h2>
 
 <div th:if="${ticket != null}">
+    <input type="hidden" name="idUsuario" th:value="${idUsuario}" />
     <p><strong>ID:</strong> <span th:text="${ticket.id}"></span></p>
     <p><strong>Assunto:</strong> <span th:text="${ticket.titulo}"></span></p>
     <p><strong>Descrição:</strong> <span th:text="${ticket.descricao}"></span></p>
@@ -56,7 +58,10 @@
     <p>Desculpe, não conseguimos encontrar o ticket solicitado.</p>
 </div>
 
+
 <a th:href="@{/tickets/todos/{idUsuario}(idUsuario=${ticket.usuario.getIdUsuario()})}">Voltar para a lista de tickets</a>
+
+</div>
 
 
 </body>

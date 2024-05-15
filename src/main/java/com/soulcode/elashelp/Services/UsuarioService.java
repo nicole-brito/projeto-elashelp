@@ -39,6 +39,12 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
+
+//    public Usuario findUsuarioByEmail(String email) {
+//        return usuarioRepository.findByEmail(email);
+//    }
+
+
     public Usuario createUsuario(Usuario usuario) {
         if (usuarioRepository.existsByEmail(usuario.getEmail())) {
             throw new RuntimeException("Já existe um usuário com este email");

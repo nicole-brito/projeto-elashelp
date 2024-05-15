@@ -88,7 +88,7 @@
 
                     <select th:field="*{setor}" id="setor" required>
                         <option value="">Selecione um Setor</option>
-                        <
+
                         <option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"
                                 th:value="${s}"
                                 th:text="${s}">
