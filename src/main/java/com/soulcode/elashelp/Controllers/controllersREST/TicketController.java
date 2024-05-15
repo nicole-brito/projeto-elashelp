@@ -82,4 +82,9 @@ public class TicketController {
     public Map<String, Long> getTicketsByStatus() {
         return ticketService.getTicketsByStatus();
     }
+
+    @GetMapping("/by-priority")
+    public Map<String, Long> getTicketsByPriority() {
+        return ticketService.getTicketsByPriority();
+    }
 }
