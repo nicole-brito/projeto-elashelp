@@ -9,16 +9,16 @@
 </head>
 <body>
 
-<nav class="navbar">
+<nav class="navbar index-navbar">
     <div class="greeting-section">
-        <span>Olá, <span th:text="${nome}" ></span>!</span>
         <span class="user-initials-circle"
               th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
+        <span class="greeting-text">Olá, <span th:text="${nome}" ></span>!</span>
     </div>
 
-    <div class="logo">
-        <img src="/imagens/logo-preto.png" alt="Logo">
-    </div>
+<!--    <div class="logo">-->
+<!--        <img src="/imagens/logo-preto.png" alt="Logo">-->
+<!--    </div>-->
     <div class="navbar-menu">
         <a href="/">Início</a>
         <a href="/sobre">Sobre</a>
@@ -37,6 +37,7 @@
         </a>
     </div>
 </nav>
+
 
 <div class="home">
     <div class="frame">
