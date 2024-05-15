@@ -37,6 +37,7 @@ Este projeto é um sistema de gestão de chamados desenvolvido para o Bootcamp d
 - **Funcionalidades**:
     - Visualizar chamados anteriores.
     - Criar novos chamados.
+    - Excluir chamados.
     - Visualização de detalhes dos chamados, como usuário, setor, descrição, prioridade e data de início.
 
 ### Tela do Técnico
