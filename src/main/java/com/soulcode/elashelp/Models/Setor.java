@@ -4,6 +4,9 @@ public enum Setor {
     ADMINISTRATIVO,
     HELPDESK,
     SUPORTE,
-    FINANCEIRO
-
+    FINANCEIRO,
+    RH,
+    MARKETING,
+    VENDAS,
+    JURIDICO
 }
