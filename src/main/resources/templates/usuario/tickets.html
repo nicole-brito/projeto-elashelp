@@ -7,7 +7,8 @@
     <link href="/estilos/styles.css" rel="stylesheet">
 
     <meta charset="UTF-8">
-    <title>KittyHelp</title>
+    <title th:text="'Olá, ' + ${nome} + '! | KittyHelp'"></title>
+    <link rel="icon" href="/imagens/logo-preto.png">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -17,35 +18,32 @@
             <span class="logo-text">KittyHelp</span>
         </div>
         <div class="navbar-nav mx-auto">
-            <a class="nav-link active" href="/static">Home</a>
-            <a class="nav-link" href="#">Serviços</a>
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                    Mais
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a href="/sobre">Desenvolvedoras</a>
-                    <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
-                </div>
+<!--            <a class="nav-link" href="/logout">Sair da Conta</a>-->
+<!--            <div class="nav-item dropdown">-->
+<!--                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"-->
+<!--                   aria-expanded="false">-->
+<!--                    Mais-->
+<!--                </a>-->
+<!--                <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--                    <a href="/sobre">Desenvolvedoras</a>-->
+<!--                    <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="greeting-section" style="display: flex; align-items: center">
+                <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
+                <span class="user-initials-circle"
+                      th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
             </div>
+
         </div>
-        <div>
-            <a href="/login">
-            <button type="button" class="btn btn-primary">Sair</button>
-        </a>
-        </div>
-        <div class="greeting-section">
-            <span th:text="${nome}"> </span>
-<!--    <span th:each="usuario : ${usuarios}">-->
-<!--        Olá, <span th:text="${usuario.nome} + ' ' + ${usuario.sobrenome}"></span>-->
-<!--    </span>-->
-            <span>Olá, <span th:text="${nome}"></span>!</span>
-        </div>
+        <a style="margin-left: 8px" th:href="@{/logout}" class="btn btn-outline-danger">Sair</a>
     </div>
 </nav>
-<div class="container mt-5">
-    <div class="card-body">
-    <h2 class="mb-4">Chamados Disponíveis</h2>
+
+<div class="container mt-5" style="margin-bottom: 25%">
+
+    <h2 class="mb-4">Seus Chamados</h2>
+
     <a th:href="@{/tickets/new/{idUsuario}(idUsuario=${idUsuario})}" class="btn btn-success">+ Novo Chamado</a>
     <br><br>
     <table class="table">
@@ -63,14 +61,35 @@
             <td th:text="${ticket.titulo}"></td>
             <td th:text="${ticket.setor}"></td>
             <td>
-                <a th:href="@{/tickets/{id}(id=${ticket.id})}" class="btn btn-secondary">Detalhar</a>
+                <a th:href="@{/tickets/usuario/{id}(id=${ticket.id})}" class="btn-sm btn btn-secondary">Detalhar</a>
 
-                <a th:href="@{/tickets/excluir/{id}(id=${ticket.id}, idUsuario=${idUsuario})}" class="btn btn-danger">Excluir</a>
+                <a th:href="@{/tickets/excluir/{id}(id=${ticket.id})}"
+                   class="btn btn-danger btn-sm delete-ticket">Excluir</a>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
+
+<footer>
+    <img src="/imagens/logo-preto.png" alt="Logo KittyHelp">
+    <div class="links">
+        <p><strong>SOBRE A KITTYHELP</strong></p>
+        <a href="/">Como funciona</a><br>
+        <a href="/">Soluções</a><br>
+        <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
+    </div>
+    <div class="links">
+        <p><strong>SOBRE NÓS</strong></p>
+        <a href="/sobre">As Desenvolvedoras</a><br>
+        <a href="https://soulcode.com">A SoulCode</a>
+    </div>
+    <a href="/admin/home" class="client-area-link">
+        Página Inicial
+        <i class="fa-solid fa-arrow-right-long"></i>
+    </a>
+</footer>
+
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script>
@@ -92,6 +111,23 @@
                     .catch(err => console.error('Failed to fetch tickets:', err));
             }
         }
+    });
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.delete-ticket').on('click', function (e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                success: function (result) {
+                    // Recarregar a página ou atualizar a tabela de tickets
+                    location.reload();
+                }
+            });
+        });
     });
 </script>
 

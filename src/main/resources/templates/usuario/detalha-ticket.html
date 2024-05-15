@@ -1,0 +1,97 @@
+<!-- /tickets/{id} -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/estilos/styles.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Detalhes do Ticket</title>
+    <script src="https://kit.fontawesome.com/ab398cb506.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="/imagens/logo-preto.png">
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="logo-container">
+            <img src="/imagens/logo.png" alt="Logo" style="height: 40px;">
+            <span class="logo-text">KittyHelp</span>
+        </div>
+        <div class="navbar-nav mx-auto">
+            <a class="nav-link active"
+               th:href="@{/tickets/todos/{idUsuario}(idUsuario=${ticket.usuario.getIdUsuario()})}">Home</a>
+            <a class="nav-link" th:href="@{/tickets/todos/{idUsuario}(idUsuario=${ticket.usuario.getIdUsuario()})}">Meus
+                Chamados</a>
+            <a class="nav-link" href="#">Sair da Conta</a>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-expanded="false">
+                    Mais
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a href="/sobre">Desenvolvedoras</a>
+                    <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
+                </div>
+            </div>
+        </div>
+        <div class="greeting-section" style="display: flex; align-items: center">
+            <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
+            <span class="user-initials-circle"
+                  th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-card" style="margin-top: 5%">
+    <div class="card-ticket">
+        <h2>Detalhes do Ticket</h2>
+        <div class="card-body" th:if="${ticket != null}">
+            <p><strong>Assunto:</strong> <span th:text="${ticket.titulo}"></span></p>
+            <p><strong>Descrição:</strong> <span th:text="${ticket.descricao}"></span></p>
+            <p><strong>Status:</strong> <span th:text="${ticket.status}"></span></p>
+            <p><strong>Prioridade:</strong> <span th:text="${ticket.prioridade}"></span></p>
+            <p><strong>Setor:</strong> <span th:text="${ticket.setor}"></span></p>
+            <p><strong>Data:</strong> <span th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></span></p>
+            <p><strong>Usuário:</strong> <span
+                    th:text="${ticket.usuario?.nome != null ? ticket.usuario.nome + ' ' + ticket.usuario.sobrenome : 'Sem usuário'}"></span>
+            </p>
+            <p><strong>Técnico Resposável:</strong> <span
+                    th:text="${ticket.tecnico?.nome != null ? ticket.tecnico.nome + ' ' + ticket.tecnico.sobrenome : 'Sem técnico atribuído'}"></span>
+            </p>
+        </div>
+
+        <div th:if="${ticket == null}">
+            <p>Desculpe, não conseguimos encontrar o ticket solicitado.</p>
+        </div>
+
+    <div class="btn btn-outline-secondary">
+        <i class="fa-solid fa-arrow-left"></i>
+        <a th:href="@{/tickets/todos/{idUsuario}(idUsuario=${ticket.usuario.getIdUsuario()})}">Voltar para a lista de
+            tickets</a>
+    </div>
+
+    </div>
+</div>
+
+<footer style="margin-top: 10%">
+    <img src="/imagens/logo-preto.png" alt="Logo KittyHelp">
+    <div class="links">
+        <p><strong>SOBRE A KITTYHELP</strong></p>
+        <a href="/">Como funciona</a><br>
+        <a href="/">Soluções</a><br>
+        <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
+    </div>
+    <div class="links">
+        <p><strong>SOBRE NÓS</strong></p>
+        <a href="/sobre">As Desenvolvedoras</a><br>
+        <a href="https://soulcode.com">A SoulCode</a>
+    </div>
+    <a href="/admin/home" class="client-area-link">
+        Página Inicial
+        <i class="fa-solid fa-arrow-right-long"></i>
+    </a>
+</footer>
+</body>
+</html>

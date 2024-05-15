@@ -5,8 +5,9 @@
 <head>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="/estilos/styles.css" rel="stylesheet">
+    <link rel="icon" href="/imagens/logo-preto.png">
     <meta charset="UTF-8">
-    <title>Editar Técnico</title>
+    <title th:text="'Editar Perfil de ' + ${tecnico.nome}"></title>
 </head>
 
 <body>
@@ -17,10 +18,10 @@
             <span class="logo-text">KittyHelp</span>
         </div>
         <div class="navbar-nav mx-auto">
-            <a class="nav-link active" href="/admin/home">Home</a>
-            <a class="nav-link" href="/admin/home#estatisticas">Estátisticas</a>
-            <a class="nav-link" href="/admin/home#tecnicos">Técnicos</a>
-            <a class="nav-link" href="/admin/home#tickets">Chamados</a>
+            <a class="nav-link active" href="/home">Home</a>
+            <a class="nav-link" href="/home#estatisticas">Estatísticas</a>
+            <a class="nav-link" href="/home#tecnicos">Técnicos</a>
+            <a class="nav-link" href="/home#tickets">Chamados</a>
             <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-expanded="false">
@@ -76,10 +77,11 @@
                 <div class="form-group">
                     <label for="setor">Setor</label>
                     <select class="form-control" id="setor" th:field="*{setor}" required>
-                        <option value="ADMINISTRATIVO">Administrativo</option>
-                        <option value="HELPDESK">Helpdesk</option>
-                        <option value="SUPORTE">Suporte</option>
-                        <option value="FINANCEIRO">Financeiro</option>
+                        <option value="">Selecione um Setor</option>
+                        <option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"
+                                th:value="${s}"
+                                th:text="${s}">
+                        </option>
                     </select>
                 </div>
 
@@ -89,7 +91,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Salvar</button> &nbsp;
-                <a href="/tecnico/todos">Voltar para a lista de técnicos</a>
+                <a href="/home">Voltar para a lista de técnicos</a>
             </form>
         </div>
 
@@ -112,7 +114,7 @@
         <a href="/sobre">As Desenvolvedoras</a><br>
         <a href="https://soulcode.com">A SoulCode</a>
     </div>
-    <a href="/admin/home" class="client-area-link">
+    <a href="/home" class="client-area-link">
         Página Inicial
         <i class="fa-solid fa-arrow-right-long"></i>
     </a>

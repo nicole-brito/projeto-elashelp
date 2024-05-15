@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="'Olá, ' + ${nome} + '! | KittyHelp'"></title>
+    <link rel="icon" href="/imagens/logo-preto.png">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/estilos/styles.css">
     <script src="https://kit.fontawesome.com/ab398cb506.js" crossorigin="anonymous"></script>
@@ -24,7 +25,7 @@
         </div>
         <div class="navbar-nav mx-auto">
             <a class="nav-link active" href="/admin/home">Home</a>
-            <a class="nav-link" href="#estatisticas">Estátisticas</a>
+            <a class="nav-link" href="#estatisticas">Estatísticas</a>
             <a class="nav-link" href="#tecnicos">Técnicos</a>
             <a class="nav-link" href="#tickets">Chamados</a>
             <div class="nav-item dropdown">
@@ -115,7 +116,7 @@
                     <a th:href="@{/tickets/editar/{id}(id=${ticket.id})}" class="btn btn-primary btn-sm">Editar</a>
 
                     <a th:href="@{/tickets/excluir/{id}(id=${ticket.id})}"
-                       class="btn btn-danger btn-sm delete-ticket">Excluir</a>
+                       class="btn btn-outline-danger btn-sm delete-ticket">Excluir</a>
                 </td>
             </tr>
             </tbody>

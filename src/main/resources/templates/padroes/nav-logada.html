@@ -5,8 +5,10 @@
             <span class="logo-text">KittyHelp</span>
         </div>
         <div class="navbar-nav mx-auto">
-            <a class="nav-link active" href="/static">Home</a>
-            <a class="nav-link" href="#">Serviços</a>
+<!--            <a class="nav-link active" href="/admin/home">Home</a>-->
+<!--            <a class="nav-link" href="#estatisticas">Estátisticas</a>-->
+<!--            <a class="nav-link" href="#tecnicos">Técnicos</a>-->
+<!--            <a class="nav-link" href="#tickets">Chamados</a>-->
             <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-expanded="false">
@@ -16,12 +18,12 @@
                     <a href="/sobre">Desenvolvedoras</a>
                     <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
                 </div>
-                <div class="greeting-section" style="display: flex; align-items: center">
-                    <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
-                    <span class="user-initials-circle"
-                          th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
-                </div>
             </div>
+        </div>
+        <div class="greeting-section" style="display: flex; align-items: center">
+            <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
+            <span class="user-initials-circle"
+                  th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
         </div>
     </div>
 </nav>

@@ -53,6 +53,7 @@ public class TecnicoService {
         enviarEmailDeBoasVindas(login.getEmail());
         return tecnico;
     }
+
     private void enviarEmailDeBoasVindas(String email) {
         try {
             // Chama o método sendEmail do EmailService
@@ -63,6 +64,7 @@ public class TecnicoService {
             System.err.println("Erro ao enviar e-mail de boas-vindas: " + ex.getMessage());
         }
     }
+
     public Tecnico updateTecnico(Tecnico tecnico) {
         this.tecnicoRepository.findById(tecnico.getIdTecnico());
         return tecnicoRepository.save(tecnico);
@@ -81,11 +83,11 @@ public class TecnicoService {
         Optional<Tecnico> tecnicos = tecnicoRepository.findByEmail(email);
         if (tecnicos.isEmpty()) {
             return Optional.empty();
-        } else if (tecnicos.stream().count() > 1) {
-            throw new NonUniqueResultException("More than one User found with email: " + email);
         } else {
+            tecnicos.stream().count();
             return Optional.of(tecnicos.get());
-        }    }
+        }
+    }
 
 
 //    public Tecnico findTecnicoByEmail(String email) {

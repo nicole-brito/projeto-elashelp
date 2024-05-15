@@ -147,7 +147,7 @@ a {
     cursor: pointer;
 }
 
-h2,h3 {
+h2, h3 {
     color: #E5989B;
 }
 
@@ -366,7 +366,7 @@ footer a:hover {
     position: absolute;
     background-color: #f8f9fa;
     padding: 10px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown:hover .dropdown-menu {
@@ -440,7 +440,6 @@ footer a:hover {
 }
 
 
-
 /* Fim Dashboard*/
 
 /* Estilos página "Index" */
@@ -450,20 +449,20 @@ footer a:hover {
     margin-left: 100px;
 }
 
-.image-kittyhelp{
-padding-left: 250px;
+.image-kittyhelp {
+    padding-left: 250px;
 
 }
+
 .img-patinha {
     width: 173px;
     height: 138px;
     padding-bottom: 80px;
 }
+
 .sua-solucao-em-service-desk {
-    margin: 0px;
     width: 472px;
     color: #000;
-    font-family: Quicksand;
     font-size: 64px;
     font-style: normal;
     font-weight: 600;
@@ -477,6 +476,7 @@ padding-left: 250px;
     font-weight: 700;
     line-height: 150%;
 }
+
 .texticulo-service-desk {
     width: 472px;
     color: #000;
@@ -485,14 +485,16 @@ padding-left: 250px;
     font-weight: 400;
     line-height: 150%;
 }
+
 .texto-logo-kittyhelp {
-       padding-left: 150px;
-       color: #353030;
-       font-size: 102.08px;
-       font-style: normal;
-       font-weight: 600;
-       line-height: normal;
+    padding-left: 150px;
+    color: #353030;
+    font-size: 102.08px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }
+
 .sobre-kittyhelp {
     font-size: 40px;
     font-style: normal;
@@ -526,6 +528,7 @@ padding-left: 250px;
     line-height: 150%;
 
 }
+
 .titulo-mini {
     width: 196px;
     color: #000;
@@ -534,6 +537,7 @@ padding-left: 250px;
     font-weight: 700;
     line-height: 150%;
 }
+
 .frame {
     padding-top: 78px;
     display: inline-flex;
@@ -578,8 +582,8 @@ padding-left: 250px;
 
 /* Estilos específicos para o navbar na página Index */
 .index-navbar {
-      display: flex;
-      align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .index-navbar .greeting-section {
@@ -593,7 +597,7 @@ padding-left: 250px;
     font-size: 16px;
 }
 
-.index-navbar .greeting-section .user-initials-circle {
+.user-initials-circle {
     margin-right: 10px;
     width: 50px;
     height: 50px;
@@ -607,6 +611,15 @@ padding-left: 250px;
     font-weight: bold;
 }
 
-
-
+.card-ticket {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+}
 

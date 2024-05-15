@@ -110,6 +110,29 @@ public class TicketViewController {
         }
     }
 
+    //mostrar o chamado detalhado para o usuario
+    @GetMapping("usuario/{id}")
+    public String showTicketDetailsToUser(@PathVariable Integer id, Model model) {
+        Optional<Ticket> optionalTicket = ticketService.findTicketById(id);
+        if (optionalTicket.isPresent()) {
+            model.addAttribute("ticket", optionalTicket.get());
+            return "usuario/detalha-ticket";
+        } else {
+            return "error";
+        }
+    }
+
+//    @GetMapping("admin/{id}")
+//    public String showTicketDetailsToAdmin(@PathVariable Integer id, Model model) {
+//        Optional<Ticket> optionalTicket = ticketService.findTicketById(id);
+//        if (optionalTicket.isPresent()) {
+//            model.addAttribute("ticket", optionalTicket.get());
+//            return "admin/detalha-ticket-todos";
+//        } else {
+//            return "error";
+//        }
+//    }
+  
     //excluir um ticket
     @GetMapping("/excluir/{id}")
     public String excluirTicket(@PathVariable Integer id, @RequestParam Long idUsuario) {
@@ -154,4 +177,26 @@ public class TicketViewController {
             return "erro";
         }
     }
+//    @GetMapping("/editar/{id}")
+//    public String showEditForm(@PathVariable("id") Integer id, Model model) {
+//        Ticket ticket = ticketService.getTicketById(id);
+//        if (ticket == null) {
+//            ticket = new Ticket();  // Cria um novo objeto Ticket se nenhum ticket existir com o ID fornecido
+//        }
+//        model.addAttribute("ticket", ticket);
+//        return "editar-ticket";
+//    }
+
+    // Método POST para processar o formulário de edição
+    @PostMapping("/editar/{id}")
+    public String processEditForm(@PathVariable("id") Integer id, @ModelAttribute("ticket") Ticket ticket, RedirectAttributes redirectAttributes) {
+        try {
+            ticketService.updateTicket(id);
+            redirectAttributes.addFlashAttribute("success", "Chamado atualizado com sucesso!");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Erro ao atualizar técnico.");
+        }
+        return "redirect:/home" ;
+    }
+
 }
