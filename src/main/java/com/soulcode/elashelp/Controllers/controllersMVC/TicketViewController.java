@@ -1,5 +1,6 @@
 package com.soulcode.elashelp.Controllers.controllersMVC;
 
+import com.soulcode.elashelp.Models.Tecnico;
 import com.soulcode.elashelp.Models.Ticket;
 import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.TicketRepository;
@@ -7,16 +8,15 @@ import com.soulcode.elashelp.Repositories.UsuarioRepository;
 import com.soulcode.elashelp.Services.TicketService;
 import com.soulcode.elashelp.Services.UsuarioService;
 import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.xml.crypto.Data;
-import java.time.LocalDate;
-
-import java.security.Principal;
+import java.net.http.HttpHeaders;
+import java.net.http.HttpRequest;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -54,11 +54,12 @@ public class TicketViewController {
             model.addAttribute("usuario", usuario);
 
 
-            return "tickets";
+            return "usuario/tickets";
         } else {
             return "redirect:/error"; // Redireciona para uma página de erro
         }
     }
+
 
     //o get abre a tela de novo chamado, com os parametros filtrados
     @GetMapping("/new/{idUsuario}")
@@ -102,9 +103,20 @@ public class TicketViewController {
             model.addAttribute("ticket", optionalTicket.get());
             return "detalha-ticket";
         } else {
-            return "erro";
+            return "error";
         }
     }
+
+//    @GetMapping("admin/{id}")
+//    public String showTicketDetailsToAdmin(@PathVariable Integer id, Model model) {
+//        Optional<Ticket> optionalTicket = ticketService.findTicketById(id);
+//        if (optionalTicket.isPresent()) {
+//            model.addAttribute("ticket", optionalTicket.get());
+//            return "admin/detalha-ticket-todos";
+//        } else {
+//            return "error";
+//        }
+//    }
 
     //excluir um ticket
     @GetMapping("/excluir/{id}")
@@ -117,6 +129,53 @@ public class TicketViewController {
         }
         // Redireciona de volta para a página de listagem de tickets com o mesmo idUsuario
         return "redirect:/tickets/todos/" + idUsuario;
+    }
+
+    //excluir um ticket
+    @DeleteMapping("/excluir/{id}")
+    public String excluirTicket(@PathVariable Integer id) {
+        // Verifica se o ticket com o ID especificado existe
+        Optional<Ticket> optionalTicket = ticketService.findTicketById(id);
+        if (optionalTicket.isPresent()) {
+            // Se o ticket existir, exclua-o
+            ticketService.deleteTicket(id);
+        }
+        // Redireciona de volta para a página de listagem de tickets
+        return "redirect:/admin/home";
+    }
+
+    @GetMapping("/editar/{id}")
+    public String showEditForm(@PathVariable("id") Integer id, Model model) {
+        Optional<Ticket> ticket = ticketService.findTicketById(id);
+        if (ticket.isPresent()) {
+            model.addAttribute("ticket", ticket.get());
+            return "admin/detalha-ticket-todos";
+        } else {
+            model.addAttribute("error", "ticket não encontrado.");
+            return "redirect:ticket/todos";
+        }
+    }
+
+//    @GetMapping("/editar/{id}")
+//    public String showEditForm(@PathVariable("id") Integer id, Model model) {
+//        Ticket ticket = ticketService.getTicketById(id);
+//        if (ticket == null) {
+//            ticket = new Ticket();  // Cria um novo objeto Ticket se nenhum ticket existir com o ID fornecido
+//        }
+//        model.addAttribute("ticket", ticket);
+//        return "editar-ticket";
+//    }
+
+    // Método POST para processar o formulário de edição
+    @PostMapping("/editar/{id}")
+    public String processEditForm(@PathVariable("id") Integer id, @ModelAttribute("ticket") Ticket ticket, RedirectAttributes redirectAttributes) {
+        try {
+            ticketService.updateTicket(id);
+            redirectAttributes.addFlashAttribute("success", "Chamado atualizado com sucesso!");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Erro ao atualizar técnico.");
+        }
+        return "redirect:/tickets/editar/" + id;
     }
 
 }

@@ -406,15 +406,42 @@ footer a:hover {
 }
 
 /* Dashboard */
+.dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .dashboard-container canvas {
-    max-width: 900px;
-    margin: 90px auto;
-    padding: 20px 200px;
+    flex: 0 0 calc(50% - 16px);
+    padding: 8px;
     border-radius: 10px;
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin: 8px;
+    max-width: 50%;
 }
+
+.navbar .container-fluid {
+    justify-content: flex-start;
+}
+
+.card-table {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    vertical-align: top;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+
+
+/* Fim Dashboard*/
 
 /* Estilos página "Index" */
 

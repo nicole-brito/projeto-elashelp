@@ -1,21 +1,17 @@
 package com.soulcode.elashelp.Services;
 
-import com.soulcode.elashelp.Models.Login;
 import com.soulcode.elashelp.Models.Status;
 import com.soulcode.elashelp.Models.Ticket;
 import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.TicketRepository;
 import com.soulcode.elashelp.Repositories.UsuarioRepository;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -55,22 +51,26 @@ public class TicketService {
     }
 
 
-    public Ticket updateTicket(Integer id, Ticket ticketDetails) {
+    public Ticket updateTicket(Integer id) {
         Ticket ticket = ticketRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Ticket not found with id " + id));
 
-        ticket.setTitulo(ticketDetails.getTitulo());
-        ticket.setDescricao(ticketDetails.getDescricao());
-        ticket.setStatus(ticketDetails.getStatus());
-        ticket.setPrioridade(ticketDetails.getPrioridade());
-        ticket.setData(ticketDetails.getData());
-        ticket.setSetor(ticketDetails.getSetor());
+        ticket.setTitulo(ticket.getTitulo());
+        ticket.setDescricao(ticket.getDescricao());
+        ticket.setStatus(ticket.getStatus());
+        ticket.setPrioridade(ticket.getPrioridade());
+        ticket.setData(ticket.getData());
+        ticket.setSetor(ticket.getSetor());
 
         return ticketRepository.save(ticket);
     }
+
+
     public void deleteTicket(Integer id) {
         ticketRepository.deleteById(id);
     }
+
+
     public void deleteTickets(Integer id,Ticket ticket, Usuario usuario) {
         ticketRepository.findByUsuario(usuario);
         ticket.setUsuario(usuario);
@@ -114,4 +114,8 @@ public class TicketService {
     }
 
 
+    public Ticket getTicketById(Integer id) {
+        return ticketRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Ticket not found with id " + id));
+    }
 }

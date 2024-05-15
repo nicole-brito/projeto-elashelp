@@ -1,0 +1,189 @@
+<!-- /admin/home -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard do Administrador</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/estilos/styles.css">
+    <script src="https://kit.fontawesome.com/ab398cb506.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="/estilos/charts.js"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="logo-container">
+            <img src="/imagens/logo.png" alt="Logo" style="height: 40px;">
+            <span class="logo-text">KittyHelp</span>
+        </div>
+        <div class="navbar-nav mx-auto">
+            <a class="nav-link active" href="/admin/home">Home</a>
+            <a class="nav-link" href="#estatisticas">Estátisticas</a>
+            <a class="nav-link" href="#tecnicos">Técnicos</a>
+            <a class="nav-link" href="#tickets">Chamados</a>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-expanded="false">
+                    Mais
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a href="/sobre">Desenvolvedoras</a>
+                    <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
+                </div>
+            </div>
+        </div>
+        <div class="greeting-section" style="display: flex; align-items: center">
+            <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
+            <span class="user-initials-circle"
+                  th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
+        </div>
+    </div>
+</nav>
+
+<div id="estatisticas" class="card-tecnico" style="margin: 24px 10%; width: 55% ">
+
+<div class="card-body" style="width:auto">
+    <h2>Estátisticas do Time</h2>
+<div class="dashboard-container">
+    <canvas id="ticketsbysetor" ></canvas>
+    <canvas id="ticketsbysetorestatus" ></canvas>
+    <canvas id="ticketsByStatus" ></canvas>
+    <canvas id="ticketsByMonth" ></canvas>
+</div>
+</div>
+</div>
+
+<div id="tecnicos" class=" card-tecnico" style="margin: 24px 10%; width: 55% ">
+    <div class="card-body" style="min-width: 95%" >
+        <h2 class="mb-4">Técnicos</h2>
+        <br>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Matrícula</th>
+                <th>Nome</th>
+                <th>Setor</th>
+                <th>Administrador</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tecnico : ${tecnicos}">
+                <td th:text="${tecnico.matricula}"></td>
+                <td th:text="${tecnico.nome + ' ' + tecnico.sobrenome}"></td>
+                <td th:text="${tecnico.setor}"></td>
+                <td th:text="${tecnico.admin ? 'Sim' : 'Não'}"></td>
+                <td th:text="${tecnico.email}"></td>
+                <td th:text="${tecnico.telefone}"></td>
+                <td>
+                    <a th:href="@{/tecnico/editar/{id}(id=${tecnico.idTecnico})}" class="btn btn-primary btn-sm">Editar
+                        perfil</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="tickets" class=" card-tecnico" style="margin: 24px 10%; width: 55% ">
+    <div class="card-body" style="min-width: 95%" >
+    <h2>Chamados</h2>
+        <table class="table" >
+            <thead>
+            <tr>
+                <th>Data</th>
+                <th>Título</th>
+                <th>Setor</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ticket : ${tickets}">
+                <td th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></td>
+                <td th:text="${ticket.titulo}"></td>
+                <td th:text="${ticket.setor}"></td>
+                <td>
+                    <a th:href="@{/tickets/editar/{id}(id=${ticket.id})}" class="btn btn-primary btn-sm">Editar</a>
+
+                    <a href="@{/tickets/excluir/{id}(id=${ticket.id})"
+                       class="btn btn-danger btn-sm delete-ticket">Excluir</a>
+
+                    <a th:href="@{/tickets/excluir/{id}(id=${ticket.id})}"
+                       class="btn btn-danger btn-sm delete-ticket">Excluir</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<footer>
+    <img src="/imagens/logo-preto.png" alt="Logo KittyHelp">
+    <div class="links">
+        <p><strong>SOBRE A KITTYHELP</strong></p>
+        <a href="/">Como funciona</a><br>
+        <a href="/">Soluções</a><br>
+        <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
+    </div>
+    <div class="links">
+        <p><strong>SOBRE NÓS</strong></p>
+        <a href="/sobre">As Desenvolvedoras</a><br>
+        <a href="https://soulcode.com">A SoulCode</a>
+    </div>
+    <a href="/admin/home" class="client-area-link">
+        Página Inicial
+        <i class="fa-solid fa-arrow-right-long"></i>
+    </a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            tickets: []
+        },
+        created() {
+            this.fetchTickets();
+        },
+        methods: {
+            fetchTickets() {
+                fetch('/tickets')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.tickets = data;
+                    })
+                    .catch(err => console.error('Failed to fetch tickets:', err));
+            }
+        }
+    });
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.delete-ticket').on('click', function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                success: function(result) {
+                    // Recarregar a página ou atualizar a tabela de tickets
+                    location.reload();
+                }
+            });
+        });
+    });
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>

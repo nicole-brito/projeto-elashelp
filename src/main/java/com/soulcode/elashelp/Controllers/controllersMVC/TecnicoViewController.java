@@ -51,7 +51,7 @@ public class TecnicoViewController {
     public String showAllTecnicos(Model model) {
         List<Tecnico> tecnicos = tecnicoService.findAll();
         model.addAttribute("tecnicos", tecnicos);
-        return "admin/tecnicos";
+        return "admin/dashboard";
     }
 
 //    @DeleteMapping("/excluir/{id}")
