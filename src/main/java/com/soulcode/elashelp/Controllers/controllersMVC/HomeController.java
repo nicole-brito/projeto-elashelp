@@ -16,7 +16,7 @@ public class HomeController {
         return "sobre";
     }
 
-    @GetMapping("/admin/home")
+    @GetMapping("/home")
     public String dash() {
         return "admin/dashboard";
     }

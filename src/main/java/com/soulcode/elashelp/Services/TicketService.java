@@ -113,9 +113,10 @@ public class TicketService {
                 .collect(Collectors.groupingBy(ticket -> ticket.getStatus().toString(), Collectors.counting()));
     }
 
+    public Map<String, Long> getTicketsByPriority() {
+        List<Ticket> tickets = ticketRepository.findAll();
 
-    public Ticket getTicketById(Integer id) {
-        return ticketRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Ticket not found with id " + id));
+        return tickets.stream()
+                .collect(Collectors.groupingBy(ticket -> ticket.getPrioridade().toString(), Collectors.counting()));
     }
 }

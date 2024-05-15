@@ -1,17 +1,14 @@
 <!-- /admin/home -->
 
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns="http://www.w3.org/1999/html">
-
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title th:text="'Olá, ' + ${nome} + '! | KittyHelp'"></title>
+    <title th:text="'Seja bem vind@ ' + ${nome} + '! | KittyHelp'"></title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/estilos/styles.css">
     <script src="https://kit.fontawesome.com/ab398cb506.js" crossorigin="anonymous"></script>
-    <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="/estilos/charts.js"></script>
 
 </head>
@@ -48,19 +45,19 @@
 
 <div id="estatisticas" class="card-tecnico" style="margin: 24px 10%; width: 55% ">
 
-    <div class="card-body" style="width:auto">
-        <h2>Estátisticas</h2>
-        <div class="dashboard-container">
-            <canvas id="ticketsbysetor"></canvas>
-            <canvas id="ticketsbysetorestatus"></canvas>
-            <canvas id="ticketsByStatus"></canvas>
-            <canvas id="ticketsByPriority"></canvas>
-        </div>
-    </div>
+<div class="card-body" style="width:auto">
+    <h2>Estátisticas do Time</h2>
+<div class="dashboard-container">
+    <canvas id="ticketsbysetor" ></canvas>
+    <canvas id="ticketsbysetorestatus" ></canvas>
+    <canvas id="ticketsByStatus" ></canvas>
+    <canvas id="ticketsByMonth" ></canvas>
+</div>
+</div>
 </div>
 
 <div id="tecnicos" class=" card-tecnico" style="margin: 24px 10%; width: 55% ">
-    <div class="card-body" style="min-width: 95%">
+    <div class="card-body" style="min-width: 95%" >
         <h2 class="mb-4">Técnicos</h2>
         <br>
 
@@ -95,9 +92,9 @@
 </div>
 
 <div id="tickets" class=" card-tecnico" style="margin: 24px 10%; width: 55% ">
-    <div class="card-body" style="min-width: 95%">
-        <h2>Chamados</h2>
-        <table class="table">
+    <div class="card-body" style="min-width: 95%" >
+    <h2>Chamados</h2>
+        <table class="table" >
             <thead>
             <tr>
                 <th>Data</th>
@@ -113,6 +110,9 @@
                 <td th:text="${ticket.setor}"></td>
                 <td>
                     <a th:href="@{/tickets/editar/{id}(id=${ticket.id})}" class="btn btn-primary btn-sm">Editar</a>
+
+                    <a href="@{/tickets/excluir/{id}(id=${ticket.id})"
+                       class="btn btn-danger btn-sm delete-ticket">Excluir</a>
 
                     <a th:href="@{/tickets/excluir/{id}(id=${ticket.id})}"
                        class="btn btn-danger btn-sm delete-ticket">Excluir</a>
@@ -167,14 +167,14 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('.delete-ticket').on('click', function (e) {
+    $(document).ready(function() {
+        $('.delete-ticket').on('click', function(e) {
             e.preventDefault();
             var url = $(this).attr('href');
             $.ajax({
                 url: url,
                 type: 'DELETE',
-                success: function (result) {
+                success: function(result) {
                     // Recarregar a página ou atualizar a tabela de tickets
                     location.reload();
                 }
@@ -182,7 +182,6 @@
         });
     });
 </script>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
