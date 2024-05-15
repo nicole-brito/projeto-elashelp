@@ -57,11 +57,13 @@ public class LoginService {
             return usuario.getNome() + " " + usuario.getSobrenome();
         }
 
-        Optional<Tecnico> tecnico = tecnicoService.findByEmail(email);
-        if (tecnico != null) {
-            return tecnico.get().getNome() + " " + tecnico.get().getSobrenome();
+        Optional<Tecnico> tecnicoOptional = tecnicoService.findByEmail(email);
+        if (tecnicoOptional.isPresent()) {
+            Tecnico tecnico = tecnicoOptional.get();
+            return tecnico.getNome() + " " + tecnico.getSobrenome();
         }
 
         return null;
     }
+
 }
