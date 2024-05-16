@@ -60,6 +60,8 @@ public class UsuarioService {
         login.setEmail(usuario.getEmail());
         login.setSenha(usuario.getSenha());
         login.setUsuario(usuario);
+
+        //TODO ROLE FIXA OU RECEBER DO HTML
         login.setRole(Role.USUARIO);
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(login.getPassword());

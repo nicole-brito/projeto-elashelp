@@ -4,10 +4,8 @@ package com.soulcode.elashelp.Services;
 import com.soulcode.elashelp.Models.Login;
 import com.soulcode.elashelp.Models.Role;
 import com.soulcode.elashelp.Models.Tecnico;
-import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.LoginRepository;
 import com.soulcode.elashelp.Repositories.TecnicoRepository;
-import jakarta.persistence.NonUniqueResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -41,8 +39,10 @@ public class TecnicoService {
         login.setSenha(tecnico.getSenha());
         login.setTecnico(tecnico);
 
-        //TODO por hora fixo administrador ate receber isso do front
+        //TODO por hora fixo  ate receber isso do front]
+        //        lembrar de mudar aqui para cadastrar tecnico ou usuario
         login.setRole(Role.TECNICO);
+        //login.setRole(Role.ADMINISTRADOR);
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(login.getPassword());
         login.setSenha(encryptedPassword);
