@@ -24,9 +24,6 @@ public class UsuarioViewController {
     @Autowired
     private final UsuarioService usuarioService;
 
-
-
-
     @GetMapping("cadastro")
     public String cadastro(@ModelAttribute("usuario") final Usuario usuario) {
         return "cadastro-usuario.html";

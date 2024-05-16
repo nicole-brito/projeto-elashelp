@@ -22,7 +22,7 @@ public class HomeController {
         return "admin/dashboard";
     }
 
-    @GetMapping("/tecnico/home")
+    @GetMapping("/tecnicos/home")
     public String homeTec() {
         return "tickets-tecnico";
     }

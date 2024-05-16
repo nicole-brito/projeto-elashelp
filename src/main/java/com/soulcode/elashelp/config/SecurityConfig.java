@@ -39,6 +39,10 @@ public class SecurityConfig {
                         .requestMatchers("/unauthorized").authenticated()
                         .anyRequest().permitAll()
                 )
+                .logout((logout) -> logout
+                        .logoutSuccessUrl("/")
+                        .permitAll()
+                )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

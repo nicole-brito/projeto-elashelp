@@ -18,23 +18,11 @@
             <span class="logo-text">KittyHelp</span>
         </div>
         <div class="navbar-nav mx-auto">
-<!--            <a class="nav-link" href="/logout">Sair da Conta</a>-->
-<!--            <div class="nav-item dropdown">-->
-<!--                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"-->
-<!--                   aria-expanded="false">-->
-<!--                    Mais-->
-<!--                </a>-->
-<!--                <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-<!--                    <a href="/sobre">Desenvolvedoras</a>-->
-<!--                    <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="greeting-section" style="display: flex; align-items: center">-->
-<!--                <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>-->
-<!--                <span class="user-initials-circle"-->
-<!--                      th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>-->
-<!--            </div>-->
-
+            <div class="greeting-section" style="display: flex; align-items: center">
+                <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
+                <span class="user-initials-circle"
+                      th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
+            </div>
         </div>
         <a style="margin-left: 8px" th:href="@{/logout}" class="btn btn-outline-danger">Sair</a>
     </div>
@@ -44,7 +32,7 @@
 
     <h2 class="mb-4">Seus Chamados</h2>
 
-    <a th:href="@{/tickets/new/{idUsuario}(idUsuario=${idUsuario})}" class="btn btn-success">+ Novo Chamado</a>
+    <a th:href="@{/tickets/new}" class="btn btn-success">+ Novo Chamado</a>
     <br><br>
     <table class="table">
         <thead>
@@ -61,7 +49,7 @@
             <td th:text="${ticket.titulo}"></td>
             <td th:text="${ticket.setor}"></td>
             <td>
-                <a th:href="@{/tickets/usuario/{id}(id=${ticket.id})}" class="btn-sm btn btn-secondary">Detalhar</a>
+                <a th:href="@{/usuario/tickets/{id}(id=${ticket.id})}" class="btn-sm btn btn-secondary">Detalhar</a>
 
                 <a th:href="@{/tickets/excluir/{id}(id=${ticket.id})}"
                    class="btn btn-danger btn-sm delete-ticket">Excluir</a>

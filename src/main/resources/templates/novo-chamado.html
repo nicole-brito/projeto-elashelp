@@ -38,7 +38,7 @@
 <body>
 <div class="container mt-5">
     <h2>Novo Chamado</h2>
-    <form th:href="@{/tickets/new/{idUsuario}(idUsuario=${idUsuario})}" th:object="${ticket}" method="post">
+    <form th:href="@{/tickets/new}" th:object="${ticket}" method="post">
 
         <div class="form-group">
             <input type="hidden" name="idUsuario" th:value="${idUsuario}" />
@@ -49,23 +49,24 @@
             <label for="descricao">Descrição</label>
             <textarea class="form-control" id="descricao" th:field="*{descricao}" required></textarea>
         </div>
+
         <div class="form-group">
-            <label for="setor">Setor</label>
-            <select class="form-control" id="setor" th:field="*{setor}" required>
-                <option value="ADMINISTRATIVO">Administrativo</option>
-                <option value="HELPDESK">Helpdesk</option>
-                <option value="SUPORTE">Suporte</option>
-                <option value="FINANCEIRO">Financeiro</option>
-                <option value="RH">RH</option>
-                <option value="MARKETING">Marketing</option>
-                <option value="VENDAS">Vendas</option>
-                <option value="JURIDICO">Jurídico</option>
+            <label for="setor">Setor:</label>
+            <select th:field="*{setor}" name="setor" id="setor" required>
+                <option value="">Selecione um Setor</option>
+                <option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"
+                        th:value="${s}"
+                        th:text="${s}">
+                </option>
             </select>
         </div>
 
 
+
+
         <button type="submit" class="btn btn-primary">Criar Chamado</button>
-       <a th:href="@{/tickets/todos/{idUsuario}(idUsuario=${idUsuario})}">
+
+       <a th:href="@{/usuario/home}">
         <button class="btn btn-secondary" type="button">Voltar</button>
        </a>
     </form>

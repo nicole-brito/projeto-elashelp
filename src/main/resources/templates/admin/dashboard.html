@@ -39,18 +39,19 @@
                 </div>
             </div>
         </div>
-<!--        <div class="greeting-section" style="display: flex; align-items: center">-->
-<!--            <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>-->
-<!--            <span class="user-initials-circle"-->
-<!--                  th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>-->
-<!--        </div>-->
+        <div class="greeting-section" style="display: flex; align-items: center">
+            <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
+            <span class="user-initials-circle"
+                  th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
+        </div>
+        <a style="margin-left: 8px" th:href="@{/logout}" class="btn btn-outline-danger">Sair</a>
     </div>
 </nav>
 
 <div id="estatisticas" class="card-tecnico" style="margin: 24px 10%; width: 55% ">
 
     <div class="card-body" style="width:auto">
-        <h2>Estátisticas</h2>
+        <h2>Estatísticas</h2>
         <div class="dashboard-container">
             <canvas id="ticketsbysetor"></canvas>
             <canvas id="ticketsbysetorestatus"></canvas>
@@ -115,7 +116,7 @@
                 <td>
                     <a th:href="@{/tickets/editar/{id}(id=${ticket.id})}" class="btn btn-primary btn-sm">Editar</a>
 
-                    <a th:href="@{/tickets/excluir/{id}(id=${ticket.id})}"
+                    <a th:href="@{/api/ticket/{id}(id=${ticket.id})}"
                        class="btn btn-outline-danger btn-sm delete-ticket">Excluir</a>
                 </td>
             </tr>
@@ -180,6 +181,24 @@
                     location.reload();
                 }
             });
+        });
+    });
+
+    $(document).ready(function () {
+        $('.delete-ticket').on('click', function (e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            var userConfirmation = confirm('Tem certeza de que deseja excluir este ticket?');
+            if (userConfirmation) {
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    success: function (result) {
+                        // Recarregar a página ou atualizar a tabela de tickets
+                        location.reload();
+                    }
+                });
+            }
         });
     });
 </script>

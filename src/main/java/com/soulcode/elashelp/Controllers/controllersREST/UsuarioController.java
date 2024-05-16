@@ -37,6 +37,7 @@ public class UsuarioController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
     //Metodo update
     @PutMapping("/{idUsuario}")
     public ResponseEntity<?> updateUsuario(@RequestBody Usuario usuario) {
