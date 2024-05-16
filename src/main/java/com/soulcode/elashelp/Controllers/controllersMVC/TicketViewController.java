@@ -8,17 +8,13 @@ import com.soulcode.elashelp.Repositories.TicketRepository;
 import com.soulcode.elashelp.Repositories.UsuarioRepository;
 import com.soulcode.elashelp.Services.TicketService;
 import com.soulcode.elashelp.Services.UsuarioService;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.xml.crypto.Data;
-import java.time.LocalDate;
-
-import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -43,7 +39,7 @@ public class TicketViewController {
 
     //mostrar lista de chamados do usuario que logou, no caso pegando o idUsuario dele
     @GetMapping("/todos/{idUsuario}")
-    public String showTicketsByUsuario(@PathVariable Long idUsuario, Usuario usuario, Model model) {
+    public String showTicketsByUsuario(@PathVariable Long idUsuario, @RequestParam String email, Usuario usuario, Model model) {
         // Busca o usuário pelo ID
 
             Optional<Usuario> optionalUsuario = usuarioService.findUsuarioById(idUsuario);
@@ -55,9 +51,8 @@ public class TicketViewController {
             // Adiciona os tickets ao modelo para serem exibidos na página
             model.addAttribute("tickets", userTickets);
             model.addAttribute("idUsuario", idUsuario);
-
-
-            return "tickets";
+            //TODO refinir uma pagina ou rota para usuario
+            return "tickets-tecnico";
         } else {
             return "redirect:/error"; // Redireciona para uma página de erro
         }

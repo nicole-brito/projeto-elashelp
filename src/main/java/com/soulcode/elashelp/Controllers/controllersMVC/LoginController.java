@@ -2,38 +2,28 @@ package com.soulcode.elashelp.Controllers.controllersMVC;
 
 
 import com.soulcode.elashelp.Models.Login;
-import com.soulcode.elashelp.Models.Tecnico;
-import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.LoginRepository;
 import com.soulcode.elashelp.Services.LoginService;
 import com.soulcode.elashelp.Services.RedefinirSenhaService;
-
-import jakarta.servlet.http.HttpSession;
-
-import com.soulcode.elashelp.Services.TecnicoService;
-import com.soulcode.elashelp.Services.UsuarioService;
-
+import com.soulcode.elashelp.config.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LoginController {
 
 
     @Autowired
-    private LoginService loginService;
-    @Autowired
-    private UsuarioService usuarioService;
+    private LoginRepository loginRepository;
+
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -42,8 +32,6 @@ public class LoginController {
 
     @Autowired
     private RedefinirSenhaService redefinirSenhaService;
-    @Autowired
-    private TecnicoService tecnicoService;
 
     @GetMapping("/login")
     public String login() {
@@ -51,7 +39,7 @@ public class LoginController {
     }
 
     @PostMapping("/entrar")
-    public String processarLogin(Model model, String email, String senha, HttpSession session) {
+    public String processarLogin(Model model, String email, String senha) {
         model.addAttribute("email", email);
         model.addAttribute("senha", senha);
 
@@ -61,48 +49,27 @@ public class LoginController {
             usernamePassword = new UsernamePasswordAuthenticationToken(email, senha);
             authentication = this.authenticationManager.authenticate(usernamePassword);
         } catch (Exception ex) {
-            return "login";
+            return "redirect:/unauthorized";
         }
 
-        var role = authentication.getAuthorities().stream().findFirst();
+        var role = authentication.getAuthorities().stream().findFirst().get().toString();
         var autenticado = authentication.isAuthenticated();
-        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-
-
-
-//TODO redirecionar corretamente de acordo com a role
-
-//        if(autenticado && role.equals("ADMINISTRADOR")){
-//            return "view de administrador";
-//        } else if (autenticado && role.equals("TECNICO")){
-//            return "view de tecnico";
-//        } else {
-//            return "/tickets/todos/{idUsuario}";
-//        }
-
-
-        if (autenticado) {
-            session.setAttribute("email", email);
+        Login usuarioLogado = loginRepository.findLoginByEmail(email);
+        //TODO redefinir retornos em caso de administrador ou tenico ou usuario
+        //se o retorno for com redirect precisar passar o email do usuario logado como o exemplo da roda de usuario
+        if(autenticado && role.equals("ADMINISTRADOR")){
             return "index";
+        } else if (autenticado && role.equals("TECNICO")){
+            return "tickets-tecnico";
+        } else if(role.equals("USUARIO")) {
+            return "redirect:/tickets/todos/" + usuarioLogado.getUsuario().getIdUsuario() + "?email=" + usuarioLogado.getEmail();
+        } else return "login";
+    }
 
-////////TODO redirecionar corretamente de acordo com a role
-//////
-//////        if(autenticado && role.equals("ADMINISTRADOR")){
-//////            return "view de administrador";
-//////        } else if (autenticado && role.equals("TECNICO")){
-//////            return "view de tecnico";
-//////        } else {
-//////            return "/tickets/todos/{idUsuario}";
-//////        }
-//
-//
-
-
-        } else {
-        model.addAttribute("error", "Email ou senha inválidos!");
-            return "login";
-                    }
+    @GetMapping("/unauthorized")
+    public String unauthorized(){
+        return "unauthorized";
     }
 
     @GetMapping("/escolhercadastro")
