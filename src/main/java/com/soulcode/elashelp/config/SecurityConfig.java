@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -37,6 +38,10 @@ public class SecurityConfig {
                         .requestMatchers("/entrar").authenticated()
                         .requestMatchers("/unauthorized").authenticated()
                         .anyRequest().permitAll()
+                )
+                .logout((logout) -> logout
+                        .logoutSuccessUrl("/")
+                        .permitAll()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

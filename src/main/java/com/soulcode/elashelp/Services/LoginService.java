@@ -1,9 +1,12 @@
 package com.soulcode.elashelp.Services;
 
+import com.soulcode.elashelp.Models.Login;
 import com.soulcode.elashelp.Models.Tecnico;
 import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.LoginRepository;
+import com.soulcode.elashelp.Repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +28,15 @@ public class LoginService {
         return loginRepository.findByEmail(email);
     }
 
+    public String getCurrentUserEmail() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            return ((UserDetails)principal).getUsername();
+        } else {
+            return principal.toString();
+        }
+    }
 
     public String getUsuarioOuTecnico(String email) {
         Usuario usuario = usuarioService.findByEmail(email);
@@ -40,5 +52,4 @@ public class LoginService {
 
         return null;
     }
-
 }

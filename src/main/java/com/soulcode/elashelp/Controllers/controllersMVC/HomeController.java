@@ -17,10 +17,22 @@ public class HomeController {
         return "sobre";
     }
 
-    @GetMapping("/home")
+    @GetMapping("/admin/home")
     public String dash() {
         return "admin/dashboard";
     }
+
+    @GetMapping("/tecnicos/home")
+    public String homeTec() {
+        return "tickets-tecnico";
+    }
+
+    @GetMapping("/usuario/home")
+    public String homeUser() {
+        return "usuario/tickets";
+    }
+
+
 
 
 

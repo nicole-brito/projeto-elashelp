@@ -44,8 +44,6 @@ public class TicketController {
         return new ResponseEntity<>(newTicket, HttpStatus.CREATED);
     }
 
-
-
     @PutMapping("/{id}")
     public ResponseEntity<Ticket> updateTicket(@PathVariable Integer id, @RequestBody Ticket ticketDetails) {
         Ticket updatedTicket = ticketService.updateTicket(id);

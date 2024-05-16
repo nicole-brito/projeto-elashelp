@@ -1,4 +1,4 @@
-<!-- /tecnico/editar/{matricula} -->
+<!-- /tecnicos/editar/{matricula} -->
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
@@ -33,11 +33,11 @@
                 </div>
             </div>
         </div>
-        <div class="greeting-section" style="display: flex; align-items: center">
-            <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
-            <span class="user-initials-circle"
-                  th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
-        </div>
+<!--        <div class="greeting-section" style="display: flex; align-items: center">-->
+<!--            <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>-->
+<!--            <span class="user-initials-circle"-->
+<!--                  th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>-->
+<!--        </div>-->
     </div>
 </nav>
 
@@ -76,7 +76,7 @@
 
                 <div class="form-group">
                     <label for="setor">Setor</label>
-                    <select class="form-control" id="setor" th:field="*{setor}" required>
+                    <select class="form-control" name="setor" id="setor" th:field="*{setor}" required>
                         <option value="">Selecione um Setor</option>
                         <option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"
                                 th:value="${s}"
@@ -91,7 +91,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Salvar</button> &nbsp;
-                <a href="/home">Voltar para a lista de técnicos</a>
+                <a href="/admin/home">Voltar para a lista de técnicos</a>
             </form>
         </div>
 

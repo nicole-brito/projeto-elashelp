@@ -34,6 +34,7 @@ public class TicketService {
     public Optional<Ticket> findTicketById(Integer id) {
         return ticketRepository.findById(id);
     }
+
     public List<Ticket> findTicketsByUsuario(Usuario usuario) {
         return ticketRepository.findByUsuario(usuario);
     }
@@ -41,15 +42,14 @@ public class TicketService {
     public Ticket saveTicket(Ticket ticket) {
         return ticketRepository.save(ticket);
     }
-
-    public Ticket createTicket(Ticket ticket, Usuario usuario) {
-       ticketRepository.findByUsuario(usuario);
-        ticket.setUsuario(usuario);
-
-        ticket = ticketRepository.save(ticket);
-        return ticket;
-    }
-
+//
+//    public Ticket createTicket(Ticket ticket) {
+//       ticketRepository.findByUsuario(usuario);
+//        ticket.setUsuario(usuario);
+//
+//        ticket = ticketRepository.save(ticket);
+//        return ticket;
+//    }
 
     public Ticket updateTicket(Integer id) {
         Ticket ticket = ticketRepository.findById(id)
@@ -65,18 +65,15 @@ public class TicketService {
         return ticketRepository.save(ticket);
     }
 
-
     public void deleteTicket(Integer id) {
         ticketRepository.deleteById(id);
     }
-
 
     public void deleteTickets(Integer id,Ticket ticket, Usuario usuario) {
         ticketRepository.findByUsuario(usuario);
         ticket.setUsuario(usuario);
         ticketRepository.deleteById(id);
     }
-
 
 //    Requisições para os gráficos
     public Map<String, Long > getOpenTicketsBySector() {
@@ -119,4 +116,6 @@ public class TicketService {
         return tickets.stream()
                 .collect(Collectors.groupingBy(ticket -> ticket.getPrioridade().toString(), Collectors.counting()));
     }
+
+
 }

@@ -7,6 +7,9 @@ import com.soulcode.elashelp.Services.TecnicoService;
 import com.soulcode.elashelp.Services.TicketService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,14 +30,13 @@ public class GlobalControllerAdvice {
     private TecnicoService tecnicoService;
 
     @ModelAttribute("nome")
-    public String getNome(HttpSession session) {
-        String email = (String) session.getAttribute("email");
-        System.out.println(email);
-        if (email != null) {
+    public String getNome() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            String email = ((UserDetails) authentication.getPrincipal()).getUsername();
             return loginService.getUsuarioOuTecnico(email);
-        } else {
-            return null;
         }
+        return "Anônimo";
     }
 
     @ModelAttribute
@@ -49,11 +51,11 @@ public class GlobalControllerAdvice {
         model.addAttribute("tecnicos", tecnicos);
     }
 
-//    @ModelAttribute
-//    public void showTicketById(Model model, @RequestParam(value = "id", required = false) Integer id) {
-//        if (id != null) {
-//            Ticket ticket = ticketService.getTicketById(id);
-//            model.addAttribute("ticket", ticket);
-//        }
-//    }
+    @ModelAttribute
+    public void showTicketById(Model model, @RequestParam(value = "id", required = false) Integer id) {
+        if (id != null) {
+            Ticket ticket = ticketService.findAllTickets().get(id);
+            model.addAttribute("ticket", ticket);
+        }
+    }
 }

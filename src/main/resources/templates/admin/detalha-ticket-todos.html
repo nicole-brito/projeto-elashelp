@@ -1,7 +1,7 @@
 <!-- admin/tickets/{id} -->
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="/estilos/styles.css" rel="stylesheet">
@@ -11,88 +11,144 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <div class="logo-container">
-            <img src="/imagens/logo.png" alt="Logo" style="height: 40px;">
-            <span class="logo-text">KittyHelp</span>
-        </div>
-        <div class="navbar-nav mx-auto">
-            <a class="nav-link active" href="/home">Home</a>
-            <a class="nav-link" href="/home#estatisticas">Estatísticas</a>
-            <a class="nav-link" href="/home#tecnicos">Técnicos</a>
-            <a class="nav-link" href="/home#tickets">Chamados</a>
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-expanded="false">
-                    Mais
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a href="/sobre">Desenvolvedoras</a>
-                    <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
-                </div>
-            </div>
-        </div>
-        <div class="greeting-section" style="display: flex; align-items: center">
-            <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
-            <span class="user-initials-circle"
-                  th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
-        </div>
-    </div>
-</nav>
-
-
 <div class="card" style="margin: 5% 0">
     <div class="card-body">
-<h2>Detalhes do Ticket</h2>
+        <h2>Detalhes do Ticket</h2>
 
-<!--<form th:action="@{/tickets/editar/{id}(id=${ticket.id})}" th:object="${ticket}" method="post">-->
 
-    <p><strong>ID:</strong> <span th:text="${ticket.id}"></span></p>
-    <p><strong>Assunto:</strong> <span th:text="${ticket.titulo}"></span></p>
-    <p><strong>Descrição:</strong> <span th:text="${ticket.descricao}"></span></p>
+        <!--<form th:action="@{/tickets/editar/2}" th:object="${ticket}" method="post">-->
 
-    </p>
+        <div th:if="${ticket != null}">
+            <form th:action="@{/tickets/editar/{id}(id=${ticket.id})}" th:object="${ticket}" method="post">
 
-    <p><strong>Data:</strong> <span th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></span></p>
-    <p><strong>Usuário:</strong> <span th:text="${ticket.usuario?.nome != null ? ticket.usuario.nome + ' ' + ticket.usuario.sobrenome : 'Sem usuário'}"></span></p>
-        <p><strong>Prioridade:</strong>
-            <select th:field="*{ticket.prioridade}" id="prioridade" required>
-                <option value="">Selecione a Prioridade</option>
-                <
-                <option th:each="s : ${T(com.soulcode.elashelp.Models.Prioridade).values()}"
-                        th:value="${s}"
-                        th:text="${s}">
-                </option>
-            </select>    </p>
-        <p><strong>Setor:</strong>
-            <select th:field="*{ticket.setor}" id="setor" required>
-                <option value="">Selecione um Setor</option>
-                <
-                <option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"
-                        th:value="${s}"
-                        th:text="${s}">
-                </option>
-            </select>    </p>
-    <p><strong>Técnico Resposável:</strong>
-        <label>
-            <select th:field="*{ticket.tecnico}">
-                <!-- Opção para 'Sem técnico atribuído' -->
-                <option value="">Sem técnico atribuído</option>
+                <div class="form-group">
+                    <label for="titulo">Assunto:</label>
+                    <input type="text" id="titulo" name="titulo" class="form-control" th:value="${ticket.titulo}" readonly>
+                </div>
 
-                <!-- Opções para cada técnico -->
-                <option th:each="tecnico : ${tecnicos}" th:value="${tecnico.idTecnico}" th:text="${tecnico.nome + ' ' + tecnico.sobrenome}"></option>
-            </select>
-        </label>
-    </p>
-    <button type="submit">Salvar</button>
-    <a th:href="@{/home}">Voltar para a lista de tickets</a>
-</form>
 
-    <div th:if="${ticket == null}">
-    <p>Desculpe, não conseguimos encontrar o ticket solicitado.</p>
-</div>
-</div>
+                <div class="form-group">
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao" class="form-control"
+                              th:text="${ticket.descricao}" readonly>
+
+                    </textarea>
+                </div>
+
+<!--                <div class="form-group">-->
+<!--                    <label for="data">Data:</label>-->
+<!--                    <input type="text" id="data" name="data" class="form-control"-->
+<!--                           th:value="${ticket.data}"-->
+<!--                           th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"-->
+<!--                           readonly>-->
+<!--                </div>-->
+
+<!--                <div class="form-group">-->
+<!--                    <label for="usuario">Usuário:</label>-->
+<!--                    <input type="text" id="usuario" name="usuario" class="form-control"-->
+<!--                           th:value="${ticket.usuario?.idUsuario}"-->
+<!--                           th:text="${ticket.usuario?.nome != null ? ticket.usuario.nome + ' ' + ticket.usuario.sobrenome : 'Sem usuário'}"-->
+<!--                           readonly>-->
+<!--                </div>-->
+
+                <strong><label for="usuarioa">Usuário:</label></strong>
+                <input type="hidden" id="usuarioa" name="usuario" th:value="${ticket.usuario?.idUsuario}">
+                <span th:text="${ticket.usuario?.nome != null ? ticket.usuario.nome + ' ' + ticket.usuario.sobrenome : 'Sem usuário'}"></span>
+
+                <div class="form-group">
+                    <label for="prioridade">Prioridade:</label>
+                    <select th:field="*{prioridade}" name="prioridade" id="prioridade" required>
+                        <option value="">Selecione a Prioridade</option>
+                        <option th:each="s : ${T(com.soulcode.elashelp.Models.Prioridade).values()}"
+                                th:value="${s}"
+                                th:text="${s}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="setor">Setor:</label>
+                    <select th:field="*{setor}" name="setor" id="setor" required>
+                        <option value="">Selecione um Setor</option>
+                        <option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"
+                                th:value="${s}"
+                                th:text="${s}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tecnico">Técnico Resposável:</label>
+                    <select th:field="*{tecnico.idTecnico}" name="tecnico" id="tecnico">
+                        <!-- Opção para 'Sem técnico atribuído' -->
+                        <option value="">Sem técnico atribuído</option>
+
+                        <!-- Opções de cada técnico -->
+                        <option th:each="tecnico : ${tecnicos}"
+                                th:value="${tecnico.idTecnico}"
+                                th:text="${tecnico.nome + ' ' + tecnico.sobrenome}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select th:field="*{status}" name="status" id="status" required>
+                        <option value="">Selecione um Status</option>
+                        <option th:each="s : ${T(com.soulcode.elashelp.Models.Status).values()}"
+                                th:value="${s}"
+                                th:text="${s}">
+                        </option>
+                    </select>
+                </div>
+
+
+                <!--    <p><strong>ID:</strong> <span th:text="${ticket.id}"></span></p>-->
+                <!--    <p><strong>Assunto:</strong> <span th:text="${ticket.titulo}"></span></p>-->
+                <!--    <p><strong>Descrição:</strong> <span th:text="${ticket.descricao}"></span></p>-->
+
+                <!--    </p>-->
+
+                <!--    <p><strong>Data:</strong> <span th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></span></p>-->
+                <!--    <p><strong>Usuário:</strong> <span th:text="${ticket.usuario?.nome != null ? ticket.usuario.nome + ' ' + ticket.usuario.sobrenome : 'Sem usuário'}"></span></p>-->
+                <!--        <p><strong>Prioridade:</strong>-->
+                <!--            <select th:field="*{ticket.prioridade}" id="prioridade" required>-->
+                <!--                <option value="">Selecione a Prioridade</option>-->
+                <!--                <-->
+                <!--                <option th:each="s : ${T(com.soulcode.elashelp.Models.Prioridade).values()}"-->
+                <!--                        th:value="${s}"-->
+                <!--                        th:text="${s}">-->
+                <!--                </option>-->
+                <!--            </select>    </p>-->
+                <!--        <p><strong>Setor:</strong>-->
+                <!--            <select th:field="*{ticket.setor}" id="setor" required>-->
+                <!--                <option value="">Selecione um Setor</option>-->
+                <!--                <-->
+                <!--                <option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"-->
+                <!--                        th:value="${s}"-->
+                <!--                        th:text="${s}">-->
+                <!--                </option>-->
+                <!--            </select>    </p>-->
+                <!--    <p><strong>Técnico Resposável:</strong>-->
+                <!--        <label>-->
+                <!--            <select th:field="*{ticket.tecnico}">-->
+                <!--                &lt;!&ndash; Opção para 'Sem técnico atribuído' &ndash;&gt;-->
+                <!--                <option value="">Sem técnico atribuído</option>-->
+
+                <!--                &lt;!&ndash; Opções para cada técnico &ndash;&gt;-->
+                <!--                <option th:each="tecnico : ${tecnicos}" th:value="${tecnico.idTecnico}" th:text="${tecnico.nome + ' ' + tecnico.sobrenome}"></option>-->
+                <!--            </select>-->
+                <!--        </label>-->
+                <!--    </p>-->
+                <button type="submit">Salvar</button>
+                <a th:href="@{/admin/home}">Voltar para a lista de tickets</a>
+
+                <div th:if="${ticket == null}">
+                    <p>Desculpe, não conseguimos encontrar o ticket solicitado.</p>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <footer>
