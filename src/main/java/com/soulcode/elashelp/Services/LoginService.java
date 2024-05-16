@@ -1,8 +1,10 @@
 package com.soulcode.elashelp.Services;
 
+import com.soulcode.elashelp.Models.Login;
 import com.soulcode.elashelp.Models.Tecnico;
 import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.LoginRepository;
+import com.soulcode.elashelp.Repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -25,7 +27,6 @@ public class LoginService {
         return loginRepository.findByEmail(email);
     }
 
-
     public String getUsuarioOuTecnico(String email) {
         Usuario usuario = usuarioService.findByEmail(email);
         if (usuario != null) {
@@ -40,5 +41,4 @@ public class LoginService {
 
         return null;
     }
-
 }

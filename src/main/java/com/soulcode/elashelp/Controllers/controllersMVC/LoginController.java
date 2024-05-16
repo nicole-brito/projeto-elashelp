@@ -63,11 +63,11 @@ public class LoginController {
         //TODO redefinir retornos em caso de administrador ou tenico ou usuario
         //se o retorno for com redirect precisar passar o email do usuario logado como o exemplo da roda de usuario
         if(autenticado && role.equals("ADMINISTRADOR")){
-            return "index";
+            return "redirect:/admin/home";
         } else if (autenticado && role.equals("TECNICO")){
-            return "tickets-tecnico";
-        } else if(role.equals("USUARIO") ) {
-            return "redirect:/tickets/todos/" + usuarioLogado.getUsuario().getIdUsuario() + "?email=" + usuarioLogado.getEmail();
+            return "redirect:/tecnico/home" + "?email=" + usuarioLogado.getEmail();
+        } else if(autenticado && role.equals("USUARIO") ) {
+            return "redirect:/usuario/home" /*+ usuarioLogado.getUsuario().getIdUsuario() */ + "?email=" + usuarioLogado.getEmail();
         } else return "login";
     }
 

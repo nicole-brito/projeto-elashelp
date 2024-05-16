@@ -108,7 +108,7 @@ public class TicketViewController {
             model.addAttribute("idUsuario", ticket.getUsuario());
             return "detalha-ticket";
         } else {
-            return "erro";
+            return "error";
         }
     }
 
