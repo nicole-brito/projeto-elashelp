@@ -1,4 +1,4 @@
-<!-- /tickets/{id} -->
+<!-- admin/tickets/{id} -->
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
@@ -30,37 +30,62 @@
             </div>
         </div>
         <div class="greeting-section">
-            <span>Olá, <span th:text="${tecnico?.nome != null ? tecnico.nome + ' ' + ticket.tecnico.sobrenome : 'Visitante'}" ></span>!</span>
+            <!--            <span>Olá, <span th:text="${tecnico?.nome != null ? tecnico.nome + ' ' + ticket.tecnico.sobrenome : 'Visitante'}" ></span>!</span>-->
             <!--                        <span class="user-initials-circle" th:text="${#strings.toUpperCase(tecnico.nome)}"></span>-->
         </div>
     </div>
 </nav>
-<br>
-<div class="login-container">
-    <h2>Detalhes do Ticket</h2>
 
-    <div th:if="${ticket != null}">
-        <input type="hidden" name="idUsuario" th:value="${idUsuario}" />
-        <p><strong>ID:</strong> <span th:text="${ticket.id}"></span></p>
-        <p><strong>Assunto:</strong> <span th:text="${ticket.titulo}"></span></p>
-        <p><strong>Descrição:</strong> <span th:text="${ticket.descricao}"></span></p>
-        <p><strong>Status:</strong> <span th:text="${ticket.status}"></span></p>
-        <p><strong>Prioridade:</strong> <span th:text="${ticket.prioridade}"></span></p>
-        <p><strong>Setor:</strong> <span th:text="${ticket.setor}"></span></p>
-        <p><strong>Data:</strong> <span th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></span></p>
-        <p><strong>Usuário:</strong> <span th:text="${ticket.usuario?.nome != null ? ticket.usuario.nome + ' ' + ticket.usuario.sobrenome : 'Sem usuário'}"></span></p>
-        <p><strong>Técnico Resposável:</strong> <span th:text="${ticket.tecnico?.nome != null ? ticket.tecnico.nome + ' ' + ticket.tecnico.sobrenome : 'Sem técnico atribuído'}"></span></p>
-    </div>
+<h1>Detalhes do Ticket</h1>
 
-    <div th:if="${ticket == null}">
-        <p>Desculpe, não conseguimos encontrar o ticket solicitado.</p>
-    </div>
+<!--<form th:action="@{/tickets/editar/{id}(id=${ticket.id})}" th:object="${ticket}" method="post">-->
 
+<p><strong>ID:</strong> <span th:text="${ticket.id}"></span></p>
+<p><strong>Assunto:</strong> <span th:text="${ticket.titulo}"></span></p>
+<p><strong>Descrição:</strong> <span th:text="${ticket.descricao}"></span></p>
 
-    <a th:href="@{/tickets/todos-tecnico}">Voltar para a lista de tickets</a>
+</p>
+<p><strong>Prioridade:</strong>
+    <select th:field="*{ticket.prioridade}" id="prioridade" required>
+        <option value="">Selecione a Prioridade</option>
+        <
+        <option th:each="s : ${T(com.soulcode.elashelp.Models.Prioridade).values()}"
+                th:value="${s}"
+                th:text="${s}">
+        </option>
+    </select>    </p>
+<p><strong>Setor:</strong>
+    <select th:field="*{ticket.setor}" id="setor" required>
+        <option value="">Selecione um Setor</option>
+        <
+        <option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"
+                th:value="${s}"
+                th:text="${s}">
+        </option>
+    </select>    </p>
+<p><strong>Data:</strong> <span th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></span></p>
+<p><strong>Usuário:</strong> <span th:text="${ticket.usuario?.nome != null ? ticket.usuario.nome + ' ' + ticket.usuario.sobrenome : 'Sem usuário'}"></span></p>
 
+<p><strong>Técnico Resposável:</strong>
+    <label>
+        <select th:field="*{ticket.tecnico}">
+            <!-- Opção para 'Sem técnico atribuído' -->
+            <option value="">Sem técnico atribuído</option>
+
+            <!-- Opções para cada técnico -->
+            <option th:each="tecnico : ${tecnicos}" th:value="${tecnico.idTecnico}" th:text="${tecnico.nome + ' ' + tecnico.sobrenome}"></option>
+        </select>
+    </label>
+</p>
+<button type="submit">Salvar</button>
+<a th:href="@{/tickets/todos-tecnico}">Voltar para a lista de tickets</a>
+</form>
+
+<div th:if="${ticket == null}">
+    <p>Desculpe, não conseguimos encontrar o ticket solicitado.</p>
 </div>
 
+<!--</div>-->
 
 </body>
 </html>

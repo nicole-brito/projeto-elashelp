@@ -51,8 +51,15 @@ public class TicketViewController {
             // Adiciona os tickets ao modelo para serem exibidos na página
             model.addAttribute("tickets", userTickets);
             model.addAttribute("idUsuario", idUsuario);
+
             //TODO refinir uma pagina ou rota para usuario
             return "tickets-tecnico";
+
+
+
+//        essa é a rota correta do usuario:
+//            return "/usuario/tickets";
+
         } else {
             return "redirect:/error"; // Redireciona para uma página de erro
         }
@@ -149,18 +156,18 @@ public class TicketViewController {
         model.addAttribute("tickets", tickets);
         return "tickets-tecnico";
     }
-//buscar por id do tecnico, nao funciona ainda
-    @PostMapping("/todos-tecnico/{id}")
-    public String updateTicket(@PathVariable Integer id,Model model,@RequestParam Prioridade prioridade, @RequestParam Status status) {
-        Optional<Ticket> optionalTicket = ticketService.findTicketById(id);
-        if (optionalTicket.isPresent()) {
-            Ticket ticket = optionalTicket.get();
-            ticket.setPrioridade(prioridade);
-            ticket.setStatus(status);
-            ticketService.saveTicket(ticket); // Método para salvar as alterações no ticket
-        }
-        return "redirect:/tickets/todos-tecnico"; // Redireciona de volta para a lista de tickets
-    }
+////buscar por id do tecnico, nao funciona ainda
+//    @PostMapping("/todos-tecnico/{id}")
+//    public String updateTecnicoTicket(@PathVariable Integer id,Model model,@RequestParam Prioridade prioridade, @RequestParam Status status) {
+//        Optional<Ticket> optionalTicket = ticketService.findTicketById(id);
+//        if (optionalTicket.isPresent()) {
+//            Ticket ticket = optionalTicket.get();
+//            ticket.setPrioridade(prioridade);
+//            ticket.setStatus(status);
+//            ticketService.saveTicket(ticket); // Método para salvar as alterações no ticket
+//        }
+//        return "redirect:/tickets/todos-tecnico"; // Redireciona de volta para a lista de tickets
+//    }
 //alterar o ticket que lhe foi atribuido, nao funciona ainda
     @GetMapping("/tecnico-alterarticket/{id}")
     public String updateTicketDetails(@PathVariable Integer id,Ticket ticket, Model model) {

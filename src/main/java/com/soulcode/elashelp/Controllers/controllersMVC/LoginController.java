@@ -2,6 +2,7 @@ package com.soulcode.elashelp.Controllers.controllersMVC;
 
 
 import com.soulcode.elashelp.Models.Login;
+import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.LoginRepository;
 import com.soulcode.elashelp.Services.LoginService;
 import com.soulcode.elashelp.Services.RedefinirSenhaService;
@@ -23,6 +24,9 @@ public class LoginController {
 
     @Autowired
     private LoginRepository loginRepository;
+
+    @Autowired
+    private LoginService loginService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -62,7 +66,7 @@ public class LoginController {
             return "index";
         } else if (autenticado && role.equals("TECNICO")){
             return "tickets-tecnico";
-        } else if(role.equals("USUARIO")) {
+        } else if(role.equals("USUARIO") ) {
             return "redirect:/tickets/todos/" + usuarioLogado.getUsuario().getIdUsuario() + "?email=" + usuarioLogado.getEmail();
         } else return "login";
     }

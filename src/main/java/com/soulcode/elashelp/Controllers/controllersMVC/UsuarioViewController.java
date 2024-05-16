@@ -25,14 +25,6 @@ public class UsuarioViewController {
     private final UsuarioService usuarioService;
 
 
-    @Autowired
-    private final UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private EmailService emailservice;
-
-    @Autowired
-    private LoginService loginservice;
 
 
     @GetMapping("cadastro")
@@ -52,29 +44,6 @@ public class UsuarioViewController {
             log.error("Erro ao criar novo usuário", e);
             model.addAttribute("error", e.getMessage());
             return "cadastro-usuario";
-        }
-    }
-
-    //Method delete
-    @DeleteMapping("/{idUsuario}")
-    public ResponseEntity<?> deleteById(@PathVariable Long idUsuario) {
-        try {
-            Usuario deleteById = usuarioService.deleteById(idUsuario);
-            return new ResponseEntity<>(deleteById, HttpStatus.OK);
-        } catch (RuntimeException e) {
-            log.error("Erro ao deletar usuário");
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
-
-    @PutMapping("/{idUsuario}")
-    public ResponseEntity<?> updateUsuario(@RequestBody Usuario usuario) {
-        try {
-            Usuario updateUsuario = usuarioService.updateUsuario(usuario);
-            return new ResponseEntity<>(updateUsuario, HttpStatus.OK);
-        } catch (RuntimeException e) {
-            log.error("Erro ao editar usuário", e);
-            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
