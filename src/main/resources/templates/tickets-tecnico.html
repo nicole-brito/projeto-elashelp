@@ -6,7 +6,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="/estilos/styles.css" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>Técnicos</title>
+    <title th:text="'Olá, ' + ${nome} + '! | KittyHelp'"></title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -89,7 +89,7 @@
                 <td th:text="${ticket.setor}"></td>
                 <td th:text="${ticket.prioridade}"></td>
                 <td th:text="${ticket.status}"></td>
-<!--                <td><a th:href="@{/tickets/tec/editar/{id}/{idTecnico}(id=${ticket.id}, idTecnico=${idTecnico})}" class="btn btn-secondary">Alterar</a>-->
+                <td><a th:href="@{/tickets/tec/editar/{id}/{idTecnico}(id=${ticket.id}, idTecnico=${idTecnico})}" class="btn btn-secondary">Atribuir Chamado</a>
                 <td>
                 </td>
 

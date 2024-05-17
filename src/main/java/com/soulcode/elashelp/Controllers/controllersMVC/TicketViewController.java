@@ -145,10 +145,7 @@ public class TicketViewController {
         Optional<Ticket> ticketOptional = ticketService.findTicketById(id);
         if (ticketOptional.isPresent()) {
             Ticket ticket = ticketOptional.get();
-            // Atualize os campos do ticket com os valores do formulário
-            ticket.setTitulo(ticketForm.getTitulo());
-            ticket.setDescricao(ticketForm.getDescricao());
-            ticket.setUsuario(ticketForm.getUsuario());
+
             ticket.setPrioridade(ticketForm.getPrioridade());
             ticket.setSetor(ticketForm.getSetor());
             ticket.setTecnico(ticketForm.getTecnico());

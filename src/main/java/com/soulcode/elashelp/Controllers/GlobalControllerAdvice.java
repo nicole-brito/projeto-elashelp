@@ -36,7 +36,7 @@ public class GlobalControllerAdvice {
             String email = ((UserDetails) authentication.getPrincipal()).getUsername();
             return loginService.getUsuarioOuTecnico(email);
         }
-        return "Anônimo";
+        return "!";
     }
 
     @ModelAttribute
