@@ -58,4 +58,5 @@ public class GlobalControllerAdvice {
             model.addAttribute("ticket", ticket);
         }
     }
+    
 }

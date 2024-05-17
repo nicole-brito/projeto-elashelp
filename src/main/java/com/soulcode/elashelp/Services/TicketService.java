@@ -5,6 +5,7 @@ import com.soulcode.elashelp.Models.Ticket;
 import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.TicketRepository;
 import com.soulcode.elashelp.Repositories.UsuarioRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class TicketService {
 
     @Autowired
@@ -42,14 +44,14 @@ public class TicketService {
     public Ticket saveTicket(Ticket ticket) {
         return ticketRepository.save(ticket);
     }
-//
-//    public Ticket createTicket(Ticket ticket) {
-//       ticketRepository.findByUsuario(usuario);
-//        ticket.setUsuario(usuario);
-//
-//        ticket = ticketRepository.save(ticket);
-//        return ticket;
-//    }
+
+    public Ticket createTicket(Ticket ticket, Usuario usuario) {
+       ticketRepository.findByUsuario(usuario);
+        ticket.setUsuario(usuario);
+
+        ticket = ticketRepository.save(ticket);
+        return ticket;
+    }
 
     public Ticket updateTicket(Integer id) {
         Ticket ticket = ticketRepository.findById(id)
