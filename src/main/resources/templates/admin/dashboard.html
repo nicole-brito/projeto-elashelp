@@ -109,7 +109,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="ticket : ${tickets}">
+            <tr th:each="ticket : ${allTickets}">
                 <td th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></td>
                 <td th:text="${ticket.titulo}"></td>
                 <td th:text="${ticket.setor}"></td>

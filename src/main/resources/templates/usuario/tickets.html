@@ -14,7 +14,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <div class="logo-container">
-            <img src="/imagens/logo.png" alt="Logo" style="height: 40px;">
+            <img th:href="@{/usuario/home/{id}(id=${idUsuario})}" src="/imagens/logo.png" alt="Logo" style="height: 40px;">
             <span class="logo-text">KittyHelp</span>
         </div>
         <div class="navbar-nav mx-auto">
