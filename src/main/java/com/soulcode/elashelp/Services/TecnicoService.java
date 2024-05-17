@@ -49,6 +49,8 @@ public class TecnicoService {
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(login.getPassword());
         login.setSenha(encryptedPassword);
+        tecnico.setSenha(encryptedPassword);
+        tecnico = tecnicoRepository.save(tecnico);
 
 
         login = loginRepository.save(login);
