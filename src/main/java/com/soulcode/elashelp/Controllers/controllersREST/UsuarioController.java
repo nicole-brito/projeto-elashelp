@@ -1,6 +1,5 @@
 package com.soulcode.elashelp.Controllers.controllersREST;
 
-
 import com.soulcode.elashelp.Models.Tecnico;
 import com.soulcode.elashelp.Models.Usuario;
 import com.soulcode.elashelp.Repositories.UsuarioRepository;
@@ -13,14 +12,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
+
 @Slf4j
 @RestController
+@RequestMapping("/api/usuario")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
 
-    //Metodo Criar
+    //Metodo get
+    @GetMapping()
+    public List<Usuario> getAllUsuarios() {
+        return usuarioService.findAll();
+    }
+
+    //Metodo post
     @PostMapping()
     public Usuario createUsuario(@RequestBody Usuario usuario) {
         return usuarioService.createUsuario(usuario);
@@ -49,5 +58,4 @@ public class UsuarioController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
 }

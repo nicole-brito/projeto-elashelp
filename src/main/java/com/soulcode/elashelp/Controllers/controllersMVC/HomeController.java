@@ -30,8 +30,9 @@ public class HomeController {
         return "admin/dashboard";
     }
 
-    @GetMapping("/tecnicos/home")
-    public String homeTec() {
+    @GetMapping("/tecnicos/home/{idTecnico}")
+    public String homeTec(@PathVariable Integer idTecnico, Model model) {
+        model.addAttribute("tickets", ticketService.getTicketsByTecnicoId(idTecnico));
         return "tickets-tecnico";
     }
 

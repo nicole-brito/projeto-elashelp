@@ -38,7 +38,8 @@
 
 <h1>Detalhes do Ticket</h1>
 
-<!--<form th:action="@{/tickets/editar/{id}(id=${ticket.id})}" th:object="${ticket}" method="post">-->
+<form th:action="@{/tickets/tec/editar/{id}/{idTecnico}(id=${ticket.id}, idTecnico=${idTecnico})}" th:object="${ticket}" method="post">
+    <input type="hidden" name="idTecnico" th:value="${idTecnico}" />
 
 <p><strong>ID:</strong> <span th:text="${ticket.id}"></span></p>
 <p><strong>Assunto:</strong> <span th:text="${ticket.titulo}"></span></p>
@@ -46,7 +47,7 @@
 
 </p>
 <p><strong>Prioridade:</strong>
-    <select th:field="*{ticket.prioridade}" id="prioridade" required>
+    <select th:field="*{prioridade}" id="prioridade" required>
         <option value="">Selecione a Prioridade</option>
         <option th:each="s : ${T(com.soulcode.elashelp.Models.Prioridade).values()}"
                 th:value="${s}"
@@ -54,7 +55,7 @@
         </option>
     </select>    </p>
 <p><strong>Setor:</strong>
-    <select th:field="*{ticket.setor}" id="setor" required>
+    <select th:field="*{setor}" id="setor" required>
         <option value="">Selecione um Setor</option>
         <option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"
                 th:value="${s}"
@@ -64,19 +65,22 @@
 <p><strong>Data:</strong> <span th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></span></p>
 <p><strong>Usuário:</strong> <span th:text="${ticket.usuario?.nome != null ? ticket.usuario.nome + ' ' + ticket.usuario.sobrenome : 'Sem usuário'}"></span></p>
 
-<p><strong>Técnico Resposável:</strong>
-    <label>
-        <select th:field="*{ticket.tecnico}">
+    <div class="form-group">
+        <label for="tecnico">Técnico Resposável:</label>
+        <select th:field="*{tecnico.idTecnico}" name="tecnico" id="tecnico">
             <!-- Opção para 'Sem técnico atribuído' -->
             <option value="">Sem técnico atribuído</option>
 
-            <!-- Opções para cada técnico -->
-            <option th:each="tecnico : ${tecnicos}" th:value="${tecnico.idTecnico}" th:text="${tecnico.nome + ' ' + tecnico.sobrenome}"></option>
+            <!-- Opções de cada técnico -->
+            <option th:each="tecnico : ${tecnicos}"
+                    th:value="${tecnico.idTecnico}"
+                    th:text="${tecnico.nome + ' ' + tecnico.sobrenome}">
+            </option>
         </select>
-    </label>
-</p>
+    </div>
+
 <button type="submit">Salvar</button>
-<a th:href="@{/tickets/todos-tecnico}">Voltar para a lista de tickets</a>
+<a th:href="@{/tecnicos/home/{idTecnico}(idTecnico=${ticket.tecnico.idTecnico})}">Voltar para a lista de tickets</a>
 </form>
 
 <div th:if="${ticket == null}">

@@ -1,7 +1,6 @@
 package com.soulcode.elashelp.Controllers;
 
-import com.soulcode.elashelp.Models.Tecnico;
-import com.soulcode.elashelp.Models.Ticket;
+import com.soulcode.elashelp.Models.*;
 import com.soulcode.elashelp.Services.LoginService;
 import com.soulcode.elashelp.Services.TecnicoService;
 import com.soulcode.elashelp.Services.TicketService;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @ControllerAdvice
 public class GlobalControllerAdvice {
@@ -42,7 +42,7 @@ public class GlobalControllerAdvice {
     @ModelAttribute
     public void showAllTickets(Model model) {
         List<Ticket> tickets = ticketService.findAllTickets();
-        model.addAttribute("tickets", tickets);
+        model.addAttribute("allTickets", tickets);
     }
 
     @ModelAttribute
@@ -58,5 +58,13 @@ public class GlobalControllerAdvice {
             model.addAttribute("ticket", ticket);
         }
     }
-    
+
+    @ModelAttribute
+    public void showTecId(Model model, @RequestParam(value = "id", required = false) Long idTecnico) {
+        if (idTecnico != null) {
+            Tecnico tecnico = tecnicoService.findById(idTecnico);
+            model.addAttribute("idTecnico", idTecnico);
+        }
+    }
+
 }

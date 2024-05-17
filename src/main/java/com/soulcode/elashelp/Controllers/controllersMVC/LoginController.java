@@ -47,7 +47,6 @@ public class LoginController {
         model.addAttribute("email", email);
         model.addAttribute("senha", senha);
 
-
         UsernamePasswordAuthenticationToken usernamePassword;
         Authentication authentication;
         try {
@@ -65,7 +64,7 @@ public class LoginController {
         if(autenticado && role.equals("ADMINISTRADOR")){
             return "redirect:/admin/home"+ "?email=" + usuarioLogado.getEmail();
         } else if (autenticado && role.equals("TECNICO")){
-            return "redirect:/tecnicos/home" + "?email=" + usuarioLogado.getEmail();
+            return "redirect:/tecnicos/home/" + usuarioLogado.getTecnico().getIdTecnico() + "?email=" + usuarioLogado.getEmail();
         } else if(autenticado && role.equals("USUARIO") ) {
             return "redirect:/usuario/home/" + usuarioLogado.getUsuario().getIdUsuario() + "?email=" + usuarioLogado.getEmail();
         } else return "login";
@@ -80,7 +79,6 @@ public class LoginController {
     public String escolherCadastro() {
         return "escolhercadastro";
     }
-
 
     @GetMapping("esqueceuasenha")
     public String esquece() {

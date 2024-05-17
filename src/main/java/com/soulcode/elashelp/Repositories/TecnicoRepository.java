@@ -14,7 +14,4 @@ public interface TecnicoRepository extends JpaRepository<Tecnico, Long> {
 //    Tecnico findByEmail(String email);
 //
 ////    Boolean existsByMatricula(String matricula);
-//
-//>>>>>>> Stashed changes
-
 }

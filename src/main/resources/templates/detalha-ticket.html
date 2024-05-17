@@ -28,8 +28,8 @@
         <a style="margin-left: 8px" th:href="@{/logout}" class="btn btn-outline-danger">Sair</a>
     </div>
 </nav>
-<br>
-<div class="login-container">
+
+<div class="login-container" style="margin-top: 5%">
 <h2>Detalhes do Ticket</h2>
 
 <div th:if="${ticket != null}">
@@ -50,8 +50,10 @@
 </div>
 
 
-<a th:href="@{/tickets/todos/{idUsuario}(idUsuario=${ticket.usuario.getIdUsuario()})}">Voltar para a lista de tickets</a>
-
+    <div class="btn btn-outline-secondary">
+        <i class="fa-solid fa-arrow-left"></i>
+        <a th:href="@{/usuario/home/{idUsuario}(idUsuario=${ticket.usuario.getIdUsuario()})}">Voltar para a lista de tickets</a>
+    </div>
 </div>
 
 

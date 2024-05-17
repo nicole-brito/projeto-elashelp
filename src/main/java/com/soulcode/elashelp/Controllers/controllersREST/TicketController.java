@@ -23,11 +23,13 @@ public class TicketController {
     @Autowired
     private UsuarioService usuarioService;
 
+    // Get all
     @GetMapping
     public List<Ticket> getAllTickets() {
         return ticketService.findAllTickets();
     }
 
+    // Get by id
     @GetMapping("/{id}")
     public ResponseEntity<Ticket> getTicketById(@PathVariable Integer id) {
         return ticketService.findTicketById(id)
@@ -35,6 +37,7 @@ public class TicketController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    // Post
     @PostMapping
     public ResponseEntity<Ticket> createTicket(@RequestBody Ticket ticket) {
         if (ticket.getData() == null) ticket.setData(new Date());
@@ -44,12 +47,14 @@ public class TicketController {
         return new ResponseEntity<>(newTicket, HttpStatus.CREATED);
     }
 
+    // Put
     @PutMapping("/{id}")
     public ResponseEntity<Ticket> updateTicket(@PathVariable Integer id, @RequestBody Ticket ticketDetails) {
         Ticket updatedTicket = ticketService.updateTicket(id);
         return new ResponseEntity<>(updatedTicket, HttpStatus.OK);
     }
 
+    // Delete
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTicket(@PathVariable Integer id) {
         try {
