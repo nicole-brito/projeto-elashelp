@@ -19,17 +19,9 @@
             <span class="logo-text">KittyHelp</span>
         </div>
         <div class="navbar-nav mx-auto">
-            <a class="nav-link active" href="/">Home</a>
-            <a class="nav-link" href="#">Serviços</a>
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                    Mais
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a href="/sobre">Desenvolvedoras</a>
-                    <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
-                </div>
-            </div>
+            <a class="nav-link" href="/">Inicio</a>
+            <a class="nav-link" href="/sobre">Sobre</a>
+            <a class="nav-link" href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
         </div>
         <div class="auth-buttons">
             <a href="/escolhercadastro">
@@ -43,11 +35,6 @@
         </div>
     </div>
 </nav>
-
-
-
-
-
 
 <div class="cadastro-container">
     <h2 class="is-title">Criar Conta Técnico</h2>
@@ -97,7 +84,7 @@
                 </div>
             </div>
         </div>
-        <br>
+        <br><br>
         <div style="text-align: center;">
             <div class="botao2-group">
                 <button type="submit">Criar conta</button>
@@ -110,6 +97,7 @@
         </div>
     </form>
 </div>
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
@@ -130,5 +118,6 @@
     <button class="delete"></button>
     <p th:text="${error}"></p>
 </div>
+
 </body>
 </html>
