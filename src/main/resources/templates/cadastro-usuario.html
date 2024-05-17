@@ -11,6 +11,7 @@
     <link rel="icon" href="/imagens/logo-preto.png">
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <div class="logo-container">
@@ -18,17 +19,9 @@
             <span class="logo-text">KittyHelp</span>
         </div>
         <div class="navbar-nav mx-auto">
-            <a class="nav-link active" href="/">Home</a>
-            <a class="nav-link" href="#">Serviços</a>
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                    Mais
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a href="/sobre">Desenvolvedoras</a>
-                    <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
-                </div>
-            </div>
+            <a class="nav-link" href="/">Inicio</a>
+            <a class="nav-link" href="/sobre">Sobre</a>
+            <a class="nav-link" href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
         </div>
         <div class="auth-buttons">
             <a href="/escolhercadastro">
@@ -56,13 +49,11 @@
                 <br>
                 <br>
                 <div class="esquerda-group">
-
                     <input placeholder="Nome" type="text" th:field="*{nome}" id="nome" required>
                 </div>
                 <br>
                 <br>
                 <div class="esquerda-group">
-
                     <input placeholder="Senha" type="password" th:field="*{senha}" id="senha" required>
                 </div>
             </div>
@@ -70,19 +61,16 @@
             <br>
             <div class="form-col">
                 <div class="direita-group">
-
                     <input placeholder="Email" type="email" th:field="*{email}" id="email" required>
                 </div>
                 <br>
                 <br>
                 <div class="direita-group">
-
                     <input placeholder="Sobrenome" type="text" th:field="*{sobrenome}" id="sobrenome">
                 </div>
-
                 <div class="direita-group">
-                    <br>
-                    <br>
+                <br>
+                <br>
                     <input placeholder="Telefone" type="number" th:field="*{telefone}" id="telefone">
                 </div>
                 <br>
@@ -109,5 +97,6 @@
     <button class="delete"></button>
     <p th:text="${error}"></p>
 </div>
+
 </body>
 </html>
