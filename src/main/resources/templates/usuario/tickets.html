@@ -19,7 +19,7 @@
         </div>
         <div class="navbar-nav mx-auto">
             <div class="greeting-section" style="display: flex; align-items: center">
-                <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
+                <span style="margin: 12px">Bem vindo, <strong><span th:text="${nome}"></span></strong>!</span>
                 <span class="user-initials-circle"
                       th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
             </div>
@@ -67,24 +67,6 @@
     </div>
 </div>
 
-<footer>
-    <img src="/imagens/logo-preto.png" alt="Logo KittyHelp">
-    <div class="links">
-        <p><strong>SOBRE A KITTYHELP</strong></p>
-        <a href="/">Como funciona</a><br>
-        <a href="/">Soluções</a><br>
-        <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
-    </div>
-    <div class="links">
-        <p><strong>SOBRE NÓS</strong></p>
-        <a href="/sobre">As Desenvolvedoras</a><br>
-        <a href="https://soulcode.com">A SoulCode</a>
-    </div>
-    <a href="/admin/home" class="client-area-link">
-        Página Inicial
-        <i class="fa-solid fa-arrow-right-long"></i>
-    </a>
-</footer>
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>

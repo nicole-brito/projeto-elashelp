@@ -66,6 +66,8 @@ public class UsuarioService {
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(login.getPassword());
         login.setSenha(encryptedPassword);
+        usuario.setSenha(encryptedPassword);
+        usuario = usuarioRepository.save(usuario);
 
         login = loginRepository.save(login);
         usuario.setLogin(login);
