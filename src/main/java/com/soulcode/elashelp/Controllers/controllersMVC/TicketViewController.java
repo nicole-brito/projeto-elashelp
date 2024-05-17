@@ -180,7 +180,7 @@ public class TicketViewController {
 //            return "error";
 //        }
 //    }
-  
+
     //excluir um ticket
     @GetMapping("/excluir/{id}")
     public String excluirTicket(@PathVariable Integer id, @RequestParam Long idUsuario) {
@@ -195,12 +195,48 @@ public class TicketViewController {
     }
 
     //visao do tecnico
-    @GetMapping("/todos-tecnico")
+    @GetMapping("/tecnicos/home/{idTecnico}")
     public String visao(Model model){
         List<Ticket> tickets = ticketService.findAllTickets();
         model.addAttribute("tickets", tickets);
         return "tickets-tecnico";
     }
+
+    // Método GET para exibir o formulário de edição
+    @GetMapping("/tec/editar/{id}/{idTecnico}")
+    public String mostrarEditarTicketToTec(@PathVariable("id") Integer id, Model model, @PathVariable("idTecnico") Long idTecnico) {
+        Optional<Ticket> ticket = ticketService.findTicketById(id);
+        if (ticket.isPresent()) {
+            model.addAttribute("ticket", ticket.get());
+            return "solucionar-ticket";
+        } else {
+            model.addAttribute("error", "Técnico não encontrado.");
+            return "redirect:/tecnicos/home/" + idTecnico;
+        }
+    }
+
+    @PostMapping("/tec/editar/{id}/{idTecnico}")
+    public String editarTicketToTec(@PathVariable("id") Integer id, @ModelAttribute("ticket") Ticket ticketForm, @PathVariable("idTecnico") Long idTecnico, RedirectAttributes redirectAttributes) {
+        Optional<Ticket> ticketOptional = ticketService.findTicketById(id);
+        if (ticketOptional.isPresent()) {
+            Ticket ticket = ticketOptional.get();
+            // Atualize os campos do ticket com os valores do formulário
+            ticket.setTitulo(ticketForm.getTitulo());
+            ticket.setDescricao(ticketForm.getDescricao());
+            ticket.setUsuario(ticketForm.getUsuario());
+            ticket.setPrioridade(ticketForm.getPrioridade());
+            ticket.setSetor(ticketForm.getSetor());
+            ticket.setTecnico(ticketForm.getTecnico());
+            ticket.setStatus(ticketForm.getStatus());
+            // Salve o ticket atualizado
+            ticketService.saveTicket(ticket);
+            redirectAttributes.addFlashAttribute("success", "Ticket atualizado com sucesso.");
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Ticket não encontrado.");
+        }
+        return "redirect:/tecnicos/home/" + idTecnico;
+    }
+
 ////buscar por id do tecnico, nao funciona ainda
 //    @PostMapping("/todos-tecnico/{id}")
 //    public String updateTecnicoTicket(@PathVariable Integer id,Model model,@RequestParam Prioridade prioridade, @RequestParam Status status) {
@@ -239,18 +275,6 @@ public class TicketViewController {
             return "redirect:/admin/home";
         }
     }
-
-    // Método POST para processar o formulário de edição
-//    @PostMapping("/editar/{id}")
-//    public String editarTicket(@ModelAttribute("ticket") Ticket ticket, RedirectAttributes redirectAttributes) {
-//        try {
-//            ticketService.updateTicket(ticket.getId());
-//            redirectAttributes.addFlashAttribute("success", "Ticket atualizado com sucesso!");
-//        } catch (Exception e) {
-//            redirectAttributes.addFlashAttribute("error", "Erro ao atualizar ticket.");
-//        }
-//        return "redirect:/admin/home";
-//    }
 
     @PostMapping("/editar/{id}")
     public String editarTicket(@PathVariable("id") Integer id, @ModelAttribute("ticket") Ticket ticketForm, RedirectAttributes redirectAttributes) {

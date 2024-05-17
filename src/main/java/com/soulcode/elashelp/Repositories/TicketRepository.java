@@ -15,4 +15,7 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
 
     @Query("SELECT t FROM Ticket t WHERE t.usuario = :usuario")
     List<Ticket> findByUsuario(@Param("usuario") Usuario usuario);
+
+    List<Ticket> findByTecnicoIdTecnico(Integer idTecnico);
+
 }

@@ -65,7 +65,7 @@ public class LoginController {
         if(autenticado && role.equals("ADMINISTRADOR")){
             return "redirect:/admin/home"+ "?email=" + usuarioLogado.getEmail();
         } else if (autenticado && role.equals("TECNICO")){
-            return "redirect:/tecnicos/home" + "?email=" + usuarioLogado.getEmail();
+            return "redirect:/tecnicos/home/" + usuarioLogado.getTecnico().getIdTecnico() + "?email=" + usuarioLogado.getEmail();
         } else if(autenticado && role.equals("USUARIO") ) {
             return "redirect:/usuario/home/" + usuarioLogado.getUsuario().getIdUsuario() + "?email=" + usuarioLogado.getEmail();
         } else return "login";

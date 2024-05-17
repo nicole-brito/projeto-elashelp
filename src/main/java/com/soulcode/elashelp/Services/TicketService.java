@@ -77,6 +77,10 @@ public class TicketService {
         ticketRepository.deleteById(id);
     }
 
+    public List<Ticket> getTicketsByTecnicoId(Integer idTecnico) {
+        return ticketRepository.findByTecnicoIdTecnico(idTecnico);
+    }
+
 //    Requisições para os gráficos
     public Map<String, Long > getOpenTicketsBySector() {
         List<Ticket> tickets = ticketRepository.findAll();

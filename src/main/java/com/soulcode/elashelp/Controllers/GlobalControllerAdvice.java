@@ -58,5 +58,13 @@ public class GlobalControllerAdvice {
             model.addAttribute("ticket", ticket);
         }
     }
-    
+
+    @ModelAttribute
+    public void showTecId(Model model, @RequestParam(value = "id", required = false) Long idTecnico) {
+        if (idTecnico != null) {
+            Tecnico tecnico = tecnicoService.findById(idTecnico);
+            model.addAttribute("idTecnico", idTecnico);
+        }
+    }
+
 }
