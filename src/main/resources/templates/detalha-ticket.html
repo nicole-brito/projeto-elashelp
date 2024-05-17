@@ -20,7 +20,7 @@
         </div>
         <div class="navbar-nav mx-auto">
             <div class="greeting-section" style="display: flex; align-items: center">
-                <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
+                <span style="margin: 12px">Bem vindo, <strong><span th:text="${nome}"></span></strong>!</span>
                 <span class="user-initials-circle"
                       th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
             </div>
