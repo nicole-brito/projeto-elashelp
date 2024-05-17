@@ -76,18 +76,13 @@
 
                 <div class="form-group">
                     <label for="setor">Setor</label>
-                    <select class="form-control" name="setor" id="setor" th:field="*{tecnico.setor}" required>
+                    <select class="form-control" name="setor" id="setor" th:field="*{setor}" required>
                         <option value="">Selecione um Setor</option>
                         <option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"
                                 th:value="${s}"
                                 th:text="${s}">
                         </option>
                     </select>
-                </div>
-
-                <div class="form-group" style="padding: 24px">
-                    <input type="checkbox" id="admin" name="admin" class="form-check-input"  th:checked="${tecnico.admin}">
-                    <label for="admin">Permissões de Administrador</label>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Salvar</button> &nbsp;

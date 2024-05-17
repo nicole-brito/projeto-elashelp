@@ -63,32 +63,58 @@ public class TicketViewController {
     }
 
     //o get abre a tela de novo chamado, com os parametros filtrados
-//    @GetMapping("/new")
-//    public String abrirNewTicketForm(@PathVariable Long idUsuario, Model model) {
-//        model.addAttribute("ticket", new Ticket());
-//        model.addAttribute("idUsuario", idUsuario);
-//        return "novo-chamado";
-//    }
-
-    @GetMapping("/new")
-    public String newTicket(Model model, Long idUsuario) {
+    @GetMapping("/new/{idUsuario}")
+    public String abrirNewTicketForm(@PathVariable Long idUsuario, Model model) {
         model.addAttribute("ticket", new Ticket());
         model.addAttribute("idUsuario", idUsuario);
         return "novo-chamado";
     }
 
-    @PostMapping("/new")
-    public String createTicket(@ModelAttribute Ticket ticket, Model model) {
-        try {
-            Ticket saveTicket = ticketService.createTicket();
-            model.addAttribute("ticket", ticket);
-            model.addAttribute("success", "Cadastro realizado com sucesso!");
-            return "redirect:/usuario/home";
-        } catch (RuntimeException e) {
-            model.addAttribute("error", e.getMessage());
-            return "cadastro-tecnico";
+    //o post insere dados do novo chamado
+    @PostMapping("/new/{idUsuario}")
+    public String mostrarNewTicketForm(@PathVariable Long idUsuario, @ModelAttribute Ticket ticket, Model model) {
+        // Busca o usuário pelo ID
+        Optional<Usuario> optionalUsuario = usuarioService.findUsuarioById(idUsuario);
+
+        if (optionalUsuario.isPresent()) {
+            Usuario usuario = optionalUsuario.get();
+
+            // Atribui a data atual ao ticket antes de salvar
+            ticket.setData(new Date());
+
+            // Associa o usuário ao novo chamado
+            ticket.setUsuario(usuario);
+
+            // Salva o ticket no banco de dados
+            ticketService.createTicket(ticket,usuario);
+
+            // Redireciona para a página de visualização de tickets do usuário
+            return "/usuario/tickets";
+        } else {
+            // Redireciona para uma página de erro se o usuário não for encontrado
+            return "redirect:/error";
         }
     }
+
+//    @GetMapping("/new")
+//    public String newTicket(Model model, Long idUsuario) {
+//        model.addAttribute("ticket", new Ticket());
+//        model.addAttribute("idUsuario", idUsuario);
+//        return "novo-chamado";
+//    }
+
+//    @PostMapping("/new")
+//    public String createTicket(@ModelAttribute Ticket ticket, Model model) {
+//        try {
+//            Ticket saveTicket = ticketService.createTicket();
+//            model.addAttribute("ticket", ticket);
+//            model.addAttribute("success", "Cadastro realizado com sucesso!");
+//            return "redirect:/usuario/home";
+//        } catch (RuntimeException e) {
+//            model.addAttribute("error", e.getMessage());
+//            return "cadastro-tecnico";
+//        }
+//    }
 
 
 
@@ -165,11 +191,10 @@ public class TicketViewController {
             ticketService.deleteTicket(id);
         }
         // Redireciona de volta para a página de listagem de tickets com o mesmo idUsuario
-        return "redirect:/tickets/todos/" + idUsuario;
+        return "redirect:/usuario/home/" + idUsuario;
     }
 
     //visao do tecnico
-
     @GetMapping("/todos-tecnico")
     public String visao(Model model){
         List<Ticket> tickets = ticketService.findAllTickets();

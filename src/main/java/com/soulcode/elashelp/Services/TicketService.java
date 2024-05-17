@@ -44,18 +44,13 @@ public class TicketService {
     public Ticket saveTicket(Ticket ticket) {
         return ticketRepository.save(ticket);
     }
-//
-//    public Ticket createTicket(Ticket ticket) {
-//       ticketRepository.findByUsuario(usuario);
-//        ticket.setUsuario(usuario);
-//
-//        ticket = ticketRepository.save(ticket);
-//        return ticket;
-//    }
 
-    public Ticket createTicket() {
-        Ticket novoTicket = new Ticket();
-        return ticketRepository.save(novoTicket);
+    public Ticket createTicket(Ticket ticket, Usuario usuario) {
+       ticketRepository.findByUsuario(usuario);
+        ticket.setUsuario(usuario);
+
+        ticket = ticketRepository.save(ticket);
+        return ticket;
     }
 
     public Ticket updateTicket(Integer id) {
