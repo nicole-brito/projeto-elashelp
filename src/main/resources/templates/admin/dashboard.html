@@ -105,6 +105,8 @@
                 <th>Data</th>
                 <th>Título</th>
                 <th>Setor</th>
+                <th>Status</th>
+                <th>Prioridade</th>
                 <th>Ações</th>
             </tr>
             </thead>
@@ -114,10 +116,10 @@
                 <td th:text="${ticket.titulo}"></td>
                 <td th:text="${ticket.setor}"></td>
                 <td th:text="${ticket.status}"></td>
-                <th th:text="${ticket.prioridade}"></th>
+                <td th:text="${ticket.prioridade}"></td>
                 <td>
                     <a th:href="@{/tickets/editar/{id}(id=${ticket.id})}" class="btn btn-primary btn-sm">Editar</a>
-
+<br>
                     <a th:href="@{/api/ticket/{id}(id=${ticket.id})}"
                        class="btn btn-outline-danger btn-sm delete-ticket">Excluir</a>
                 </td>
