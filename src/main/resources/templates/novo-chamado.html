@@ -42,12 +42,13 @@
 
         <div class="form-group">
             <input type="hidden" name="idUsuario" th:value="${idUsuario}" />
+
             <label for="titulo">Título</label>
-            <input type="text" class="form-control" id="titulo" th:field="*{titulo}" required>
+            <input type="text" class="form-control" name="titulo" id="titulo" th:field="*{titulo}" required>
         </div>
         <div class="form-group">
             <label for="descricao">Descrição</label>
-            <textarea class="form-control" id="descricao" th:field="*{descricao}" required></textarea>
+            <textarea class="form-control" name="descricao" id="descricao" th:field="*{descricao}" required></textarea>
         </div>
 
         <div class="form-group">
@@ -60,9 +61,6 @@
                 </option>
             </select>
         </div>
-
-
-
 
         <button type="submit" class="btn btn-primary">Criar Chamado</button>
 

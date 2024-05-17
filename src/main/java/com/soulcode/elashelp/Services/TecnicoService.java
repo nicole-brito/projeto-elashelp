@@ -3,6 +3,7 @@ package com.soulcode.elashelp.Services;
 
 import com.soulcode.elashelp.Models.Login;
 import com.soulcode.elashelp.Models.Role;
+import com.soulcode.elashelp.Models.Setor;
 import com.soulcode.elashelp.Models.Tecnico;
 import com.soulcode.elashelp.Repositories.LoginRepository;
 import com.soulcode.elashelp.Repositories.TecnicoRepository;
@@ -40,9 +41,11 @@ public class TecnicoService {
         login.setTecnico(tecnico);
 
         //TODO por hora fixo  ate receber isso do front]
-        //        lembrar de mudar aqui para cadastrar tecnico ou usuario
-        login.setRole(Role.TECNICO);
-        //login.setRole(Role.ADMINISTRADOR);
+        if(tecnico.getSetor().equals(Setor.ADMINISTRATIVO)){
+            login.setRole(Role.ADMINISTRADOR);
+        } else {
+            login.setRole(Role.TECNICO);
+        }
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(login.getPassword());
         login.setSenha(encryptedPassword);

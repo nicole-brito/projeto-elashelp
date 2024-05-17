@@ -76,7 +76,7 @@
 
                 <div class="form-group">
                     <label for="setor">Setor</label>
-                    <select class="form-control" name="setor" id="setor" th:field="*{setor}" required>
+                    <select class="form-control" name="setor" id="setor" th:field="*{tecnico.setor}" required>
                         <option value="">Selecione um Setor</option>
                         <option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"
                                 th:value="${s}"

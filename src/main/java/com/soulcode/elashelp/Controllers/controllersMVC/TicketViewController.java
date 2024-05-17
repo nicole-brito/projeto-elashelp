@@ -71,15 +71,16 @@ public class TicketViewController {
 //    }
 
     @GetMapping("/new")
-    public String newTicket(Model model) {
+    public String newTicket(Model model, Long idUsuario) {
         model.addAttribute("ticket", new Ticket());
+        model.addAttribute("idUsuario", idUsuario);
         return "novo-chamado";
     }
 
     @PostMapping("/new")
     public String createTicket(@ModelAttribute Ticket ticket, Model model) {
         try {
-            Ticket saveTicket = ticketService.saveTicket(new Ticket());
+            Ticket saveTicket = ticketService.createTicket();
             model.addAttribute("ticket", ticket);
             model.addAttribute("success", "Cadastro realizado com sucesso!");
             return "redirect:/usuario/home";
@@ -88,6 +89,8 @@ public class TicketViewController {
             return "cadastro-tecnico";
         }
     }
+
+
 
 
 //    //o post insere dados do novo chamado
