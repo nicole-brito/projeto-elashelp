@@ -48,7 +48,6 @@
 <p><strong>Prioridade:</strong>
     <select th:field="*{ticket.prioridade}" id="prioridade" required>
         <option value="">Selecione a Prioridade</option>
-        <
         <option th:each="s : ${T(com.soulcode.elashelp.Models.Prioridade).values()}"
                 th:value="${s}"
                 th:text="${s}">
@@ -57,7 +56,6 @@
 <p><strong>Setor:</strong>
     <select th:field="*{ticket.setor}" id="setor" required>
         <option value="">Selecione um Setor</option>
-        <
         <option th:each="s : ${T(com.soulcode.elashelp.Models.Setor).values()}"
                 th:value="${s}"
                 th:text="${s}">
