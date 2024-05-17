@@ -19,26 +19,17 @@
             <span class="logo-text">KittyHelp</span>
         </div>
         <div class="navbar-nav mx-auto">
-            <a class="nav-link active" href="/">Home</a>
-            <a class="nav-link" href="#">Serviços</a>
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                    Mais
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a href="/sobre">Desenvolvedoras</a>
-                    <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
-                </div>
+            <div class="greeting-section" style="display: flex; align-items: center">
+                <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
+                <span class="user-initials-circle"
+                      th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
             </div>
         </div>
-        <div class="greeting-section">
-                        <span>Olá, <span th:text="${tecnico?.nome != null ? tecnico.nome + ' ' + ticket.tecnico.sobrenome : 'Visitante'}" ></span>!</span>
-<!--                        <span class="user-initials-circle" th:text="${#strings.toUpperCase(tecnico.nome)}"></span>-->
-        </div>
+        <a style="margin-left: 8px" th:href="@{/logout}" class="btn btn-outline-danger">Sair</a>
     </div>
 </nav>
-<br>
-<div class="login-container">
+
+<div class="login-container" style="margin-top: 5%">
 <h2>Detalhes do Ticket</h2>
 
 <div th:if="${ticket != null}">
@@ -59,8 +50,10 @@
 </div>
 
 
-<a th:href="@{/tickets/todos/{idUsuario}(idUsuario=${ticket.usuario.getIdUsuario()})}">Voltar para a lista de tickets</a>
-
+    <div class="btn btn-outline-secondary">
+        <i class="fa-solid fa-arrow-left"></i>
+        <a th:href="@{/usuario/home/{idUsuario}(idUsuario=${ticket.usuario.getIdUsuario()})}">Voltar para a lista de tickets</a>
+    </div>
 </div>
 
 

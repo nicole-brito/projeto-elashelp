@@ -27,7 +27,7 @@
 
 <div class=" card-tecnico">
     <div class="card-body">
-        <h2 class="mb-4">Chamados a solucionar</h2>
+        <h2 class="mb-4">Seus Chamados a solucionar</h2>
         <br>
 
         <table class="table">
@@ -52,6 +52,44 @@
                 <td th:text="${ticket.prioridade}"></td>
                 <td th:text="${ticket.status}"></td>
                 <td><a th:href="@{/tickets/tec/editar/{id}/{idTecnico}(id=${ticket.id}, idTecnico=${idTecnico})}" class="btn btn-secondary">Alterar</a>
+                <td>
+                </td>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class=" card-tecnico">
+    <div class="card-body">
+        <h2 class="mb-4">Todos os Chamados</h2>
+        <br>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Data</th>
+                <th>Titulo</th>
+                <th>Descrição</th>
+                <th>Setor</th>
+                <th>Prioridade</th>
+                <th>Status</th>
+                <th>Ações</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ticket : ${allTickets}">
+                <td th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></td>
+                <td th:text="${ticket.titulo}"></td>
+                <td th:text="${ticket.descricao}"></td>
+                <td th:text="${ticket.setor}"></td>
+                <td th:text="${ticket.prioridade}"></td>
+                <td th:text="${ticket.status}"></td>
+<!--                <td><a th:href="@{/tickets/tec/editar/{id}/{idTecnico}(id=${ticket.id}, idTecnico=${idTecnico})}" class="btn btn-secondary">Alterar</a>-->
                 <td>
                 </td>
 

@@ -1,5 +1,6 @@
 package com.soulcode.elashelp.Repositories;
 
+import com.soulcode.elashelp.Models.Setor;
 import com.soulcode.elashelp.Models.Ticket;
 import com.soulcode.elashelp.Models.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,4 +19,5 @@ public interface TicketRepository extends JpaRepository<Ticket, Integer> {
 
     List<Ticket> findByTecnicoIdTecnico(Integer idTecnico);
 
+    List<Ticket> findBySetor(Setor setor);
 }

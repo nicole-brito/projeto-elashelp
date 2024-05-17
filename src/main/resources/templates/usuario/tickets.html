@@ -28,66 +28,44 @@
     </div>
 </nav>
 
-<div class="container mt-5" style="margin-bottom: 25%">
-    <div class="container mt-5">
+<div class=" mt-5 container-card" style="margin-bottom: 15%; display: flex">
+    <div class="container mt-5 card" style="width: auto; align-items: center">
+        <div class="card-body">
 
-        <h2 class="mb-4">Chamados Disponíveis</h2>
-        <a th:href="@{/tickets/new/{idUsuario}(idUsuario=${idUsuario})}" class="btn btn-success">+ Novo Chamado</a>
-        <br><br>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Data</th>
-                <th>Título</th>
-                <th>Setor</th>
-                <th>Ações</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="ticket : ${tickets}">
-                <td th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></td>
-                <td th:text="${ticket.titulo}"></td>
-                <td th:text="${ticket.setor}"></td>
-                <td>
-                    <a th:href="@{/tickets/{id}(id=${ticket.id})}" class="btn btn-secondary">Detalhar</a>
+            <div style="display: flex;justify-content: space-between; align-items: center">
+            <h2 class="mb-4">Seus Chamados</h2>
+                <div>
+            <a th:href="@{/tickets/new/{idUsuario}(idUsuario=${idUsuario})}" class="btn btn-success">+ Novo Chamado</a>
+                </div></div>
+            <br>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Data de Abertura</th>
+                    <th>Título</th>
+                    <th>Setor</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="ticket : ${tickets}">
+                    <td th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${ticket.titulo}"></td>
+                    <td th:text="${ticket.setor}"></td>
+                    <td th:text="${ticket.status}"></td>
+                    <td>
+                        <a th:href="@{/tickets/{id}(id=${ticket.id})}" class="btn btn-secondary">Detalhar</a>
 
-                    <a th:href="@{/tickets/excluir/{id}(id=${ticket.id}, idUsuario=${idUsuario})}" class="btn btn-danger">Excluir</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                        <a th:href="@{/tickets/excluir/{id}(id=${ticket.id}, idUsuario=${idUsuario})}"
+                           class="btn btn-outline-danger">Excluir</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-
-<!--    <h2 class="mb-4">Seus Chamados</h2>-->
-
-<!--&lt;!&ndash;    <a th:href="@{/tickets/new/{idUsuario}}" class="btn btn-success">+ Novo Chamado</a>&ndash;&gt;-->
-<!--    <a th:href="@{/tickets/new/{idUsuario}(idUsuario=${idUsuario})}" class="btn btn-success">+ Novo Chamado</a>-->
-
-<!--    <br><br>-->
-<!--    <table class="table">-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--            <th>Data</th>-->
-<!--            <th>Título</th>-->
-<!--            <th>Setor</th>-->
-<!--           <th>Ações</th>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr th:each="ticket : ${tickets}">-->
-<!--            <td th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></td>-->
-<!--            <td th:text="${ticket.titulo}"></td>-->
-<!--            <td th:text="${ticket.setor}"></td>-->
-<!--            <td>-->
-<!--                <a th:href="@{/usuario/tickets/{id}(id=${ticket.id})}" class="btn-sm btn btn-secondary">Detalhar</a>-->
-
-<!--                <a th:href="@{/tickets/excluir/{id}(id=${ticket.id})}"-->
-<!--                   class="btn btn-danger btn-sm delete-ticket">Excluir</a>-->
-<!--            </td>-->
-<!--        </tr>-->
-<!--        </tbody>-->
-<!--    </table>-->
-<!--</div>-->
+</div>
 
 <footer>
     <img src="/imagens/logo-preto.png" alt="Logo KittyHelp">

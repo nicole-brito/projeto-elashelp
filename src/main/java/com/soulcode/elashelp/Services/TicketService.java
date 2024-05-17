@@ -1,5 +1,6 @@
 package com.soulcode.elashelp.Services;
 
+import com.soulcode.elashelp.Models.Setor;
 import com.soulcode.elashelp.Models.Status;
 import com.soulcode.elashelp.Models.Ticket;
 import com.soulcode.elashelp.Models.Usuario;
@@ -123,5 +124,7 @@ public class TicketService {
                 .collect(Collectors.groupingBy(ticket -> ticket.getPrioridade().toString(), Collectors.counting()));
     }
 
-
+    public List<Ticket> findAllTicketsBySetor(Setor setor) {
+        return ticketRepository.findBySetor(setor);
+    }
 }

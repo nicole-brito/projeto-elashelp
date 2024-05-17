@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/api/tecnicos")
@@ -24,13 +23,7 @@ public class TecnicoController {
     @Autowired
     private TecnicoService tecnicoService;
 
-
-
-    @PostMapping()
-    public Tecnico createTecnico(@RequestBody Tecnico tecnico) {
-        return tecnicoService.createTecnico(tecnico);
-    }
-
+    // Get
     @GetMapping("/{idTecnico}")
     public ResponseEntity<?> getTecnicoById(@PathVariable Long idTecnico) {
         try {
@@ -46,6 +39,13 @@ public class TecnicoController {
         }
     }
 
+    // Post
+    @PostMapping()
+    public Tecnico createTecnico(@RequestBody Tecnico tecnico) {
+        return tecnicoService.createTecnico(tecnico);
+    }
+
+    // Delete
     @DeleteMapping("deletar/{idTecnico}")
     public ResponseEntity<?> deleteById(@PathVariable Long idTecnico) {
         try {
@@ -57,6 +57,7 @@ public class TecnicoController {
         }
     }
 
+    // Put
     @PutMapping("atualizar/{idTecnico}")
     public ResponseEntity<?> updateid(@RequestBody Tecnico tecnico) {
         try {

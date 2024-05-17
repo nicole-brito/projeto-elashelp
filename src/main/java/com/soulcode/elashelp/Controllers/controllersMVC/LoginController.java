@@ -47,7 +47,6 @@ public class LoginController {
         model.addAttribute("email", email);
         model.addAttribute("senha", senha);
 
-
         UsernamePasswordAuthenticationToken usernamePassword;
         Authentication authentication;
         try {
@@ -80,7 +79,6 @@ public class LoginController {
     public String escolherCadastro() {
         return "escolhercadastro";
     }
-
 
     @GetMapping("esqueceuasenha")
     public String esquece() {

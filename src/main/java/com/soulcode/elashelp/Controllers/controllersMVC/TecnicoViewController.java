@@ -47,19 +47,12 @@ public class TecnicoViewController {
     }
 
     //Admin area
-    // @PreAuthorize("admin(true)")
     @GetMapping("/todos")
     public String showAllTecnicos(Model model) {
         List<Tecnico> tecnicos = tecnicoService.findAll();
         model.addAttribute("tecnicos", tecnicos);
         return "admin/dashboard";
     }
-
-//    @DeleteMapping("/excluir/{id}")
-//    public String deleteTecnico(@PathVariable("id") Long id) {
-//        tecnicoService.deleteById(id);
-//        return "redirect:/tecnico/todos";
-//    }
 
     // Método GET para exibir o formulário de edição
     @GetMapping("/editar/{id}")
