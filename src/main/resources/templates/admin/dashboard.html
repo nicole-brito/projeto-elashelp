@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="greeting-section" style="display: flex; align-items: center">
-            <span style="margin: 12px">Olá, <strong><span th:text="${nome}"></span></strong>!</span>
+            <span style="margin: 12px">Bem vindo <strong><span th:text="${nome}"></span></strong>!</span>
             <span class="user-initials-circle"
                   th:text="${#strings.toUpperCase(nome.charAt(0) + '' + nome.charAt(nome.indexOf(' ') + 1))}"></span>
         </div>
@@ -105,6 +105,8 @@
                 <th>Data</th>
                 <th>Título</th>
                 <th>Setor</th>
+                <th>Status</th>
+                <th>Prioridade</th>
                 <th>Ações</th>
             </tr>
             </thead>
@@ -113,9 +115,11 @@
                 <td th:text="${#dates.format(ticket.data, 'dd/MM/yyyy')}"></td>
                 <td th:text="${ticket.titulo}"></td>
                 <td th:text="${ticket.setor}"></td>
+                <td th:text="${ticket.status}"></td>
+                <td th:text="${ticket.prioridade}"></td>
                 <td>
                     <a th:href="@{/tickets/editar/{id}(id=${ticket.id})}" class="btn btn-primary btn-sm">Editar</a>
-
+<br>
                     <a th:href="@{/api/ticket/{id}(id=${ticket.id})}"
                        class="btn btn-outline-danger btn-sm delete-ticket">Excluir</a>
                 </td>

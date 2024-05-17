@@ -66,7 +66,7 @@ public class TicketController {
     }
 
     //Requisição para os gráficos
-    @GetMapping("open-by-sector")
+    @GetMapping("/open-by-sector")
     public Map<String, Long> getOpenTicketsBySector() {
         return ticketService.getOpenTicketsBySector();
     }
