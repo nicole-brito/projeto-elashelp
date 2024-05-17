@@ -19,27 +19,12 @@
             <span class="logo-text">KittyHelp</span>
         </div>
         <div class="navbar-nav mx-auto">
-            <a class="nav-link active" href="/">Home</a>
-            <a class="nav-link" href="#">Serviços</a>
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                    Mais
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a href="/sobre">Desenvolvedoras</a>
-                    <a href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
-                </div>
-            </div>
+            <a class="nav-link" href="/">Inicio</a>
+            <a class="nav-link" href="/sobre">Sobre</a>
+            <a class="nav-link" href="https://github.com/nicole-brito/projeto-elashelp">Documentação</a>
         </div>
         <div class="auth-buttons">
-            <a href="/escolhercadastro">
-                <button type="button" class="btn btn-primary">Criar conta</button>
-            </a>
-            <a href="/login">
-
-                <button type="button" class="btn btn-outline-secondary">Entrar</button>
-            </a>
-
+            <a style="margin-left: 8px" th:href="@{/logout}" class="btn btn-outline-danger">Sair</a>
         </div>
     </div>
 </nav>
